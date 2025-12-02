@@ -144,7 +144,7 @@ const Skills = () => {
             },
           }}
         >
-          {skillCategories.map((category, index) => {
+          {skillCategories.map((category) => {
             const IconComponent = category.Icon;
             return (
               <motion.div
