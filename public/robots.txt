@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://andile-manganye-portfolio.vercel.app/sitemap.xml
+Sitemap: https://andile-manganye-porfolio.vercel.app/sitemap.xml
 

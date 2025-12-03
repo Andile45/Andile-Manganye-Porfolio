@@ -4,49 +4,49 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://andile-manganye-portfolio.vercel.app/</loc>
+    <loc>https://andile-manganye-porfolio.vercel.app/</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://andile-manganye-portfolio.vercel.app/#home</loc>
+    <loc>https://andile-manganye-porfolio.vercel.app/#home</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://andile-manganye-portfolio.vercel.app/#about</loc>
+    <loc>https://andile-manganye-porfolio.vercel.app/#about</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://andile-manganye-portfolio.vercel.app/#skills</loc>
+    <loc>https://andile-manganye-porfolio.vercel.app/#skills</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://andile-manganye-portfolio.vercel.app/#projects</loc>
+    <loc>https://andile-manganye-porfolio.vercel.app/#projects</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://andile-manganye-portfolio.vercel.app/#experience</loc>
+    <loc>https://andile-manganye-porfolio.vercel.app/#experience</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://andile-manganye-portfolio.vercel.app/#certificates</loc>
+    <loc>https://andile-manganye-porfolio.vercel.app/#certificates</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://andile-manganye-portfolio.vercel.app/#contact</loc>
+    <loc>https://andile-manganye-porfolio.vercel.app/#contact</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
