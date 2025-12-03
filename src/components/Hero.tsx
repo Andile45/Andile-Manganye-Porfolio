@@ -5,7 +5,6 @@ import {
   SiTypescript, 
   SiJavascript, 
   SiHtml5,
-  SiSpring,
   SiPython,
   SiFlask,
   SiFirebase,
