@@ -54,12 +54,12 @@ const Header = () => {
           </motion.button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
             {navItems.map((item) => (
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-gray-700 dark:text-gray-300 font-semibold text-sm uppercase tracking-wide relative"
+                className="text-gray-700 dark:text-white font-semibold text-xs md:text-sm uppercase tracking-wide relative"
                 whileHover={{ color: '#2563eb' }}
                 transition={{ duration: 0.2 }}
               >
@@ -168,7 +168,7 @@ const Header = () => {
                 <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left px-4 py-3 text-gray-700 dark:text-gray-300 rounded-lg font-medium"
+                  className="block w-full text-left px-4 py-3 text-gray-700 dark:text-white rounded-lg font-medium"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}

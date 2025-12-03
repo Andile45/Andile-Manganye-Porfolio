@@ -107,29 +107,29 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          <motion.div className="mb-8" variants={itemVariants}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+          <motion.div className="mb-6 sm:mb-8" variants={itemVariants}>
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 sm:mb-6 leading-tight px-2">
               <span className="text-blue-600 dark:text-blue-400">
                 Hi, I'm Andile Manganye
               </span>
             </h1>
             <motion.div
-              className="w-24 h-1 bg-blue-600 mx-auto rounded-full"
+              className="w-16 sm:w-24 h-1 bg-blue-600 mx-auto rounded-full"
               initial={{ width: 0 }}
-              animate={{ width: 96 }}
+              animate={{ width: 64 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             />
           </motion.div>
           
           <motion.p
-            className="text-xl sm:text-2xl md:text-3xl text-gray-800 dark:text-gray-200 mb-4 font-semibold"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 dark:text-gray-200 mb-3 sm:mb-4 font-semibold px-4"
             variants={itemVariants}
           >
             Full-Stack Developer & Computer Science Student
           </motion.p>
           
           <motion.p
-            className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto px-4"
             variants={itemVariants}
           >
             Developer Trainee at{' '}
@@ -141,7 +141,7 @@ const Hero = () => {
           </motion.p>
           
           <motion.p
-            className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-4"
             variants={itemVariants}
           >
             I build real-world digital solutions, collaborate in agile teams, and
@@ -149,7 +149,7 @@ const Hero = () => {
           </motion.p>
           
           <motion.div
-            className="flex flex-wrap justify-center gap-3 mb-10"
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 px-4"
             variants={itemVariants}
           >
             {['React + TypeScript', 'JavaScript', 'HTML5', 'Java Spring Boot', 'Python Flask', 'Firebase', 'PostgreSQL'].map((tech, index) => {
@@ -157,34 +157,34 @@ const Hero = () => {
               return (
                 <motion.span
                   key={tech}
-                  className="px-5 py-2.5 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-full text-sm font-semibold shadow-md flex items-center gap-2"
+                  className="px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-full text-xs sm:text-sm font-semibold shadow-md flex items-center gap-1.5 sm:gap-2"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + index * 0.1 }}
                 >
-                  {TechIcon && <TechIcon className="text-xl md:text-2xl flex-shrink-0" />}
-                  <span>{tech}</span>
+                  {TechIcon && <TechIcon className="text-lg sm:text-xl md:text-2xl flex-shrink-0" />}
+                  <span className="whitespace-nowrap">{tech}</span>
                 </motion.span>
               );
             })}
           </motion.div>
           
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4"
             variants={itemVariants}
           >
             <motion.a
               href="#contact"
-              className="group px-8 py-4 bg-blue-600 text-white rounded-xl font-bold text-lg shadow-xl"
+              className="group px-6 py-3 sm:px-8 sm:py-4 bg-blue-600 text-white rounded-xl font-bold text-base sm:text-lg shadow-xl text-center"
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="flex items-center justify-center gap-2">
                 Let's Connect
                 <motion.svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -197,7 +197,7 @@ const Hero = () => {
             </motion.a>
             <motion.a
               href="#projects"
-              className="px-8 py-4 border-2 border-blue-600 dark:border-purple-500 text-blue-600 dark:text-purple-400 rounded-xl font-bold text-lg shadow-lg"
+              className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-blue-600 dark:border-purple-500 text-blue-600 dark:text-purple-400 rounded-xl font-bold text-base sm:text-lg shadow-lg text-center"
               whileHover={{ scale: 1.05, y: -2, backgroundColor: 'rgba(59, 130, 246, 0.1)' }}
               whileTap={{ scale: 0.95 }}
             >

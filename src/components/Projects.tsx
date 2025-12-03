@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaRocket } from 'react-icons/fa';
+import { FaRocket, FaExternalLinkAlt, FaDownload, FaGithub } from 'react-icons/fa';
 
 const Projects = () => {
   const projects = [
@@ -16,7 +16,8 @@ const Projects = () => {
         'PDF receipt generation',
         'Role-based access control',
       ],
-      role: 'Built backend with Node.js/Express, connected frontend with API endpoints, implemented role-based access, booking flows, and PayPal integration',
+      role: 'Built backend with Node.js/Express, implemented role-based access control, booking flows, PayPal integration, and RESTful API endpoints',
+      github: 'https://github.com/MondliWentandane/Backend',
     },
     {
       title: 'OnSite — AI-Powered Municipality Maintenance & Employment System',
@@ -32,19 +33,21 @@ const Projects = () => {
         'Event-driven architecture via Cloud Functions',
       ],
       role: 'Full-stack feature development, Flutter mobile workflows, Firebase integration, UI/UX prototyping in Figma, implemented classification pipelines & notifications',
+      apk: '/Mobile Apps/Onsite_Mobile.apk',
     },
     {
-      title: 'Areyeng – Commuter & Bus Tracking App',
-      tech: 'Flutter • Dart • Firebase • Paystack • Riverpod • Dio • Google Maps',
+      title: 'Weather App',
+      tech: 'HTML5, CSS3, JavaScript (ES6), OpenWeatherMap API',
       description:
-        'Real-time bus tracking and digital ticketing system with payment integration.',
+        'Simple weather application that provides real-time weather updates for any city.',
       features: [
-        'Real-time bus tracking',
-        'Digital ticketing & Paystack payments',
-        'Wallet & transaction history',
-        'Fleet analytics for bus owners',
+        'Search weather by city name',
+        'Temperature, humidity & weather condition display',
+        'Weather icons visualization',
+        'Responsive design',
       ],
-      role: 'Implemented mobile features using Flutter, added Firebase Auth + Cloud Messaging, built Paystack payment flows, structured Clean Architecture, developed network integration layers',
+      role: 'Built with vanilla JavaScript, integrated OpenWeatherMap API for real-time weather data, implemented responsive UI design',
+      link: 'https://weather-app-zeta-navy-82.vercel.app/',
     },
   ];
 
@@ -69,7 +72,7 @@ const Projects = () => {
           >
             <FaRocket className="text-5xl md:text-6xl text-blue-600 dark:text-blue-400 mx-auto mb-4" />
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
             Projects
           </h2>
           <motion.div
@@ -82,7 +85,7 @@ const Projects = () => {
         </motion.div>
         
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -157,9 +160,52 @@ const Projects = () => {
                 </div>
                 
                 <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
                     <span className="font-bold text-gray-900 dark:text-white">My Role:</span> {project.role}
                   </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.link && (
+                      <motion.a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold shadow-md"
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: 'spring', stiffness: 400 }}
+                      >
+                        <FaExternalLinkAlt className="w-3 h-3" />
+                        View Live App
+                      </motion.a>
+                    )}
+                    {project.github && (
+                      <motion.a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 dark:bg-gray-700 text-white rounded-lg text-xs font-semibold shadow-md"
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: 'spring', stiffness: 400 }}
+                      >
+                        <FaGithub className="w-3 h-3" />
+                        View Code
+                      </motion.a>
+                    )}
+                    {project.apk && (
+                      <motion.a
+                        href={project.apk}
+                        download
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg text-xs font-semibold shadow-md"
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: 'spring', stiffness: 400 }}
+                      >
+                        <FaDownload className="w-3 h-3" />
+                        Download APK
+                      </motion.a>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>

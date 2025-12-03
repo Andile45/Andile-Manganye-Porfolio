@@ -26,7 +26,7 @@ const Contact = () => {
           >
             <FaEnvelope className="text-5xl md:text-6xl text-blue-600 dark:text-blue-400 mx-auto mb-4" />
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
             Contact
           </h2>
           <motion.div
@@ -49,7 +49,7 @@ const Contact = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -65,7 +65,7 @@ const Contact = () => {
           >
             <motion.a
               href="mailto:manganyeandile@gmail.com"
-              className="group flex flex-col items-center p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border-2 border-blue-200 dark:border-blue-800 shadow-lg"
+              className="group flex flex-col items-center p-4 sm:p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border-2 border-blue-200 dark:border-blue-800 shadow-lg"
               variants={{
                 hidden: { opacity: 0, y: 30 },
                 visible: {
@@ -80,12 +80,12 @@ const Contact = () => {
               transition={{ type: 'spring', stiffness: 300 }}
             >
               <motion.div
-                className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mb-4 shadow-lg"
+                className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-500 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: 'spring', stiffness: 400 }}
               >
                 <svg
-                  className="w-8 h-8 text-white"
+                  className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -98,10 +98,10 @@ const Contact = () => {
                   />
                 </svg>
               </motion.div>
-              <span className="font-bold text-gray-900 dark:text-white mb-2 text-lg">
+              <span className="font-bold text-gray-900 dark:text-white mb-1 sm:mb-2 text-base sm:text-lg">
                 Email
               </span>
-              <span className="text-sm text-gray-600 dark:text-gray-400 text-center break-all">
+              <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center break-all">
                 manganyeandile@gmail.com
               </span>
             </motion.a>
@@ -110,7 +110,7 @@ const Contact = () => {
               href="https://github.com/Andile45"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border-2 border-gray-200 dark:border-gray-600 shadow-lg"
+              className="group flex flex-col items-center p-6 bg-blue-50 dark:bg-gray-700/50 rounded-2xl border-2 border-blue-200 dark:border-gray-600 shadow-lg"
               variants={{
                 hidden: { opacity: 0, y: 30 },
                 visible: {
@@ -125,12 +125,12 @@ const Contact = () => {
               transition={{ type: 'spring', stiffness: 300 }}
             >
               <motion.div
-                className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mb-4 shadow-lg"
+                className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-700 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: 'spring', stiffness: 400 }}
               >
                 <svg
-                  className="w-8 h-8 text-white"
+                  className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -141,10 +141,10 @@ const Contact = () => {
                   />
                 </svg>
               </motion.div>
-              <span className="font-bold text-gray-900 dark:text-white mb-2 text-lg">
+              <span className="font-bold text-gray-900 dark:text-white mb-1 sm:mb-2 text-base sm:text-lg">
                 GitHub
               </span>
-              <span className="text-sm text-gray-600 dark:text-gray-400 text-center">
+              <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center">
                 @Andile45
               </span>
             </motion.a>
@@ -153,7 +153,7 @@ const Contact = () => {
               href="https://linkedin.com/in/andile-manganye-a27591319"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border-2 border-blue-200 dark:border-blue-800 shadow-lg"
+              className="group flex flex-col items-center p-4 sm:p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border-2 border-blue-200 dark:border-blue-800 shadow-lg"
               variants={{
                 hidden: { opacity: 0, y: 30 },
                 visible: {
@@ -168,22 +168,22 @@ const Contact = () => {
               transition={{ type: 'spring', stiffness: 300 }}
             >
               <motion.div
-                className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg"
+                className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: 'spring', stiffness: 400 }}
               >
                 <svg
-                  className="w-8 h-8 text-white"
+                  className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                 </svg>
               </motion.div>
-              <span className="font-bold text-gray-900 dark:text-white mb-2 text-lg">
+              <span className="font-bold text-gray-900 dark:text-white mb-1 sm:mb-2 text-base sm:text-lg">
                 LinkedIn
               </span>
-              <span className="text-sm text-gray-600 dark:text-gray-400 text-center">
+              <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center">
                 andile-manganye
               </span>
             </motion.a>

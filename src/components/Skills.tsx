@@ -193,7 +193,7 @@ const Skills = () => {
           >
             <FaBrain className="text-5xl md:text-6xl text-blue-600 dark:text-blue-400 mx-auto mb-4" />
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
             Skills
           </h2>
           <motion.div

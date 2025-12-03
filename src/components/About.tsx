@@ -51,7 +51,7 @@ const About = () => {
             <FaUser className="text-4xl md:text-5xl text-blue-600 dark:text-blue-400" />
             <FaCode className="text-4xl md:text-5xl text-purple-600 dark:text-purple-400" />
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
             About Me
           </h2>
           <motion.div
@@ -73,7 +73,7 @@ const About = () => {
           transition={{ duration: 0.3 }}
         >
           <motion.p
-            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
             variants={itemVariants}
           >
             I am a South African full-stack developer with a strong passion for
@@ -91,7 +91,7 @@ const About = () => {
           </motion.p>
           
           <motion.p
-            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
             variants={itemVariants}
           >
             I am always eager to learn and grow, embracing new challenges and technologies with enthusiasm. Whether it's mastering a new framework, understanding a complex system, or adapting to different team workflows, I approach every opportunity as a chance to expand my knowledge and contribute more effectively.
