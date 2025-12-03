@@ -4,33 +4,6 @@ import { FaRocket } from 'react-icons/fa';
 const Projects = () => {
   const projects = [
     {
-      title: 'Service Hub (formerly ServeEase)',
-      tech: 'React + TypeScript, Python Flask, MySQL (Supabase), Cloud Storage',
-      description:
-        'A service marketplace application designed for seamless interaction between customers and service providers.',
-      features: [
-        'Service provider registration',
-        'Photo uploads & profiles',
-        'Availability scheduling',
-        'Next-of-kin safety feature (unique)',
-        'Flask backend with raw SQL',
-        'MySQL cloud database on Supabase',
-      ],
-      role: 'Built entire backend in Flask, implemented dynamic forms & image uploads, integrated MySQL via Supabase, developed responsive React + TypeScript frontend',
-    },
-    {
-      title: 'Agile Poker Planning Tool',
-      tech: 'Java 17, Spring Boot 3.2.3, PostgreSQL 16, Flyway, WebSockets (STOMP)',
-      description:
-        'Real-time planning tool with collaborative whiteboard functionality.',
-      features: [
-        'Real-time whiteboard using STOMP WebSockets',
-        'Create, save, and update planning sessions',
-        'PostgreSQL with versioned migrations',
-      ],
-      role: 'Implemented "Save or update whiteboard" feature, built REST endpoints, managed database schema with Flyway',
-    },
-    {
       title: 'Hotel Booking App & Backend API',
       tech: 'React + TypeScript (Vercel), Node.js/Express backend (Railway), PostgreSQL (Supabase)',
       description:
@@ -72,73 +45,6 @@ const Projects = () => {
         'Fleet analytics for bus owners',
       ],
       role: 'Implemented mobile features using Flutter, added Firebase Auth + Cloud Messaging, built Paystack payment flows, structured Clean Architecture, developed network integration layers',
-    },
-    {
-      title: 'Aethel — Simple Ollama AI React GUI',
-      tech: 'React + TypeScript, TailwindCSS, Ollama',
-      description: 'Sleek minimal chat interface for local AI interactions.',
-      features: [
-        'Sleek minimal chat interface',
-        'Streams local AI responses via Ollama API',
-        'Fully offline & private',
-        'Supports multiple models',
-      ],
-      role: 'Designed the UI, built response streaming logic, integrated local Ollama API',
-    },
-    {
-      title: 'Dragon Ball Z Character Browser',
-      tech: 'TypeScript, HTML, CSS, json-server',
-      description: 'Character browser with local JSON API.',
-      features: [
-        'Display DBZ characters from local JSON',
-        'Responsive card UI',
-        'Error handling',
-        'TypeScript → JavaScript build pipeline',
-      ],
-      role: 'Built full frontend, created local API with json-server, implemented TypeScript build pipeline',
-    },
-    {
-      title: 'Weather App',
-      tech: 'HTML, CSS, JavaScript, OpenWeatherMap API',
-      description: 'Real-time weather information by city.',
-      features: [
-        'Real-time weather by city',
-        'Temperature, humidity, and condition',
-        'Responsive layout',
-      ],
-      role: 'Full-stack development',
-    },
-    {
-      title: 'School Student Management App (Java EE / EJB)',
-      tech: 'Java EE, EJB',
-      description: 'Management system with role-based access.',
-      features: [
-        'Teacher & principal roles',
-        'Photo upload and display',
-        'Role-based access control',
-      ],
-      role: 'Developed backend logic with EJB, built UI for image display, connected to database layer',
-    },
-    {
-      title: 'Wellness Glucose Management System',
-      tech: 'University Project',
-      description: 'Healthcare management system with analytics.',
-      features: [
-        'CRUD for client glucose readings',
-        'Manager dashboard with analytics',
-      ],
-      role: 'Backend logic & data analysis, dashboard UI components',
-    },
-    {
-      title: 'Shopping List API',
-      tech: 'Node.js, Express.js, TypeScript',
-      description: 'RESTful API for shopping list management.',
-      features: [
-        'Add / view / update / delete items',
-        'Robust error handling',
-        'TypeScript interfaces',
-      ],
-      role: 'Full-stack development',
     },
   ];
 

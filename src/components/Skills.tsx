@@ -1,6 +1,35 @@
 import { motion } from 'framer-motion';
 import { FaBrain } from 'react-icons/fa';
 import { FaPalette, FaCog, FaDatabase, FaCloud, FaTools, FaRocket } from 'react-icons/fa';
+import { 
+  SiReact, 
+  SiTypescript, 
+  SiVite, 
+  SiTailwindcss, 
+  SiHtml5, 
+  SiCss3, 
+  SiJavascript, 
+  SiFlutter, 
+  SiDart,
+  SiNodedotjs,
+  SiExpress,
+  SiPython,
+  SiFlask,
+  SiSpring,
+  SiFirebase,
+  SiPostgresql,
+  SiMysql,
+  SiSupabase,
+  SiVercel,
+  SiRailway,
+  SiGooglecloud,
+  SiGit,
+  SiGithub,
+  SiIntellijidea,
+  SiPycharm,
+  SiFigma
+} from 'react-icons/si';
+import { FaJava, FaCode } from 'react-icons/fa';
 
 const Skills = () => {
   const skillCategories = [
@@ -66,7 +95,7 @@ const Skills = () => {
         'NetBeans',
         'Figma (UI/UX)',
       ],
-      color: 'pink',
+      color: 'blue',
       gradient: 'blue-500',
     },
     {
@@ -94,6 +123,53 @@ const Skills = () => {
     pink: 'bg-pink-100 dark:bg-pink-900/30 text-pink-800 dark:text-pink-300 border-pink-300 dark:border-pink-700',
     indigo:
       'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 border-indigo-300 dark:border-indigo-700',
+  };
+
+  // Icon mapping for tech stack
+  const getSkillIcon = (skill: string) => {
+    const skillLower = skill.toLowerCase();
+    
+    // Frontend
+    if (skillLower.includes('react')) return SiReact;
+    if (skillLower.includes('typescript')) return SiTypescript;
+    if (skillLower.includes('vite')) return SiVite;
+    if (skillLower.includes('tailwind')) return SiTailwindcss;
+    if (skillLower.includes('html5') || skillLower.includes('html')) return SiHtml5;
+    if (skillLower.includes('css3') || skillLower.includes('css')) return SiCss3;
+    if (skillLower.includes('javascript') || skillLower.includes('js')) return SiJavascript;
+    if (skillLower.includes('flutter')) return SiFlutter;
+    if (skillLower.includes('dart')) return SiDart;
+    
+    // Backend
+    if (skillLower.includes('node.js') || skillLower.includes('nodejs')) return SiNodedotjs;
+    if (skillLower.includes('express')) return SiExpress;
+    if (skillLower.includes('python')) return SiPython;
+    if (skillLower.includes('flask')) return SiFlask;
+    if (skillLower.includes('java')) return FaJava;
+    if (skillLower.includes('spring boot') || skillLower.includes('spring')) return SiSpring;
+    if (skillLower.includes('firebase')) return SiFirebase;
+    
+    // Databases
+    if (skillLower.includes('postgresql') || skillLower.includes('postgres')) return SiPostgresql;
+    if (skillLower.includes('mysql')) return SiMysql;
+    if (skillLower.includes('supabase')) return SiSupabase;
+    if (skillLower.includes('firestore')) return SiFirebase;
+    
+    // Cloud & Hosting
+    if (skillLower.includes('vercel')) return SiVercel;
+    if (skillLower.includes('railway')) return SiRailway;
+    if (skillLower.includes('google cloud') || skillLower.includes('gcp')) return SiGooglecloud;
+    
+    // Tools
+    if (skillLower.includes('git') && !skillLower.includes('github')) return SiGit;
+    if (skillLower.includes('github')) return SiGithub;
+    if (skillLower.includes('intellij')) return SiIntellijidea;
+    if (skillLower.includes('vs code') || skillLower.includes('vscode')) return FaCode;
+    if (skillLower.includes('pycharm')) return SiPycharm;
+    if (skillLower.includes('netbeans')) return FaCode;
+    if (skillLower.includes('figma')) return SiFigma;
+    
+    return null;
   };
 
   return (
@@ -186,19 +262,25 @@ const Skills = () => {
                   </div>
                   
                   <ul className="space-y-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <motion.li
-                        key={skill}
-                        className={`px-3 py-2 rounded-lg text-sm font-medium border ${colorClasses[category.color as keyof typeof colorClasses]}`}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: skillIndex * 0.05 }}
-                        whileHover={{ scale: 1.05, x: 5 }}
-                      >
-                        {skill}
-                      </motion.li>
-                    ))}
+                    {category.skills.map((skill, skillIndex) => {
+                      const SkillIcon = getSkillIcon(skill);
+                      return (
+                        <motion.li
+                          key={skill}
+                          className={`px-3 py-2 rounded-lg text-sm font-medium border flex items-center gap-2 ${colorClasses[category.color as keyof typeof colorClasses]}`}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: skillIndex * 0.05 }}
+                          whileHover={{ scale: 1.05, x: 5 }}
+                        >
+                          {SkillIcon && (
+                            <SkillIcon className="text-lg flex-shrink-0" />
+                          )}
+                          <span>{skill}</span>
+                        </motion.li>
+                      );
+                    })}
                   </ul>
                 </div>
               </motion.div>

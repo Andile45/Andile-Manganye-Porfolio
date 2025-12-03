@@ -5,7 +5,7 @@ const Experience = () => {
   const experiences = [
     {
       title: 'Developer Trainee',
-      company: 'Codetribe Digital Solutions (mLab Southern Africa)',
+      company: 'CodeTribe Academy (mLab Southern Africa)',
       period: '2025 – Present',
       description: [
         'Build digital solutions for real-world environments',
@@ -14,8 +14,6 @@ const Experience = () => {
         'Develop using JavaScript, TypeScript, React, Vanilla JavaScript, Tailwind CSS, PostgreSQL, and cloud tools',
         'Collaborate in UI/UX with Figma',
       ],
-      image: '/mlab-team.jpg',
-      imageAlt: 'Photo with mlab team',
     },
     {
       title: 'Computer Science Student',
@@ -26,8 +24,6 @@ const Experience = () => {
         'Developed multiple full-stack university projects',
         'Strengthened Java, Python, and SQL fundamentals',
       ],
-      image: '/tut-photo.jpg',
-      imageAlt: 'Photo at Tshwane University of Technology',
     },
   ];
 
@@ -64,123 +60,116 @@ const Experience = () => {
           />
         </motion.div>
         
-        <motion.div
-          className="space-y-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.3,
-              },
-            },
-          }}
-        >
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 md:p-8 border border-gray-200 dark:border-gray-700 relative overflow-hidden"
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.6,
-                    ease: 'easeOut',
-                  },
+        <div className="relative">
+          {/* Timeline Line */}
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-600 dark:bg-blue-500 transform md:-translate-x-1/2"></div>
+          
+          <motion.div
+            className="space-y-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.3,
                 },
-              }}
-              whileHover={{ scale: 1.02, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
+              },
+            }}
+          >
+            {experiences.map((exp, index) => (
               <motion.div
-                className="absolute top-0 right-0 w-48 h-48 bg-blue-500 opacity-5 rounded-full blur-3xl"
-                whileHover={{ opacity: 0.1, scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-              />
-              
-              <div className="relative z-10">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                      {exp.title}
-                    </h3>
-                    <p className="text-lg md:text-xl text-blue-600 dark:text-blue-400 font-bold">
-                      {exp.company}
-                    </p>
-                  </div>
-                  <span className="mt-4 md:mt-0 px-5 py-2.5 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-full text-sm font-bold shadow-md">
-                    {exp.period}
-                  </span>
-                </div>
-                
-                {/* Experience Photo */}
-                {exp.image && (
-                  <motion.div
-                    className="mb-6 rounded-xl overflow-hidden shadow-lg"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  >
-                    <motion.img
-                      src={exp.image}
-                      alt={exp.imageAlt || `${exp.company} experience`}
-                      className="w-full h-96 md:h-[500px] object-cover"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </motion.div>
-                )}
-                
-                <motion.ul
-                  className="space-y-3"
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: {
-                      opacity: 1,
-                      transition: {
-                        staggerChildren: 0.1,
-                      },
+                key={index}
+                className="relative flex items-start"
+                variants={{
+                  hidden: { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    transition: {
+                      duration: 0.6,
                     },
-                  }}
+                  },
+                }}
+              >
+                {/* Timeline Dot */}
+                <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-blue-600 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-950 transform md:-translate-x-1/2 z-10"></div>
+                
+                {/* Content Card */}
+                <motion.div
+                  className={`w-full md:w-5/12 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 md:p-8 border border-gray-200 dark:border-gray-700 relative overflow-hidden ${
+                    index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
+                  }`}
+                  whileHover={{ scale: 1.02, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
+                  transition={{ type: 'spring', stiffness: 300 }}
                 >
-                  {exp.description.map((item, idx) => (
-                    <motion.li
-                      key={idx}
-                      className="flex items-start text-gray-700 dark:text-gray-300"
+                  <motion.div
+                    className="absolute top-0 right-0 w-48 h-48 bg-blue-500 opacity-5 rounded-full blur-3xl"
+                    whileHover={{ opacity: 0.1, scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  
+                  <div className="relative z-10">
+                    <div className="mb-4">
+                      <span className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-full text-sm font-bold shadow-md mb-3">
+                        {exp.period}
+                      </span>
+                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                        {exp.title}
+                      </h3>
+                      <p className="text-lg md:text-xl text-blue-600 dark:text-blue-400 font-bold">
+                        {exp.company}
+                      </p>
+                    </div>
+                    
+                    <motion.ul
+                      className="space-y-3"
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
                       variants={{
-                        hidden: { opacity: 0, x: -20 },
+                        hidden: { opacity: 0 },
                         visible: {
                           opacity: 1,
-                          x: 0,
                           transition: {
-                            duration: 0.4,
+                            staggerChildren: 0.1,
                           },
                         },
                       }}
-                      whileHover={{ x: 5 }}
                     >
-                      <span className="text-blue-600 dark:text-blue-400 mr-3 mt-1.5 text-xl font-bold">
-                        •
-                      </span>
-                      <span className="text-base leading-relaxed">
-                        {item}
-                      </span>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+                      {exp.description.map((item, idx) => (
+                        <motion.li
+                          key={idx}
+                          className="flex items-start text-gray-700 dark:text-gray-300"
+                          variants={{
+                            hidden: { opacity: 0, x: -20 },
+                            visible: {
+                              opacity: 1,
+                              x: 0,
+                              transition: {
+                                duration: 0.4,
+                              },
+                            },
+                          }}
+                          whileHover={{ x: 5 }}
+                        >
+                          <span className="text-blue-600 dark:text-blue-400 mr-3 mt-1.5 text-xl font-bold">
+                            •
+                          </span>
+                          <span className="text-base leading-relaxed">
+                            {item}
+                          </span>
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

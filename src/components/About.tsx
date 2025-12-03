@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaUser, FaCode } from 'react-icons/fa';
-import profileImage from '../assets/Andile-Manganye-Image.png';
 
 const About = () => {
   const ref = useRef(null);
@@ -73,38 +72,6 @@ const About = () => {
           whileHover={{ boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
           transition={{ duration: 0.3 }}
         >
-          {/* Profile Image in About Section */}
-          <motion.div
-            className="flex justify-center mb-6"
-            variants={itemVariants}
-          >
-            <div className="relative">
-              <motion.div
-                className="absolute inset-0 bg-blue-600 rounded-full blur-md opacity-30"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.3, 0.4, 0.3],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              />
-              <motion.div
-                className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <img
-                  src={profileImage}
-                  alt="Andile Manganye"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            </div>
-          </motion.div>
-
           <motion.p
             className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
             variants={itemVariants}
@@ -117,27 +84,10 @@ const About = () => {
             </span>{' '}
             and working as a Developer Trainee at{' '}
             <span className="font-bold text-purple-600 dark:text-purple-400 px-2 py-1 bg-purple-50 dark:bg-purple-900/30 rounded">
-              Codetribe Digital Solutions (mLab Southern Africa)
+              CodeTribe Academy (mLab Southern Africa)
             </span>
             , contributing to digital product development and participating in Scrum
             ceremonies.
-          </motion.p>
-          
-          <motion.p
-            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
-            variants={itemVariants}
-          >
-            Comfortable across the full stack — from front-end interfaces, back-end
-            APIs, to databases and cloud tools. I thrive on learning by building real
-            products, collaborating with teams, and exploring new technologies.
-          </motion.p>
-          
-          <motion.p
-            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
-            variants={itemVariants}
-          >
-            Outside of coding, I enjoy UI/UX design, system architecture, local AI
-            tooling (Ollama), and building personal projects to sharpen my skills.
           </motion.p>
           
           <motion.p

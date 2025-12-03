@@ -1,5 +1,17 @@
 import { motion } from 'framer-motion';
 import profileImage from '../assets/Andile-Manganye-Image.png';
+import { 
+  SiReact, 
+  SiTypescript, 
+  SiJavascript, 
+  SiHtml5,
+  SiSpring,
+  SiPython,
+  SiFlask,
+  SiFirebase,
+  SiPostgresql
+} from 'react-icons/si';
+import { FaJava } from 'react-icons/fa';
 
 const Hero = () => {
   const containerVariants = {
@@ -33,6 +45,28 @@ const Hero = () => {
         duration: 0.8,
       },
     },
+  };
+
+  // Icon mapping for tech stack
+  const getTechIcon = (tech: string) => {
+    const techLower = tech.toLowerCase();
+    
+    if (techLower.includes('react') || techLower.includes('typescript')) {
+      // For "React + TypeScript", show React icon
+      if (techLower.includes('react')) return SiReact;
+      return SiTypescript;
+    }
+    if (techLower.includes('javascript')) return SiJavascript;
+    if (techLower.includes('html5') || techLower.includes('html')) return SiHtml5;
+    if (techLower.includes('java') || techLower.includes('spring boot')) return FaJava;
+    if (techLower.includes('python') || techLower.includes('flask')) {
+      if (techLower.includes('flask')) return SiFlask;
+      return SiPython;
+    }
+    if (techLower.includes('firebase')) return SiFirebase;
+    if (techLower.includes('postgresql') || techLower.includes('postgres')) return SiPostgresql;
+    
+    return null;
   };
 
   return (
@@ -101,7 +135,7 @@ const Hero = () => {
           >
             Developer Trainee at{' '}
             <span className="font-bold text-blue-600 dark:text-blue-400 relative">
-              Codetribe Digital Solutions
+              CodeTribe Academy
               <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 dark:bg-blue-400"></span>
             </span>
             {' '}(mLab Southern Africa)
@@ -119,19 +153,23 @@ const Hero = () => {
             className="flex flex-wrap justify-center gap-3 mb-10"
             variants={itemVariants}
           >
-            {['React + TypeScript', 'JavaScript', 'HTML5', 'Java Spring Boot', 'Python Flask', 'Firebase', 'PostgreSQL'].map((tech, index) => (
-              <motion.span
-                key={tech}
-                className="px-5 py-2.5 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-full text-sm font-semibold shadow-md"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 + index * 0.1 }}
-              >
-                {tech}
-              </motion.span>
-            ))}
+            {['React + TypeScript', 'JavaScript', 'HTML5', 'Java Spring Boot', 'Python Flask', 'Firebase', 'PostgreSQL'].map((tech, index) => {
+              const TechIcon = getTechIcon(tech);
+              return (
+                <motion.span
+                  key={tech}
+                  className="px-5 py-2.5 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-full text-sm font-semibold shadow-md flex items-center gap-2"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                >
+                  {TechIcon && <TechIcon className="text-xl md:text-2xl flex-shrink-0" />}
+                  <span>{tech}</span>
+                </motion.span>
+              );
+            })}
           </motion.div>
           
           <motion.div
