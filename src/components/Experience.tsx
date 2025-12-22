@@ -22,7 +22,8 @@ const Experience = () => {
       description: [
         'Focus on software development, algorithms, databases, system design',
         'Developed multiple full-stack university projects',
-        'Strengthened Java, Python, and SQL fundamentals',
+        'Strengthened Java and SQL fundamentals',
+        'Learned Software Engineering principles',
       ],
     },
   ];

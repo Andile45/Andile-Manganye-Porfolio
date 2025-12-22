@@ -13,8 +13,6 @@ import {
   SiDart,
   SiNodedotjs,
   SiExpress,
-  SiPython,
-  SiFlask,
   SiSpring,
   SiFirebase,
   SiPostgresql,
@@ -51,7 +49,6 @@ const Skills = () => {
       Icon: FaCog,
       skills: [
         'Node.js + Express.js',
-        'Python Flask (raw SQL)',
         'Java Spring Boot (REST APIs, WebSockets)',
         'Firebase Cloud Functions',
       ],
@@ -67,7 +64,6 @@ const Skills = () => {
         'Supabase (DB + Auth + Storage)',
         'Firestore',
         'Firebase Realtime Database',
-        'Flyway migrations',
       ],
       color: 'green',
       gradient: 'blue-500',
@@ -106,6 +102,7 @@ const Skills = () => {
         'Agile/Scrum teamwork',
         'Debugging & problem solving',
         'System design & architecture thinking',
+        'Software Engineering principles',
       ],
       color: 'indigo',
       gradient: 'blue-500',
@@ -143,8 +140,6 @@ const Skills = () => {
     // Backend
     if (skillLower.includes('node.js') || skillLower.includes('nodejs')) return SiNodedotjs;
     if (skillLower.includes('express')) return SiExpress;
-    if (skillLower.includes('python')) return SiPython;
-    if (skillLower.includes('flask')) return SiFlask;
     if (skillLower.includes('java')) return FaJava;
     if (skillLower.includes('spring boot') || skillLower.includes('spring')) return SiSpring;
     if (skillLower.includes('firebase')) return SiFirebase;

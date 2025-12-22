@@ -5,8 +5,6 @@ import {
   SiTypescript, 
   SiJavascript, 
   SiHtml5,
-  SiPython,
-  SiFlask,
   SiFirebase,
   SiPostgresql
 } from 'react-icons/si';
@@ -58,10 +56,6 @@ const Hero = () => {
     if (techLower.includes('javascript')) return SiJavascript;
     if (techLower.includes('html5') || techLower.includes('html')) return SiHtml5;
     if (techLower.includes('java') || techLower.includes('spring boot')) return FaJava;
-    if (techLower.includes('python') || techLower.includes('flask')) {
-      if (techLower.includes('flask')) return SiFlask;
-      return SiPython;
-    }
     if (techLower.includes('firebase')) return SiFirebase;
     if (techLower.includes('postgresql') || techLower.includes('postgres')) return SiPostgresql;
     
@@ -152,7 +146,7 @@ const Hero = () => {
             className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 px-4"
             variants={itemVariants}
           >
-            {['React + TypeScript', 'JavaScript', 'HTML5', 'Java Spring Boot', 'Python Flask', 'Firebase', 'PostgreSQL'].map((tech, index) => {
+            {['React + TypeScript', 'JavaScript', 'HTML5', 'Java Spring Boot', 'Firebase', 'PostgreSQL'].map((tech, index) => {
               const TechIcon = getTechIcon(tech);
               return (
                 <motion.span
