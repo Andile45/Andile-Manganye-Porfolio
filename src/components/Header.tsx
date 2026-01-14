@@ -15,12 +15,24 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
+  const scrollToSection = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    // Small delay to ensure mobile menu closes first
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const headerHeight = 80;
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - headerHeight;
+
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
   const navItems = [
@@ -44,7 +56,8 @@ const Header = () => {
       <nav className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">
           <motion.button
-            onClick={() => scrollToSection('home')}
+            type="button"
+            onClick={(e) => scrollToSection(e, 'home')}
             className="text-lg sm:text-xl md:text-2xl font-extrabold text-blue-600 dark:text-blue-400"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -58,7 +71,8 @@ const Header = () => {
             {navItems.map((item) => (
               <motion.button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                type="button"
+                onClick={(e) => scrollToSection(e, item.id)}
                 className="text-gray-700 dark:text-white font-semibold text-xs sm:text-sm uppercase tracking-wide relative hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 whileHover={{ color: '#2563eb' }}
                 transition={{ duration: 0.2 }}
@@ -167,7 +181,8 @@ const Header = () => {
               {navItems.map((item, index) => (
                 <motion.button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  type="button"
+                  onClick={(e) => scrollToSection(e, item.id)}
                   className="block w-full text-left px-4 py-3 text-gray-700 dark:text-white rounded-lg font-medium"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
