@@ -13,7 +13,7 @@ import './App.css';
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <div className="min-h-screen w-full overflow-x-hidden bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
         <Header />
         <main>
           <Hero />
@@ -24,8 +24,8 @@ function App() {
           <Certificates />
           <Contact />
         </main>
-        <footer className="py-10 px-4 text-center bg-white dark:bg-gray-950 border-t-2 border-gray-200 dark:border-gray-800">
-          <p className="text-gray-600 dark:text-gray-400 font-medium">
+        <footer className="py-6 sm:py-8 md:py-10 px-4 sm:px-6 text-center bg-white dark:bg-gray-950 border-t-2 border-gray-200 dark:border-gray-800">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-medium">
             © {new Date().getFullYear()} Andile Manganye. Built with{' '}
             <span className="text-blue-600 dark:text-blue-400 font-semibold">React</span>
             {' + '}

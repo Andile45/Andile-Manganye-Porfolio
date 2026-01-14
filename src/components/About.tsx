@@ -31,7 +31,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-950"
+      className="py-section-sm sm:py-section px-4 sm:px-6 lg:px-8 xl:px-12 bg-white dark:bg-gray-950"
     >
       <div className="container mx-auto max-w-4xl">
         <motion.div
@@ -48,10 +48,10 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <FaUser className="text-4xl md:text-5xl text-blue-600 dark:text-blue-400" />
-            <FaCode className="text-4xl md:text-5xl text-purple-600 dark:text-purple-400" />
+            <FaUser className="text-3xl sm:text-4xl md:text-5xl text-blue-600 dark:text-blue-400" />
+            <FaCode className="text-3xl sm:text-4xl md:text-5xl text-purple-600 dark:text-purple-400" />
           </motion.div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-gray-900 dark:text-white">
             About Me
           </h2>
           <motion.div
@@ -65,7 +65,7 @@ const About = () => {
         
         <motion.div
           ref={ref}
-          className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-12 space-y-6 border border-gray-200 dark:border-gray-700"
+          className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12 space-y-4 sm:space-y-6 border border-gray-200 dark:border-gray-700"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
@@ -73,7 +73,7 @@ const About = () => {
           transition={{ duration: 0.3 }}
         >
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
             variants={itemVariants}
           >
             I am a South African full-stack developer with a strong passion for
@@ -91,7 +91,7 @@ const About = () => {
           </motion.p>
           
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
             variants={itemVariants}
           >
             I am always eager to learn and grow, embracing new challenges and technologies with enthusiasm. Whether it's mastering a new framework, understanding a complex system, or adapting to different team workflows, I approach every opportunity as a chance to expand my knowledge and contribute more effectively.

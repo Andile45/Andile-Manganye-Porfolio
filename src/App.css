@@ -2,6 +2,26 @@
 #root {
   width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.dark #root {
+  background-color: #030712;
+}
+
+/* Ensure main content doesn't overflow */
+main {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Ensure all sections are properly constrained */
+section {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Focus styles for accessibility */

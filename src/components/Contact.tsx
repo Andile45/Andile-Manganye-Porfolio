@@ -8,7 +8,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-950"
+      className="py-section-sm sm:py-section px-4 sm:px-6 lg:px-8 xl:px-12 bg-white dark:bg-gray-950"
     >
       <div className="container mx-auto max-w-4xl">
         <motion.div
@@ -42,14 +42,14 @@ const Contact = () => {
         </motion.div>
         
         <motion.div
-          className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-200 dark:border-gray-700"
+          className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12 border border-gray-200 dark:border-gray-700"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-6 sm:mb-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -65,7 +65,7 @@ const Contact = () => {
           >
             <motion.a
               href="mailto:manganyeandile@gmail.com"
-              className="group flex flex-col items-center p-4 sm:p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border-2 border-blue-200 dark:border-blue-800 shadow-lg"
+              className="group flex flex-col items-center p-4 sm:p-5 md:p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border-2 border-blue-200 dark:border-blue-800 shadow-lg"
               variants={{
                 hidden: { opacity: 0, y: 30 },
                 visible: {
@@ -80,7 +80,7 @@ const Contact = () => {
               transition={{ type: 'spring', stiffness: 300 }}
             >
               <motion.div
-                className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-500 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg"
+                className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-blue-500 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: 'spring', stiffness: 400 }}
               >
@@ -101,7 +101,7 @@ const Contact = () => {
               <span className="font-bold text-gray-900 dark:text-white mb-1 sm:mb-2 text-base sm:text-lg">
                 Email
               </span>
-              <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center break-all">
+              <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center break-words">
                 manganyeandile@gmail.com
               </span>
             </motion.a>
@@ -153,7 +153,7 @@ const Contact = () => {
               href="https://linkedin.com/in/andile-manganye-a27591319"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center p-4 sm:p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border-2 border-blue-200 dark:border-blue-800 shadow-lg"
+              className="group flex flex-col items-center p-4 sm:p-5 md:p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border-2 border-blue-200 dark:border-blue-800 shadow-lg"
               variants={{
                 hidden: { opacity: 0, y: 30 },
                 visible: {
@@ -362,7 +362,7 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <div className="text-center mb-6">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 Download My CV
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
@@ -372,7 +372,7 @@ const Contact = () => {
             <motion.a
               href="/Andile_Manganye_CV.pdf"
               download
-              className="flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-xl font-bold text-lg shadow-xl mx-auto max-w-md"
+              className="flex items-center justify-center gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-blue-600 text-white rounded-xl font-bold text-base sm:text-lg shadow-xl mx-auto max-w-md w-full sm:w-auto"
               whileHover={{ scale: 1.05, y: -2, boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.5)' }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 300 }}
@@ -390,7 +390,7 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <motion.p
-              className="text-xl md:text-2xl font-bold text-blue-600 dark:text-blue-400"
+              className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600 dark:text-blue-400"
               whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 400 }}
             >

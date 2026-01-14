@@ -35,17 +35,17 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
         isScrolled
           ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-xl border-b border-gray-200 dark:border-gray-800'
-          : 'bg-transparent'
+          : 'bg-transparent dark:bg-transparent'
       }`}
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <nav className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">
           <motion.button
             onClick={() => scrollToSection('home')}
-            className="text-xl md:text-2xl font-extrabold text-blue-600 dark:text-blue-400"
+            className="text-lg sm:text-xl md:text-2xl font-extrabold text-blue-600 dark:text-blue-400"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 400 }}
@@ -54,12 +54,12 @@ const Header = () => {
           </motion.button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
             {navItems.map((item) => (
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-gray-700 dark:text-white font-semibold text-xs md:text-sm uppercase tracking-wide relative"
+                className="text-gray-700 dark:text-white font-semibold text-xs sm:text-sm uppercase tracking-wide relative hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 whileHover={{ color: '#2563eb' }}
                 transition={{ duration: 0.2 }}
               >

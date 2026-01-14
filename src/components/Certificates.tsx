@@ -71,7 +71,7 @@ const Certificates = () => {
   return (
     <section
       id="certificates"
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-blue-50/30 to-white dark:from-gray-950 dark:via-blue-950/10 dark:to-gray-950 relative overflow-hidden"
+      className="py-section-sm sm:py-section px-4 sm:px-6 lg:px-8 xl:px-12 bg-gradient-to-b from-white via-blue-50/30 to-white dark:from-gray-950 dark:via-blue-950/10 dark:to-gray-950 relative overflow-hidden"
     >
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -99,7 +99,7 @@ const Certificates = () => {
               <FaAward className="text-6xl md:text-7xl text-blue-600 dark:text-blue-400 relative z-10" />
             </div>
           </motion.div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-gray-900 dark:text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 sm:mb-4 text-gray-900 dark:text-white">
             Certificates & <span className="text-blue-600 dark:text-blue-400">Achievements</span>
           </h2>
           <motion.div
@@ -115,7 +115,7 @@ const Certificates = () => {
         </motion.div>
         
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -159,7 +159,7 @@ const Certificates = () => {
                 />
                 
                 {/* Main card */}
-                <div className={`relative ${colors.bg} rounded-3xl p-8 border-2 border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm shadow-2xl group-hover:shadow-3xl transition-all duration-300 h-full flex flex-col`}>
+                <div className={`relative ${colors.bg} rounded-3xl p-5 sm:p-6 md:p-8 border-2 border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm shadow-2xl group-hover:shadow-3xl transition-all duration-300 h-full flex flex-col`}>
                   {/* Decorative ribbon */}
                   <div className="absolute top-0 right-0 w-24 h-24 overflow-hidden">
                     <div className={`absolute top-4 -right-8 w-32 ${colors.badge} transform rotate-45 text-center py-1 text-xs font-bold shadow-lg`}>
@@ -180,7 +180,7 @@ const Certificates = () => {
                       </motion.div>
                       <div className="flex-1 min-w-0">
                         <motion.h3
-                          className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 leading-tight line-clamp-2"
+                          className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 leading-tight line-clamp-2"
                           whileHover={{ x: 5 }}
                           transition={{ duration: 0.2 }}
                         >
@@ -208,7 +208,7 @@ const Certificates = () => {
                         href={cert.file}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`flex-1 flex items-center justify-center gap-2 px-5 py-3 ${colors.text} ${colors.bg} rounded-xl font-bold text-sm shadow-lg border-2 border-gray-200/50 dark:border-gray-700/50 min-w-0`}
+                        className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 ${colors.text} ${colors.bg} rounded-xl font-bold text-xs sm:text-sm shadow-lg border-2 border-gray-200/50 dark:border-gray-700/50 min-w-0`}
                         whileHover={{ scale: 1.05, y: -2, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}
                         whileTap={{ scale: 0.95 }}
                         transition={{ type: 'spring', stiffness: 400 }}
@@ -219,7 +219,7 @@ const Certificates = () => {
                       <motion.a
                         href={cert.file}
                         download
-                        className={`flex-1 flex items-center justify-center gap-2 px-5 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl font-bold text-sm shadow-lg border-2 border-gray-300 dark:border-gray-600 min-w-0`}
+                        className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl font-bold text-xs sm:text-sm shadow-lg border-2 border-gray-300 dark:border-gray-600 min-w-0`}
                         whileHover={{ scale: 1.05, y: -2, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}
                         whileTap={{ scale: 0.95 }}
                         transition={{ type: 'spring', stiffness: 400 }}

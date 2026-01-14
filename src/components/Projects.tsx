@@ -54,7 +54,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-950"
+      className="py-section-sm sm:py-section px-4 sm:px-6 lg:px-8 xl:px-12 bg-white dark:bg-gray-950"
     >
       <div className="container mx-auto max-w-7xl">
         <motion.div
@@ -85,7 +85,7 @@ const Projects = () => {
         </motion.div>
         
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -102,7 +102,7 @@ const Projects = () => {
           {projects.map((project) => (
             <motion.div
               key={project.title}
-              className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700 flex flex-col relative overflow-hidden"
+              className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 sm:p-5 md:p-6 border border-gray-200 dark:border-gray-700 flex flex-col relative overflow-hidden"
               variants={{
                 hidden: { opacity: 0, y: 50, scale: 0.9 },
                 visible: {
@@ -126,27 +126,27 @@ const Projects = () => {
               
               <div className="relative z-10 flex flex-col flex-grow">
                 <motion.h3
-                  className="text-xl font-bold mb-2 text-gray-900 dark:text-white"
+                  className="text-lg sm:text-xl font-bold mb-2 text-gray-900 dark:text-white"
                   whileHover={{ color: '#2563eb' }}
                   transition={{ duration: 0.2 }}
                 >
                   {project.title}
                 </motion.h3>
                 
-                <p className="text-sm text-blue-600 dark:text-blue-400 mb-3 font-semibold">
+                <p className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 mb-3 font-semibold leading-relaxed">
                   {project.tech}
                 </p>
                 
-                <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow text-sm leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow text-xs sm:text-sm leading-relaxed">
                   {project.description}
                 </p>
                 
                 <div className="mb-4">
-                  <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-sm flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-xs sm:text-sm flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
                     Key Features:
                   </h4>
-                  <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                  <ul className="list-disc list-inside space-y-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                     {project.features.map((feature, idx) => (
                       <motion.li
                         key={idx}
@@ -169,7 +169,7 @@ const Projects = () => {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold shadow-md"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold shadow-md"
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         transition={{ type: 'spring', stiffness: 400 }}
@@ -183,7 +183,7 @@ const Projects = () => {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 dark:bg-gray-700 text-white rounded-lg text-xs font-semibold shadow-md"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-800 dark:bg-gray-700 text-white rounded-lg text-xs font-semibold shadow-md"
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         transition={{ type: 'spring', stiffness: 400 }}
@@ -196,7 +196,7 @@ const Projects = () => {
                       <motion.a
                         href={project.apk}
                         download
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg text-xs font-semibold shadow-md"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-green-600 text-white rounded-lg text-xs font-semibold shadow-md"
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         transition={{ type: 'spring', stiffness: 400 }}

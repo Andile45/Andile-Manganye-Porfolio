@@ -171,7 +171,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-950"
+      className="py-section-sm sm:py-section px-4 sm:px-6 lg:px-8 xl:px-12 bg-white dark:bg-gray-950"
     >
       <div className="container mx-auto max-w-6xl">
         <motion.div
@@ -187,9 +187,9 @@ const Skills = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <FaBrain className="text-5xl md:text-6xl text-blue-600 dark:text-blue-400 mx-auto mb-4" />
+            <FaBrain className="text-4xl sm:text-5xl md:text-6xl text-blue-600 dark:text-blue-400 mx-auto mb-4" />
           </motion.div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-gray-900 dark:text-white">
             Skills
           </h2>
           <motion.div
@@ -202,7 +202,7 @@ const Skills = () => {
         </motion.div>
         
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -221,7 +221,7 @@ const Skills = () => {
             return (
               <motion.div
                 key={category.title}
-                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-gray-700 relative overflow-hidden"
+                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4 sm:p-5 md:p-6 border border-gray-200 dark:border-gray-700 relative overflow-hidden"
                 variants={{
                   hidden: { opacity: 0, y: 50, scale: 0.9 },
                   visible: {
@@ -252,7 +252,7 @@ const Skills = () => {
                     >
                       <IconComponent className="text-2xl" />
                     </motion.div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                       {category.title}
                     </h3>
                   </div>
@@ -263,7 +263,7 @@ const Skills = () => {
                       return (
                         <motion.li
                           key={skill}
-                          className={`px-3 py-2 rounded-lg text-sm font-medium border flex items-center gap-2 ${colorClasses[category.color as keyof typeof colorClasses]}`}
+                          className={`px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border flex items-center gap-2 ${colorClasses[category.color as keyof typeof colorClasses]}`}
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
@@ -271,7 +271,7 @@ const Skills = () => {
                           whileHover={{ scale: 1.05, x: 5 }}
                         >
                           {SkillIcon && (
-                            <SkillIcon className="text-lg flex-shrink-0" />
+                            <SkillIcon className="text-base sm:text-lg flex-shrink-0" />
                           )}
                           <span>{skill}</span>
                         </motion.li>
