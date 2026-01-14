@@ -36,6 +36,7 @@ const Skills = () => {
       Icon: FaPalette,
       skills: [
         'React (Hooks, Context API)',
+        'React Native',
         'TypeScript',
         'Vite',
         'TailwindCSS',

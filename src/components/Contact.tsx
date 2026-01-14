@@ -370,7 +370,7 @@ const Contact = () => {
               </p>
             </div>
             <motion.a
-              href="/ANDILE MANGANYE CV Final .pdf"
+              href="/Andile_Manganye_CV.pdf"
               download
               className="flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-xl font-bold text-lg shadow-xl mx-auto max-w-md"
               whileHover={{ scale: 1.05, y: -2, boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.5)' }}
