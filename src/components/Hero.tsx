@@ -138,8 +138,7 @@ const Hero = () => {
             className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto leading-relaxed px-4 sm:px-6"
             variants={itemVariants}
           >
-            I build real-world digital solutions, collaborate in agile teams, and
-            contribute to systems that improve communities.
+            I'm a builder at heart. I take complex digital ideas and turn them into solutions that help communities thrive. I thrive in agile environments where collaboration is the secret sauce to building better systems.
           </motion.p>
           
           <motion.div
