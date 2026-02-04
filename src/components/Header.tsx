@@ -73,8 +73,7 @@ const Header = () => {
                 key={item.id}
                 type="button"
                 onClick={(e) => scrollToSection(e, item.id)}
-                className="text-gray-700 dark:text-white font-semibold text-xs sm:text-sm uppercase tracking-wide relative hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                whileHover={{ color: '#2563eb' }}
+                className="text-blue-600 dark:text-blue-400 font-semibold text-xs sm:text-sm uppercase tracking-wide relative hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
                 transition={{ duration: 0.2 }}
               >
                 {item.label}
@@ -88,7 +87,7 @@ const Header = () => {
             ))}
             <motion.button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 shadow-md"
+              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 shadow-md"
               aria-label="Toggle theme"
               whileHover={{ scale: 1.1, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
               whileTap={{ scale: 0.95 }}
@@ -114,7 +113,7 @@ const Header = () => {
           <div className="md:hidden flex items-center space-x-3">
             <motion.button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 shadow-md"
+              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 shadow-md"
               aria-label="Toggle theme"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -136,7 +135,7 @@ const Header = () => {
             </motion.button>
             <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 shadow-md"
+              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 shadow-md"
               aria-label="Toggle menu"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -183,7 +182,7 @@ const Header = () => {
                   key={item.id}
                   type="button"
                   onClick={(e) => scrollToSection(e, item.id)}
-                  className="block w-full text-left px-4 py-3 text-gray-700 dark:text-white rounded-lg font-medium"
+                  className="block w-full text-left px-4 py-3 text-blue-600 dark:text-blue-400 rounded-lg font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
