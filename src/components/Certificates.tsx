@@ -10,7 +10,6 @@ const Certificates = () => {
       icon: SiDatacamp,
       file: '/Cetificates/Data_Camp_Database Design.pdf',
       category: 'Database',
-      color: 'yellow',
     },
     {
       title: 'Understanding Artificial Intelligence',
@@ -18,7 +17,6 @@ const Certificates = () => {
       icon: SiDatacamp,
       file: '/Cetificates/datacanmp_Understanding Artificial Intelligence.pdf',
       category: 'AI/ML',
-      color: 'green',
     },
     {
       title: 'JavaScript Algorithms and Data Structures',
@@ -26,7 +24,6 @@ const Certificates = () => {
       icon: SiFreecodecamp,
       file: '/Cetificates/freeCodeCamp_Legacy JavaScript Algorithms and Data Structures.pdf',
       category: 'Programming',
-      color: 'purple',
     },
     {
       title: 'Responsive Web Design',
@@ -34,44 +31,20 @@ const Certificates = () => {
       icon: SiFreecodecamp,
       file: '/Cetificates/freeCodeCamp_Legacy Responsive Web Design V8.pdf',
       category: 'Web Development',
-      color: 'blue',
     },
   ];
 
-  const getCategoryColor = (color: string) => {
-    const colors: Record<string, { bg: string; text: string; badge: string; glow: string }> = {
-      blue: {
-        bg: 'bg-blue-50 dark:bg-blue-950/20',
-        text: 'text-blue-600 dark:text-blue-400',
-        badge: 'bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200',
-        glow: 'bg-blue-500',
-      },
-      purple: {
-        bg: 'bg-purple-50 dark:bg-purple-950/20',
-        text: 'text-purple-600 dark:text-purple-400',
-        badge: 'bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-200',
-        glow: 'bg-purple-500',
-      },
-      green: {
-        bg: 'bg-green-50 dark:bg-green-950/20',
-        text: 'text-green-600 dark:text-green-400',
-        badge: 'bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200',
-        glow: 'bg-green-500',
-      },
-      yellow: {
-        bg: 'bg-yellow-50 dark:bg-yellow-950/20',
-        text: 'text-yellow-600 dark:text-yellow-400',
-        badge: 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-200',
-        glow: 'bg-yellow-500',
-      },
-    };
-    return colors[color] || colors.blue;
+  const colors = {
+    bg: 'bg-blue-50 dark:bg-blue-950/20',
+    text: 'text-blue-600 dark:text-blue-400',
+    badge: 'bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200',
+    glow: 'bg-blue-500',
   };
 
   return (
     <section
       id="certificates"
-      className="py-section-sm sm:py-section px-4 sm:px-6 lg:px-8 xl:px-12 bg-gradient-to-b from-white via-blue-50/30 to-white dark:from-gray-950 dark:via-blue-950/10 dark:to-gray-950 relative overflow-hidden"
+      className="py-section-sm sm:py-section px-4 sm:px-6 lg:px-8 xl:px-12 bg-white dark:bg-gray-950 relative overflow-hidden"
     >
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -103,7 +76,7 @@ const Certificates = () => {
             Certificates & <span className="text-blue-600 dark:text-blue-400">Achievements</span>
           </h2>
           <motion.div
-            className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-6"
+            className="w-24 h-1.5 bg-blue-600 mx-auto rounded-full mb-6"
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
             viewport={{ once: true }}
@@ -113,7 +86,7 @@ const Certificates = () => {
             Professional certifications and achievements that showcase my commitment to continuous learning
           </p>
         </motion.div>
-        
+
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8"
           initial="hidden"
@@ -131,8 +104,8 @@ const Certificates = () => {
         >
           {certificates.map((cert, index) => {
             const CertIcon = cert.icon;
-            const colors = getCategoryColor(cert.color);
-            
+
+
             return (
               <motion.div
                 key={index}
@@ -157,7 +130,7 @@ const Certificates = () => {
                 <motion.div
                   className={`absolute -inset-1 ${colors.glow} opacity-0 group-hover:opacity-20 rounded-3xl blur-xl transition-opacity duration-500`}
                 />
-                
+
                 {/* Main card */}
                 <div className={`relative ${colors.bg} rounded-3xl p-5 sm:p-6 md:p-8 border-2 border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm shadow-2xl group-hover:shadow-3xl transition-all duration-300 h-full flex flex-col`}>
                   {/* Decorative ribbon */}

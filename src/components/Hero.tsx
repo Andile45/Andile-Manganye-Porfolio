@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import profileImage from '../assets/Andile-Manganye-Image.png';
-import { 
-  SiReact, 
-  SiTypescript, 
-  SiJavascript, 
+import {
+  SiReact,
+  SiTypescript,
+  SiJavascript,
   SiHtml5,
   SiFirebase,
   SiPostgresql
@@ -47,7 +47,7 @@ const Hero = () => {
   // Icon mapping for tech stack
   const getTechIcon = (tech: string) => {
     const techLower = tech.toLowerCase();
-    
+
     if (techLower.includes('react') || techLower.includes('typescript')) {
       // For "React + TypeScript", show React icon
       if (techLower.includes('react')) return SiReact;
@@ -58,7 +58,7 @@ const Hero = () => {
     if (techLower.includes('java') || techLower.includes('spring boot')) return FaJava;
     if (techLower.includes('firebase')) return SiFirebase;
     if (techLower.includes('postgresql') || techLower.includes('postgres')) return SiPostgresql;
-    
+
     return null;
   };
 
@@ -107,21 +107,15 @@ const Hero = () => {
                 Hi, I'm Andile Manganye
               </span>
             </h1>
-            <motion.div
-              className="w-16 sm:w-20 md:w-24 h-1 bg-blue-600 mx-auto rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: 'auto' }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            />
           </motion.div>
-          
+
           <motion.p
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 dark:text-gray-200 mb-2 sm:mb-3 md:mb-4 font-semibold px-4 sm:px-6"
             variants={itemVariants}
           >
             Full-Stack Developer & Computer Science Student
           </motion.p>
-          
+
           <motion.p
             className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto px-4 sm:px-6 leading-relaxed"
             variants={itemVariants}
@@ -133,14 +127,14 @@ const Hero = () => {
             </span>
             {' '}(mLab Southern Africa)
           </motion.p>
-          
+
           <motion.p
             className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto leading-relaxed px-4 sm:px-6"
             variants={itemVariants}
           >
             I'm a builder at heart. I take complex digital ideas and turn them into solutions that help communities thrive. I thrive in agile environments where collaboration is the secret sauce to building better systems.
           </motion.p>
-          
+
           <motion.div
             className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 px-4 sm:px-6"
             variants={itemVariants}
@@ -163,7 +157,7 @@ const Hero = () => {
               );
             })}
           </motion.div>
-          
+
           <motion.div
             className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center items-center px-4 sm:px-6"
             variants={itemVariants}

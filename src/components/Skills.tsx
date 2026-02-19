@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion';
 import { FaBrain } from 'react-icons/fa';
 import { FaPalette, FaCog, FaDatabase, FaCloud, FaTools, FaRocket } from 'react-icons/fa';
-import { 
-  SiReact, 
-  SiTypescript, 
-  SiVite, 
-  SiTailwindcss, 
-  SiHtml5, 
-  SiCss3, 
-  SiJavascript, 
-  SiFlutter, 
+import {
+  SiReact,
+  SiTypescript,
+  SiVite,
+  SiTailwindcss,
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiFlutter,
   SiDart,
   SiNodedotjs,
   SiExpress,
@@ -54,7 +54,6 @@ const Skills = () => {
         'Firebase Cloud Functions',
       ],
       color: 'purple',
-      gradient: 'blue-500',
     },
     {
       title: 'Databases',
@@ -67,7 +66,6 @@ const Skills = () => {
         'Firebase Realtime Database',
       ],
       color: 'green',
-      gradient: 'blue-500',
     },
     {
       title: 'Cloud & Hosting',
@@ -79,7 +77,6 @@ const Skills = () => {
         'Google Cloud (Vision API, Cloud Functions)',
       ],
       color: 'yellow',
-      gradient: 'blue-500',
     },
     {
       title: 'Tools & Platforms',
@@ -93,7 +90,6 @@ const Skills = () => {
         'Figma (UI/UX)',
       ],
       color: 'blue',
-      gradient: 'blue-500',
     },
     {
       title: 'Other Skills',
@@ -106,7 +102,6 @@ const Skills = () => {
         'Software Engineering principles',
       ],
       color: 'indigo',
-      gradient: 'blue-500',
     },
   ];
 
@@ -126,7 +121,7 @@ const Skills = () => {
   // Icon mapping for tech stack
   const getSkillIcon = (skill: string) => {
     const skillLower = skill.toLowerCase();
-    
+
     // Frontend
     if (skillLower.includes('react')) return SiReact;
     if (skillLower.includes('typescript')) return SiTypescript;
@@ -137,25 +132,25 @@ const Skills = () => {
     if (skillLower.includes('javascript') || skillLower.includes('js')) return SiJavascript;
     if (skillLower.includes('flutter')) return SiFlutter;
     if (skillLower.includes('dart')) return SiDart;
-    
+
     // Backend
     if (skillLower.includes('node.js') || skillLower.includes('nodejs')) return SiNodedotjs;
     if (skillLower.includes('express')) return SiExpress;
     if (skillLower.includes('java')) return FaJava;
     if (skillLower.includes('spring boot') || skillLower.includes('spring')) return SiSpring;
     if (skillLower.includes('firebase')) return SiFirebase;
-    
+
     // Databases
     if (skillLower.includes('postgresql') || skillLower.includes('postgres')) return SiPostgresql;
     if (skillLower.includes('mysql')) return SiMysql;
     if (skillLower.includes('supabase')) return SiSupabase;
     if (skillLower.includes('firestore')) return SiFirebase;
-    
+
     // Cloud & Hosting
     if (skillLower.includes('vercel')) return SiVercel;
     if (skillLower.includes('railway')) return SiRailway;
     if (skillLower.includes('google cloud') || skillLower.includes('gcp')) return SiGooglecloud;
-    
+
     // Tools
     if (skillLower.includes('git') && !skillLower.includes('github')) return SiGit;
     if (skillLower.includes('github')) return SiGithub;
@@ -164,7 +159,7 @@ const Skills = () => {
     if (skillLower.includes('pycharm')) return SiPycharm;
     if (skillLower.includes('netbeans')) return FaCode;
     if (skillLower.includes('figma')) return SiFigma;
-    
+
     return null;
   };
 
@@ -200,7 +195,7 @@ const Skills = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           />
         </motion.div>
-        
+
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           initial="hidden"
@@ -242,7 +237,7 @@ const Skills = () => {
                   whileHover={{ opacity: 0.2, scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 />
-                
+
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-4">
                     <motion.div
@@ -256,7 +251,7 @@ const Skills = () => {
                       {category.title}
                     </h3>
                   </div>
-                  
+
                   <ul className="space-y-2">
                     {category.skills.map((skill, skillIndex) => {
                       const SkillIcon = getSkillIcon(skill);
