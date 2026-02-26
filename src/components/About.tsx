@@ -72,24 +72,27 @@ const About = () => {
           whileHover={{ boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
           transition={{ duration: 0.3 }}
         >
-          <motion.p
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
-            variants={itemVariants}
-          >
-            I am a South African full-stack developer with a strong passion for
-            solving real problems through software. Currently completing my Computer
-            Science diploma at{' '}
-            <span className="font-bold text-blue-600 dark:text-blue-400 px-2 py-1 bg-blue-50 dark:bg-blue-900/30 rounded">
-              Tshwane University of Technology (TUT)
-            </span>{' '}
-            and working as a Developer Trainee at{' '}
-            <span className="font-bold text-purple-600 dark:text-purple-400 px-2 py-1 bg-purple-50 dark:bg-purple-900/30 rounded">
-              CodeTribe Academy (mLab Southern Africa)
-            </span>
-            , contributing to digital product development and participating in Scrum
-            ceremonies.
-          </motion.p>
-          
+          <motion.div variants={itemVariants}>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600 dark:text-blue-400 lg:whitespace-nowrap">
+              Full-Stack Developer | Problem solver | Life-long learner
+            </h3>
+          </motion.div>
+
+          <ul className="list-disc list-outside pl-5 sm:pl-6 space-y-2 text-gray-700 dark:text-gray-300">
+            <motion.li
+              className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold leading-relaxed"
+              variants={itemVariants}
+            >
+              Completed my Computer Science diploma at Tshwane University of Technology (TUT)
+            </motion.li>
+            <motion.li
+              className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold leading-relaxed"
+              variants={itemVariants}
+            >
+              Working as a Developer Trainee at CodeTribe Academy (mLab Southern Africa), contributing to digital product development and participating in Scrum ceremonies.
+            </motion.li>
+          </ul>
+
           <motion.p
             className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
             variants={itemVariants}
