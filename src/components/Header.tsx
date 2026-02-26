@@ -2,30 +2,56 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
 
+const HEADER_OFFSET = 80;
+const navItems = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'certificates', label: 'Certificates' },
+  { id: 'contact', label: 'Contact' },
+];
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      const scrollTop = window.scrollY + HEADER_OFFSET;
+      let current = 'home';
+      for (const item of navItems) {
+        const el = document.getElementById(item.id);
+        if (el) {
+          const { offsetTop, offsetHeight } = el;
+          if (scrollTop >= offsetTop - 1) {
+            current = item.id;
+          }
+        }
+      }
+      setActiveSection(current);
     };
+
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
+    setActiveSection(id);
     setIsMobileMenuOpen(false);
-    
-    // Small delay to ensure mobile menu closes first
+
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
-        const headerHeight = 80;
         const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = elementPosition - headerHeight;
+        const offsetPosition = elementPosition - HEADER_OFFSET;
 
         window.scrollTo({
           top: Math.max(0, offsetPosition),
@@ -34,16 +60,6 @@ const Header = () => {
       }
     }, 100);
   };
-
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'certificates', label: 'Certificates' },
-    { id: 'contact', label: 'Contact' },
-  ];
 
   return (
     <header
@@ -68,26 +84,32 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.id}
-                type="button"
-                onClick={(e) => scrollToSection(e, item.id)}
-                className="text-blue-600 dark:text-blue-400 font-semibold text-xs sm:text-sm uppercase tracking-wide relative hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-                transition={{ duration: 0.2 }}
-              >
-                {item.label}
-                <motion.span
-                  className="absolute bottom-0 left-0 h-0.5 bg-blue-600 dark:bg-blue-400"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '100%' }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.button>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <motion.button
+                  key={item.id}
+                  type="button"
+                  onClick={(e) => scrollToSection(e, item.id)}
+                  className={`group font-semibold text-xs sm:text-sm uppercase tracking-wide relative transition-colors ${
+                    isActive
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                  }`}
+                  transition={{ duration: 0.2 }}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute bottom-0 left-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </motion.button>
+              );
+            })}
             <motion.button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 shadow-md"
+              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 shadow-md"
               aria-label="Toggle theme"
               whileHover={{ scale: 1.1, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
               whileTap={{ scale: 0.95 }}
@@ -113,7 +135,7 @@ const Header = () => {
           <div className="md:hidden flex items-center space-x-3">
             <motion.button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 shadow-md"
+              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 shadow-md"
               aria-label="Toggle theme"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -135,7 +157,7 @@ const Header = () => {
             </motion.button>
             <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 shadow-md"
+              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 shadow-md"
               aria-label="Toggle menu"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -177,20 +199,27 @@ const Header = () => {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
             >
-              {navItems.map((item, index) => (
-                <motion.button
-                  key={item.id}
-                  type="button"
-                  onClick={(e) => scrollToSection(e, item.id)}
-                  className="block w-full text-left px-4 py-3 text-blue-600 dark:text-blue-400 rounded-lg font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ backgroundColor: 'rgba(59, 130, 246, 0.1)', x: 5 }}
-                >
-                  {item.label}
-                </motion.button>
-              ))}
+              {navItems.map((item, index) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <motion.button
+                    key={item.id}
+                    type="button"
+                    onClick={(e) => scrollToSection(e, item.id)}
+                    className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition-colors ${
+                      isActive
+                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30'
+                        : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    }`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    whileHover={!isActive ? { backgroundColor: 'rgba(59, 130, 246, 0.1)', x: 5 } : {}}
+                  >
+                    {item.label}
+                  </motion.button>
+                );
+              })}
             </motion.div>
           )}
         </AnimatePresence>
