@@ -4,6 +4,23 @@ import { FaRocket, FaExternalLinkAlt, FaDownload, FaGithub } from 'react-icons/f
 const Projects = () => {
   const projects = [
     {
+      title: 'Bite X — Restaurant App',
+      tech: 'React Native (Expo) + Supabase (mobile), React + Vite + Supabase (Web CMS)',
+      description:
+        'Full-stack restaurant platform: mobile app for customers to browse menus, place orders, and manage accounts; web CMS for staff, managers, and admins to manage dashboard, orders, menu, settings, users, and payments.',
+      features: [
+        'Auth — Sign up, log in, forgot password',
+        'Menu — Browse categories and food items',
+        'Cart — Add items, adjust quantities',
+        'Orders — View and track orders',
+        'Profile — Edit profile and view account info',
+        'Payments — Paystack integration',
+        'Web CMS — Dashboard, orders, menu, settings, users (admin/manager/staff roles)',
+      ],
+      role: 'Built mobile app with React Native/Expo and Redux Toolkit; built Web CMS with React 19, Vite, Tailwind v4, and React Router v7; Supabase (PostgreSQL + Auth) for both; RLS policies, order flow, and payment integration.',
+      github: 'https://github.com/Andile45/restaurant-app',
+    },
+    {
       title: 'Hotel Booking App & Backend API',
       tech: 'React + TypeScript (Vercel), Node.js/Express backend (Railway), PostgreSQL (Supabase)',
       description:
@@ -59,16 +76,14 @@ const Projects = () => {
       <div className="container mx-auto max-w-7xl">
         <motion.div
           className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
           >
             <FaRocket className="text-5xl md:text-6xl text-blue-600 dark:text-blue-400 mx-auto mb-4" />
           </motion.div>
@@ -78,45 +93,43 @@ const Projects = () => {
           <motion.div
             className="w-20 h-1 bg-blue-600 mx-auto rounded-full"
             initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            animate={{ width: 80 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           />
         </motion.div>
         
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          initial="visible"
           variants={{
-            hidden: { opacity: 0 },
             visible: {
               opacity: 1,
               transition: {
-                staggerChildren: 0.1,
+                staggerChildren: 0.08,
+                delayChildren: 0.05,
               },
             },
           }}
         >
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <motion.div
               key={project.title}
               className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 sm:p-5 md:p-6 border border-gray-200 dark:border-gray-700 flex flex-col relative overflow-hidden"
               variants={{
-                hidden: { opacity: 0, y: 50, scale: 0.9 },
                 visible: {
                   opacity: 1,
                   y: 0,
-                  scale: 1,
-                  transition: {
-                    duration: 0.5,
-                    ease: 'easeOut',
-                  },
+                  transition: { duration: 0.4, ease: 'easeOut' },
                 },
               }}
-              whileHover={{ scale: 1.05, y: -5, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.4,
+                ease: 'easeOut',
+                delay: index * 0.08,
+              }}
+              whileHover={{ scale: 1.05, y: -5, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)', transition: { type: 'spring', stiffness: 300 } }}
             >
               <motion.div
                 className="absolute top-0 right-0 w-40 h-40 bg-blue-500 opacity-5 rounded-full blur-3xl"
