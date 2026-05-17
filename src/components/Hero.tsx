@@ -1,198 +1,166 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import profileImage from '../assets/Andile-Manganye-Image.png';
-import {
-  SiReact,
-  SiTypescript,
-  SiJavascript,
-  SiHtml5,
-  SiFirebase,
-  SiPostgresql
-} from 'react-icons/si';
-import { FaJava } from 'react-icons/fa';
+import PrimaryButton from './ui/PrimaryButton';
+import { secondaryButton } from '../lib/button-styles';
+import { StreamingCursor } from './ui/StreamingText';
+import { useStreamingText } from '../hooks/useStreamingText';
+import { subtleScaleInteraction } from '../lib/motion-presets';
+import { handleSectionNavClick } from '../lib/scroll';
+import { cn } from '../lib/utils';
+
+const ROLE = 'Full-Stack Engineer';
+const HEADLINE_1 = 'Architecting robust backends. ';
+const HEADLINE_2 = 'Crafting intuitive UIs.';
+const BIO =
+  "I'm Andile Manganye, a full-stack engineer building scalable web and mobile applications.";
+
+const CHAR_MS = 30;
+const HEADLINE_1_DELAY = ROLE.length * CHAR_MS;
+const HEADLINE_2_DELAY = HEADLINE_1_DELAY + HEADLINE_1.length * CHAR_MS;
+const BIO_DELAY = HEADLINE_2_DELAY + HEADLINE_2.length * CHAR_MS + 120;
 
 const Hero = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const isInView = useInView(sectionRef, { amount: 0.12, once: true });
+  const streamActive = isInView && !reduceMotion;
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-      },
-    },
-  };
+  const role = useStreamingText(ROLE, { active: streamActive, speed: CHAR_MS });
+  const headline1 = useStreamingText(HEADLINE_1, {
+    active: streamActive,
+    speed: CHAR_MS,
+    delay: HEADLINE_1_DELAY,
+  });
+  const headline2 = useStreamingText(HEADLINE_2, {
+    active: streamActive,
+    speed: CHAR_MS,
+    delay: HEADLINE_2_DELAY,
+  });
+  const bio = useStreamingText(BIO, {
+    active: streamActive,
+    speed: 22,
+    delay: BIO_DELAY,
+  });
 
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-      },
-    },
-  };
-
-  // Icon mapping for tech stack
-  const getTechIcon = (tech: string) => {
-    const techLower = tech.toLowerCase();
-
-    if (techLower.includes('react') || techLower.includes('typescript')) {
-      // For "React + TypeScript", show React icon
-      if (techLower.includes('react')) return SiReact;
-      return SiTypescript;
-    }
-    if (techLower.includes('javascript')) return SiJavascript;
-    if (techLower.includes('html5') || techLower.includes('html')) return SiHtml5;
-    if (techLower.includes('java') || techLower.includes('spring boot')) return FaJava;
-    if (techLower.includes('firebase')) return SiFirebase;
-    if (techLower.includes('postgresql') || techLower.includes('postgres')) return SiPostgresql;
-
-    return null;
-  };
+  const roleStreaming = isInView && !role.isComplete && role.displayed.length > 0;
+  const headlineStreaming =
+    isInView && role.isComplete && (!headline1.isComplete || !headline2.isComplete);
+  const bioStreaming =
+    isInView &&
+    headline1.isComplete &&
+    headline2.isComplete &&
+    !bio.isComplete &&
+    bio.displayed.length > 0;
 
   return (
     <section
+      ref={sectionRef}
       id="home"
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 sm:pt-24 md:pt-28 bg-white dark:bg-gray-950"
+      className="section-padding relative flex min-h-0 items-center overflow-x-hidden pt-32 sm:pt-36 lg:min-h-[85vh] lg:pt-40"
     >
-      <div className="container mx-auto max-w-7xl text-center">
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -left-32 top-20 h-[480px] w-[480px] rounded-full bg-zinc-400/20 blur-[120px]"
+        animate={{ opacity: [0.4, 0.65, 0.4], scale: [1, 1.08, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute right-0 top-1/3 h-[360px] w-[360px] rounded-full bg-zinc-400/10 blur-[100px]"
+        animate={{ opacity: [0.25, 0.45, 0.25] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      <motion.div
+        className="relative z-10 mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          className="w-full min-w-0 text-center lg:text-left"
+          initial={{ opacity: 0, x: -24 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
         >
-          {/* Profile Image */}
-          <motion.div
-            className="mb-6 sm:mb-8 md:mb-10 flex justify-center"
-            variants={imageVariants}
+          <p
+            className="mb-4 min-h-[1.25rem] text-sm font-medium uppercase tracking-[0.2em] text-zinc-700"
+            aria-label={ROLE}
           >
-            <div className="relative">
-              <motion.div
-                className="absolute inset-0 bg-blue-600 rounded-full blur-lg opacity-50"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.5, 0.7, 0.5],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              />
-              <div className="relative w-40 h-40 xs:w-48 xs:h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">
-                <img
-                  src={profileImage}
-                  alt="Andile Manganye"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div className="mb-4 sm:mb-6 md:mb-8" variants={itemVariants}>
-            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-3 sm:mb-4 md:mb-6 leading-tight px-2 sm:px-4">
-              <span className="text-blue-600 dark:text-blue-400">
-                Hi, I'm Andile Manganye
-              </span>
-            </h1>
-          </motion.div>
-
-          <motion.p
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 dark:text-gray-200 mb-2 sm:mb-3 md:mb-4 font-semibold px-4 sm:px-6"
-            variants={itemVariants}
+            {reduceMotion ? ROLE : role.displayed}
+            <StreamingCursor visible={roleStreaming} className="text-zinc-500" />
+          </p>
+          <h1
+            className="text-3xl font-bold leading-[1.15] tracking-tight text-zinc-950 sm:text-4xl md:text-5xl lg:text-7xl"
+            aria-label={HEADLINE_1 + HEADLINE_2}
           >
-            Full-Stack Developer & Computer Science Graduate
-          </motion.p>
-
-          <motion.p
-            className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto px-4 sm:px-6 leading-relaxed"
-            variants={itemVariants}
-          >
-            Graduate of{' '}
-            <span className="font-bold text-blue-600 dark:text-blue-400 relative">
-              CodeTribe Academy
-              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 dark:bg-blue-400"></span>
+            {reduceMotion ? HEADLINE_1 : headline1.displayed}
+            <span className="bg-gradient-to-r from-zinc-700 to-zinc-900 bg-clip-text text-transparent">
+              {reduceMotion ? HEADLINE_2 : headline2.displayed}
             </span>
-            {' '}(mLab Southern Africa) — successfully completed developer training (Jul 2025 – Mar 2026)
-          </motion.p>
-
-          <motion.p
-            className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto leading-relaxed px-4 sm:px-6"
-            variants={itemVariants}
+            <StreamingCursor visible={headlineStreaming} className="text-zinc-400" />
+          </h1>
+          <p
+            className="mt-6 min-h-[4.5rem] max-w-xl text-lg leading-relaxed text-zinc-600 sm:min-h-[3.5rem] sm:text-xl"
+            aria-label={BIO}
           >
-            I'm a builder at heart. I take complex digital ideas and turn them into solutions that help communities thrive. I thrive in agile environments where collaboration is the secret sauce to building better systems.
-          </motion.p>
-
+            {reduceMotion ? BIO : bio.displayed}
+            <StreamingCursor visible={bioStreaming} />
+          </p>
           <motion.div
-            className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 px-4 sm:px-6"
-            variants={itemVariants}
+            className="mt-8 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:items-center sm:justify-center lg:justify-start"
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
-            {['React + TypeScript', 'JavaScript', 'HTML5', 'Java Spring Boot', 'Firebase', 'PostgreSQL'].map((tech, index) => {
-              const TechIcon = getTechIcon(tech);
-              return (
-                <motion.span
-                  key={tech}
-                  className="px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-full text-xs sm:text-sm md:text-base font-semibold shadow-md flex items-center gap-1.5 sm:gap-2"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 + index * 0.1 }}
-                >
-                  {TechIcon && <TechIcon className="text-base sm:text-lg md:text-xl lg:text-2xl flex-shrink-0" />}
-                  <span className="whitespace-nowrap">{tech}</span>
-                </motion.span>
-              );
-            })}
-          </motion.div>
-
-          <motion.div
-            className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center items-center px-4 sm:px-6"
-            variants={itemVariants}
-          >
-            <motion.a
-              href="#contact"
-              className="group w-full xs:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 bg-blue-600 text-white rounded-xl font-bold text-sm sm:text-base md:text-lg shadow-xl text-center min-w-[200px]"
-              whileHover={{ scale: 1.05, y: -4 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="flex items-center justify-center gap-2">
-                Let's Connect
-                <motion.svg
-                  className="w-4 h-4 sm:w-5 sm:h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </motion.svg>
-              </span>
-            </motion.a>
-            <motion.a
+            <PrimaryButton
               href="#projects"
-              className="w-full xs:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 border-2 border-blue-600 dark:border-purple-500 text-blue-600 dark:text-purple-400 rounded-xl font-bold text-sm sm:text-base md:text-lg shadow-lg text-center min-w-[200px]"
-              whileHover={{ scale: 1.05, y: -2, backgroundColor: 'rgba(59, 130, 246, 0.1)' }}
-              whileTap={{ scale: 0.95 }}
+              onClick={(e) => handleSectionNavClick(e, 'projects')}
             >
-              View My Work
-            </motion.a>
+              View Projects
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </PrimaryButton>
+            <a
+              href="#contact"
+              className={cn(secondaryButton, 'px-8 py-[14px] text-base')}
+              onClick={(e) => handleSectionNavClick(e, 'contact')}
+            >
+              Let&apos;s Connect
+            </a>
           </motion.div>
         </motion.div>
-      </div>
+
+        <motion.div
+          className="relative flex w-full shrink-0 justify-center lg:justify-end"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <motion.div
+            aria-hidden
+            className="absolute inset-0 rounded-3xl bg-gradient-to-br from-zinc-400/30 via-transparent to-zinc-500/20 blur-2xl"
+            animate={{ opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 6, repeat: Infinity }}
+          />
+          <motion.div
+            className={cn(
+              'relative aspect-[4/5] w-[min(100%,220px)] overflow-hidden rounded-2xl sm:w-[280px]',
+              'border border-zinc-200 bg-zinc-50 p-1 shadow-2xl shadow-zinc-200/80',
+              'lg:aspect-square lg:w-full lg:max-w-md lg:rounded-3xl'
+            )}
+            {...subtleScaleInteraction}
+            transition={{ type: 'spring', stiffness: 300 }}
+          >
+            <img
+              src={profileImage}
+              alt="Andile Manganye"
+              className="h-full w-full rounded-[0.85rem] object-cover object-top lg:rounded-[1.35rem]"
+            />
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
