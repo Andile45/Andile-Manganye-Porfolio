@@ -1,229 +1,181 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from '../contexts/ThemeContext';
+import { Menu, X } from 'lucide-react';
+import { primaryButtonSm } from '../lib/button-styles';
+import { scrollToSectionId, updateSectionHash } from '../lib/scroll';
+import { cn } from '../lib/utils';
 
-const HEADER_OFFSET = 80;
 const navItems = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
+  { id: 'soft-skills', label: 'Soft Skills' },
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'certificates', label: 'Certificates' },
   { id: 'contact', label: 'Contact' },
-];
+] as const;
+
+/** Match mobile menu exit animation before scrolling (layout must settle). */
+const MOBILE_MENU_CLOSE_MS = 320;
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const { theme, toggleTheme } = useTheme();
+
+  const updateActiveSection = useCallback(() => {
+    const offset = 120;
+    const scrollPos = window.scrollY + offset;
+    let current = 'home';
+
+    for (const item of navItems) {
+      const el = document.getElementById(item.id);
+      if (!el) continue;
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      if (scrollPos >= top) current = item.id;
+    }
+
+    setActiveSection(current);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-
-      const scrollTop = window.scrollY + HEADER_OFFSET;
-      let current = 'home';
-      for (const item of navItems) {
-        const el = document.getElementById(item.id);
-        if (el) {
-          const { offsetTop, offsetHeight } = el;
-          if (scrollTop >= offsetTop - 1) {
-            current = item.id;
-          }
-        }
-      }
-      setActiveSection(current);
+      setIsScrolled(window.scrollY > 24);
+      updateActiveSection();
     };
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
 
-  const scrollToSection = (e: React.MouseEvent, id: string) => {
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateActiveSection);
+    };
+  }, [updateActiveSection]);
+
+  const navigateToSection = (e: React.MouseEvent<HTMLElement>, id: string) => {
     e.preventDefault();
     setActiveSection(id);
+    const menuWasOpen = isMobileMenuOpen;
     setIsMobileMenuOpen(false);
 
-    setTimeout(() => {
-      const element = document.getElementById(id);
-      if (element) {
-        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = elementPosition - HEADER_OFFSET;
+    const runScroll = () => {
+      scrollToSectionId(id);
+      updateSectionHash(id);
+    };
 
-        window.scrollTo({
-          top: Math.max(0, offsetPosition),
-          behavior: 'smooth'
-        });
-      }
-    }, 100);
+    if (menuWasOpen) {
+      window.setTimeout(runScroll, MOBILE_MENU_CLOSE_MS);
+    } else {
+      requestAnimationFrame(runScroll);
+    }
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
+      className={cn(
+        'fixed inset-x-0 top-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-xl border-b border-gray-200 dark:border-gray-800'
-          : 'bg-transparent dark:bg-transparent'
-      }`}
+          ? 'border-b border-zinc-200 bg-white/90 backdrop-blur-xl shadow-sm'
+          : 'bg-transparent'
+      )}
     >
-      <nav className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12">
-        <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">
-          <motion.button
-            type="button"
-            onClick={(e) => scrollToSection(e, 'home')}
-            className="text-lg sm:text-xl md:text-2xl font-extrabold text-blue-600 dark:text-blue-400"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: 'spring', stiffness: 400 }}
-          >
-            Andile Manganye
-          </motion.button>
+      <nav className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8">
+        <motion.a
+          href="#home"
+          onClick={(e) => navigateToSection(e, 'home')}
+          className="text-lg font-bold tracking-tight text-zinc-950"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <span className="text-zinc-700">A</span>. Manganye
+        </motion.a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
+        <motion.div className="hidden items-center gap-1 md:flex lg:gap-1.5">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => navigateToSection(e, item.id)}
+                aria-current={isActive ? 'page' : undefined}
+                className={cn(
+                  'relative rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors lg:px-4',
+                  isActive ? 'text-zinc-950' : 'text-zinc-600 hover:text-zinc-950'
+                )}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active-pill"
+                    className="pointer-events-none absolute inset-0 rounded-lg bg-zinc-100 ring-1 ring-zinc-200/80"
+                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                    aria-hidden
+                  />
+                )}
+                <span className="relative z-10">{item.label}</span>
+              </a>
+            );
+          })}
+          <motion.a
+            href="#contact"
+            onClick={(e) => navigateToSection(e, 'contact')}
+            className={cn('ml-1 lg:ml-2', primaryButtonSm)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            Hire me
+          </motion.a>
+        </motion.div>
+
+        <button
+          type="button"
+          className="rounded-lg border border-zinc-200 p-2 text-zinc-600 md:hidden"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </nav>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="space-y-1 border-b border-zinc-200 bg-white/95 px-4 py-5 backdrop-blur-xl md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+          >
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
-                <motion.button
+                <a
                   key={item.id}
-                  type="button"
-                  onClick={(e) => scrollToSection(e, item.id)}
-                  className={`group font-semibold text-xs sm:text-sm uppercase tracking-wide relative transition-colors ${
+                  href={`#${item.id}`}
+                  onClick={(e) => navigateToSection(e, item.id)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={cn(
+                    'relative block w-full rounded-lg py-3.5 pl-4 pr-4 text-sm font-medium transition-colors',
                     isActive
-                      ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
-                  }`}
-                  transition={{ duration: 0.2 }}
+                      ? 'bg-zinc-100 font-semibold text-zinc-950 ring-1 ring-zinc-200/80'
+                      : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-950'
+                  )}
                 >
+                  {isActive && (
+                    <span
+                      className="absolute bottom-2 left-0 top-2 w-0.5 rounded-full bg-zinc-900"
+                      aria-hidden
+                    />
+                  )}
                   {item.label}
-                  <span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 ${
-                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                    }`}
-                  />
-                </motion.button>
+                </a>
               );
             })}
-            <motion.button
-              onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 shadow-md"
-              aria-label="Toggle theme"
-              whileHover={{ scale: 1.1, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: 'spring', stiffness: 400 }}
-            >
-              {theme === 'dark' ? (
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fillRule="evenodd"
-                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ) : (
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                </svg>
-              )}
-            </motion.button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-3">
-            <motion.button
-              onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 shadow-md"
-              aria-label="Toggle theme"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: 'spring', stiffness: 400 }}
-            >
-              {theme === 'dark' ? (
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fillRule="evenodd"
-                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ) : (
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                </svg>
-              )}
-            </motion.button>
-            <motion.button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-gray-200 dark:bg-gray-700 shadow-md"
-              aria-label="Toggle menu"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: 'spring', stiffness: 400 }}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {isMobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </motion.button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              className="md:hidden py-4 space-y-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg rounded-b-2xl shadow-lg border-t border-gray-200 dark:border-gray-800"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {navItems.map((item, index) => {
-                const isActive = activeSection === item.id;
-                return (
-                  <motion.button
-                    key={item.id}
-                    type="button"
-                    onClick={(e) => scrollToSection(e, item.id)}
-                    className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition-colors ${
-                      isActive
-                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30'
-                        : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
-                    }`}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={!isActive ? { backgroundColor: 'rgba(59, 130, 246, 0.1)', x: 5 } : {}}
-                  >
-                    {item.label}
-                  </motion.button>
-                );
-              })}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
