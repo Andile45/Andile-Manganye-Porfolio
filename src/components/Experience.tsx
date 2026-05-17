@@ -1,178 +1,239 @@
-import { motion } from 'framer-motion';
-import { FaBriefcase } from 'react-icons/fa';
+﻿import { motion, useInView } from 'framer-motion';
+import { Briefcase, Check, GraduationCap, type LucideIcon } from 'lucide-react';
+import { useRef } from 'react';
+import { liftInteraction } from '../lib/motion-presets';
+import { cn } from '../lib/utils';
 
-const Experience = () => {
-  const experiences = [
-    {
-      title: 'Developer Trainee (Graduate)',
-      company: 'CodeTribe Academy (mLab Southern Africa)',
-      period: 'July 2025 – March 2026',
-      description: [
-        'Successfully completed the full-stack developer training program',
-        'Built digital solutions for real-world environments',
-        'Participated in Agile/Scrum ceremonies',
-        'Worked in cross-functional teams',
-        'Developed using JavaScript, TypeScript, React, Vanilla JavaScript, Tailwind CSS, PostgreSQL, and cloud tools',
-        'Collaborated on UI/UX with Figma',
-      ],
-    },
-    {
-      title: 'Computer Science Graduate',
-      company: 'Tshwane University of Technology',
-      period: '2022 – 2025',
-      description: [
-        'Focus on software development, algorithms, databases, system design',
-        'Developed multiple full-stack university projects',
-        'Strengthened Java and SQL fundamentals',
-        'Learned Software Engineering principles',
-      ],
-    },
-  ];
+type ExperienceEntry = {
+  type: 'work' | 'education';
+  title: string;
+  company: string;
+  period: string;
+  description: string[];
+  badge?: string;
+};
+
+const experiences: ExperienceEntry[] = [
+  {
+    type: 'work',
+    title: 'Developer Trainee (Graduate)',
+    company: 'CodeTribe Academy Â· mLab Southern Africa',
+    period: 'Jul 2025 - Mar 2026',
+    badge: 'Latest role',
+    description: [
+      'Completed full-stack developer training with production-style deliverables',
+      'Shipped solutions in Agile/Scrum teams with peer review and iteration',
+      'React, TypeScript, PostgreSQL, Supabase, and modern deployment tooling',
+    ],
+  },
+  {
+    type: 'education',
+    title: 'Computer Science Diploma',
+    company: 'Tshwane University of Technology (TUT)',
+    period: '2022 - 2025',
+    description: [
+      'Software development, algorithms, and database systems',
+      'Full-stack university projects across web and mobile',
+      'Java, SQL, and software engineering fundamentals',
+    ],
+  },
+];
+
+const iconByType: Record<ExperienceEntry['type'], LucideIcon> = {
+  work: Briefcase,
+  education: GraduationCap,
+};
+
+const spring = { type: 'spring' as const, stiffness: 380, damping: 26 };
+
+function TimelineConnector({ active, isLast }: { active: boolean; isLast: boolean }) {
+  if (isLast) return null;
 
   return (
-    <section
-      id="experience"
-      className="py-section-sm sm:py-section px-4 sm:px-6 lg:px-8 xl:px-12 bg-white dark:bg-gray-950"
+    <motion.div
+      className={cn(
+        'absolute left-4 top-10 w-px -translate-x-1/2 sm:left-5',
+        active
+          ? 'bg-gradient-to-b from-zinc-800 via-zinc-400 to-zinc-200'
+          : 'bg-zinc-200'
+      )}
+      style={{ height: 'calc(100% - 1.25rem)' }}
+      initial={{ scaleY: 0 }}
+      animate={active ? { scaleY: 1 } : { scaleY: 0 }}
+      transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+      aria-hidden
+    />
+  );
+}
+
+function ExperienceItem({
+  exp,
+  index,
+  isLast,
+}: {
+  exp: ExperienceEntry;
+  index: number;
+  isLast: boolean;
+}) {
+  const ref = useRef<HTMLLIElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.25 });
+  const Icon = iconByType[exp.type];
+
+  return (
+    <motion.li
+      ref={ref}
+      className="relative list-none pb-10 last:pb-0 sm:pb-12"
+      initial={{ opacity: 0, y: 24 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="container mx-auto max-w-4xl">
+      <TimelineConnector active={isInView} isLast={isLast} />
+
+      <motion.div
+        className="relative flex gap-5 sm:gap-6"
+        initial={{ opacity: 0, x: -12 }}
+        animate={isInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.5, delay: index * 0.08 + 0.05 }}
+      >
         <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          className={cn(
+            'relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 sm:h-10 sm:w-10',
+            isInView
+              ? 'border-zinc-900 bg-zinc-900 text-white shadow-md shadow-zinc-900/20'
+              : 'border-zinc-300 bg-white text-zinc-500'
+          )}
+          initial={{ scale: 0.6 }}
+          animate={isInView ? { scale: 1 } : { scale: 0.85 }}
+          transition={spring}
+          aria-hidden
+        >
+          <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={2} />
+        </motion.div>
+
+        <motion.article
+          className={cn(
+            'group relative min-w-0 flex-1 overflow-hidden rounded-2xl border p-5 transition-[border-color,box-shadow,background-color] duration-500 sm:p-6',
+            isInView
+              ? 'border-zinc-300 bg-white shadow-md shadow-zinc-200/50'
+              : 'border-zinc-200 bg-zinc-50'
+          )}
+          {...liftInteraction}
+          transition={spring}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <FaBriefcase className="text-5xl md:text-6xl text-blue-600 dark:text-blue-400 mx-auto mb-4" />
-          </motion.div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
+            aria-hidden
+            className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-zinc-300/0 blur-3xl transition-all duration-700 group-hover:bg-zinc-300/25"
+          />
+
+          <header className="relative flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+            <motion.div
+              className="min-w-0 flex-1"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: index * 0.08 + 0.15 }}
+            >
+              <div className="flex flex-wrap items-center gap-2">
+                {exp.badge && (
+                  <span className="inline-flex items-center rounded-md bg-zinc-900 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                    {exp.badge}
+                  </span>
+                )}
+                <span
+                  className={cn(
+                    'inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider',
+                    exp.type === 'work'
+                      ? 'bg-zinc-100 text-zinc-700'
+                      : 'bg-zinc-100 text-zinc-600'
+                  )}
+                >
+                  {exp.type === 'work' ? 'Work' : 'Education'}
+                </span>
+              </div>
+
+              <h3 className="mt-2 text-lg font-semibold tracking-tight text-zinc-950 sm:text-xl">
+                {exp.title}
+              </h3>
+              <p className="mt-1 text-sm font-medium text-zinc-600">{exp.company}</p>
+            </motion.div>
+
+            <motion.time
+              dateTime={exp.period}
+              className="shrink-0 text-xs font-semibold tabular-nums text-zinc-500 sm:pt-1 sm:text-right sm:text-sm"
+              initial={{ opacity: 0, x: 8 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: index * 0.08 + 0.2 }}
+            >
+              {exp.period}
+            </motion.time>
+          </header>
+
+          <ul className="relative mt-5 space-y-2.5 border-t border-zinc-100 pt-5">
+            {exp.description.map((item, i) => (
+              <motion.li
+                key={item}
+                className="flex gap-2.5 text-sm leading-relaxed text-zinc-600"
+                initial={{ opacity: 0, x: -8 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: index * 0.08 + 0.22 + i * 0.05 }}
+              >
+                <Check
+                  className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400"
+                  strokeWidth={2.5}
+                  aria-hidden
+                />
+                <span>{item}</span>
+              </motion.li>
+            ))}
+          </ul>
+        </motion.article>
+      </motion.div>
+    </motion.li>
+  );
+}
+
+const Experience = () => {
+  return (
+    <section id="experience" className="section-padding overflow-x-hidden">
+      <motion.div
+        className="mx-auto w-full min-w-0 max-w-4xl"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="mb-10 text-center md:text-left">
+          <p className="text-sm font-medium uppercase tracking-widest text-zinc-700">
+            Career
+          </p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-zinc-950 sm:text-4xl">
             Experience
           </h2>
-          <motion.div
-            className="w-20 h-1 bg-blue-600 mx-auto rounded-full"
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          />
-        </motion.div>
-        
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-6 sm:left-8 md:left-1/2 lg:left-1/2 top-0 bottom-0 w-0.5 bg-blue-600 dark:bg-blue-500 transform md:-translate-x-1/2"></div>
-          
-          <motion.div
-            className="space-y-8 sm:space-y-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.3,
-                },
-              },
-            }}
-          >
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                className="relative flex items-start pl-8 sm:pl-12 md:pl-0 mb-8 sm:mb-12"
-                variants={{
-                  hidden: { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
-                  visible: {
-                    opacity: 1,
-                    x: 0,
-                    transition: {
-                      duration: 0.6,
-                    },
-                  },
-                }}
-              >
-                {/* Timeline Dot */}
-                <div className="absolute left-6 sm:left-8 md:left-1/2 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 bg-blue-600 dark:bg-blue-400 rounded-full border-2 sm:border-3 md:border-4 border-white dark:border-gray-950 transform md:-translate-x-1/2 z-10"></div>
-                
-                {/* Content Card */}
-                <motion.div
-                  className={`w-full md:w-[48%] lg:w-5/12 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 sm:p-5 md:p-6 lg:p-8 border border-gray-200 dark:border-gray-700 relative overflow-hidden ${
-                    index % 2 === 0 ? 'md:mr-auto md:pr-4 lg:pr-8' : 'md:ml-auto md:pl-4 lg:pl-8'
-                  }`}
-                  whileHover={{ scale: 1.02, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  <motion.div
-                    className="absolute top-0 right-0 w-48 h-48 bg-blue-500 opacity-5 rounded-full blur-3xl"
-                    whileHover={{ opacity: 0.1, scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  
-                  <div className="relative z-10">
-                    <div className="mb-4">
-                      <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-full text-xs sm:text-sm font-bold shadow-md mb-2 sm:mb-3">
-                        {exp.period}
-                      </span>
-                      <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                        {exp.title}
-                      </h3>
-                      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-600 dark:text-blue-400 font-bold">
-                        {exp.company}
-                      </p>
-                    </div>
-                    
-                    <motion.ul
-                      className="space-y-3"
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      variants={{
-                        hidden: { opacity: 0 },
-                        visible: {
-                          opacity: 1,
-                          transition: {
-                            staggerChildren: 0.1,
-                          },
-                        },
-                      }}
-                    >
-                      {exp.description.map((item, idx) => (
-                        <motion.li
-                          key={idx}
-                          className="flex items-start text-gray-700 dark:text-gray-300"
-                          variants={{
-                            hidden: { opacity: 0, x: -20 },
-                            visible: {
-                              opacity: 1,
-                              x: 0,
-                              transition: {
-                                duration: 0.4,
-                              },
-                            },
-                          }}
-                          whileHover={{ x: 5 }}
-                        >
-                          <span className="text-blue-600 dark:text-blue-400 mr-3 mt-1.5 text-xl font-bold">
-                            •
-                          </span>
-                          <span className="text-sm sm:text-base leading-relaxed">
-                            {item}
-                          </span>
-                        </motion.li>
-                      ))}
-                    </motion.ul>
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <p className="mt-3 max-w-xl text-zinc-600">
+            Training and education that shaped how I build and ship software.
+          </p>
         </div>
-      </div>
+
+        <ol className="relative">
+          <motion.div
+            className="pointer-events-none absolute bottom-8 left-4 top-8 w-px -translate-x-1/2 bg-zinc-200 sm:left-5"
+            aria-hidden
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            style={{ originY: 0 }}
+          />
+
+          {experiences.map((exp, index) => (
+            <ExperienceItem
+              key={exp.title}
+              exp={exp}
+              index={index}
+              isLast={index === experiences.length - 1}
+            />
+          ))}
+        </ol>
+      </motion.div>
     </section>
   );
 };
