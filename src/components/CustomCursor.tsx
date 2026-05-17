@@ -44,11 +44,21 @@ export default function CustomCursor() {
 
     document.body.classList.add('custom-cursor-active');
 
+    let frame = 0;
+    let lastX = 0;
+    let lastY = 0;
+
     const move = (e: MouseEvent) => {
-      mouseX.set(e.clientX - RING_SIZE / 2);
-      mouseY.set(e.clientY - RING_SIZE / 2);
-      dotX.set(e.clientX - DOT_SIZE / 2);
-      dotY.set(e.clientY - DOT_SIZE / 2);
+      lastX = e.clientX;
+      lastY = e.clientY;
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        mouseX.set(lastX - RING_SIZE / 2);
+        mouseY.set(lastY - RING_SIZE / 2);
+        dotX.set(lastX - DOT_SIZE / 2);
+        dotY.set(lastY - DOT_SIZE / 2);
+      });
     };
 
     const onMouseOver = (e: MouseEvent) => {
@@ -65,11 +75,12 @@ export default function CustomCursor() {
       }
     };
 
-    window.addEventListener('mousemove', move);
+    window.addEventListener('mousemove', move, { passive: true });
     document.addEventListener('mouseover', onMouseOver);
     document.addEventListener('mouseout', onMouseOut);
 
     return () => {
+      if (frame) cancelAnimationFrame(frame);
       document.body.classList.remove('custom-cursor-active');
       window.removeEventListener('mousemove', move);
       document.removeEventListener('mouseover', onMouseOver);

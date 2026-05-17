@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import profileImage from '../assets/Andile-Manganye-Image.png';
+const PROFILE_IMAGE = '/Andile-Manganye-Image.png';
 import PrimaryButton from './ui/PrimaryButton';
 import { secondaryButton } from '../lib/button-styles';
 import { StreamingCursor } from './ui/StreamingText';
@@ -13,6 +13,7 @@ import { cn } from '../lib/utils';
 const ROLE = 'Full-Stack Engineer';
 const HEADLINE_1 = 'Architecting robust backends. ';
 const HEADLINE_2 = 'Crafting intuitive UIs.';
+const HEADLINE_FULL = HEADLINE_1 + HEADLINE_2;
 const BIO =
   "I'm Andile Manganye, a full-stack engineer building scalable web and mobile applications.";
 
@@ -26,6 +27,7 @@ const Hero = () => {
   const reduceMotion = useReducedMotion();
   const isInView = useInView(sectionRef, { amount: 0.12, once: true });
   const streamActive = isInView && !reduceMotion;
+  const showStream = streamActive;
 
   const role = useStreamingText(ROLE, { active: streamActive, speed: CHAR_MS });
   const headline1 = useStreamingText(HEADLINE_1, {
@@ -44,15 +46,17 @@ const Hero = () => {
     delay: BIO_DELAY,
   });
 
-  const roleStreaming = isInView && !role.isComplete && role.displayed.length > 0;
+  const roleStreaming = showStream && !role.isComplete && role.displayed.length > 0;
   const headlineStreaming =
-    isInView && role.isComplete && (!headline1.isComplete || !headline2.isComplete);
+    showStream && role.isComplete && (!headline1.isComplete || !headline2.isComplete);
   const bioStreaming =
-    isInView &&
+    showStream &&
     headline1.isComplete &&
     headline2.isComplete &&
     !bio.isComplete &&
     bio.displayed.length > 0;
+
+  const motionInitial = reduceMotion ? false : { opacity: 0, y: 24 };
 
   return (
     <section
@@ -75,38 +79,34 @@ const Hero = () => {
 
       <motion.div
         className="relative z-10 mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16"
-        initial={{ opacity: 0, y: 24 }}
+        initial={motionInitial}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
         <motion.div
           className="w-full min-w-0 text-center lg:text-left"
-          initial={{ opacity: 0, x: -24 }}
+          initial={reduceMotion ? false : { opacity: 0, x: -24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <p
-            className="mb-4 min-h-[1.25rem] text-sm font-medium uppercase tracking-[0.2em] text-zinc-700"
-            aria-label={ROLE}
-          >
-            {reduceMotion ? ROLE : role.displayed}
+          <p className="mb-4 min-h-[1.25rem] text-sm font-medium uppercase tracking-[0.2em] text-zinc-700">
+            {showStream && <span className="sr-only">{ROLE}</span>}
+            <span aria-hidden={showStream}>{showStream ? role.displayed : ROLE}</span>
             <StreamingCursor visible={roleStreaming} className="text-zinc-500" />
           </p>
-          <h1
-            className="text-3xl font-bold leading-[1.15] tracking-tight text-zinc-950 sm:text-4xl md:text-5xl lg:text-7xl"
-            aria-label={HEADLINE_1 + HEADLINE_2}
-          >
-            {reduceMotion ? HEADLINE_1 : headline1.displayed}
-            <span className="bg-gradient-to-r from-zinc-700 to-zinc-900 bg-clip-text text-transparent">
-              {reduceMotion ? HEADLINE_2 : headline2.displayed}
+          <h1 className="text-3xl font-bold leading-[1.15] tracking-tight text-zinc-950 sm:text-4xl md:text-5xl lg:text-7xl">
+            {showStream && <span className="sr-only">{HEADLINE_FULL}</span>}
+            <span aria-hidden={showStream}>
+              {showStream ? headline1.displayed : HEADLINE_1}
+              <span className="bg-gradient-to-r from-zinc-700 to-zinc-900 bg-clip-text text-transparent">
+                {showStream ? headline2.displayed : HEADLINE_2}
+              </span>
             </span>
             <StreamingCursor visible={headlineStreaming} className="text-zinc-400" />
           </h1>
-          <p
-            className="mt-6 min-h-[4.5rem] max-w-xl text-lg leading-relaxed text-zinc-600 sm:min-h-[3.5rem] sm:text-xl"
-            aria-label={BIO}
-          >
-            {reduceMotion ? BIO : bio.displayed}
+          <p className="mt-6 min-h-[4.5rem] max-w-xl text-lg leading-relaxed text-zinc-600 sm:min-h-[3.5rem] sm:text-xl">
+            {showStream && <span className="sr-only">{BIO}</span>}
+            <span aria-hidden={showStream}>{showStream ? bio.displayed : BIO}</span>
             <StreamingCursor visible={bioStreaming} />
           </p>
           <motion.div
@@ -134,7 +134,7 @@ const Hero = () => {
 
         <motion.div
           className="relative flex w-full shrink-0 justify-center lg:justify-end"
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={reduceMotion ? false : { opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
@@ -154,8 +154,12 @@ const Hero = () => {
             transition={{ type: 'spring', stiffness: 300 }}
           >
             <img
-              src={profileImage}
-              alt="Andile Manganye"
+              src={PROFILE_IMAGE}
+              alt="Andile Manganye, full-stack developer"
+              width={560}
+              height={700}
+              fetchPriority="high"
+              decoding="async"
               className="h-full w-full rounded-[0.85rem] object-cover object-top lg:rounded-[1.35rem]"
             />
           </motion.div>
