@@ -1,37 +1,51 @@
+import plugin from 'tailwindcss/plugin';
+
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
       screens: {
-        'xs': '475px',
+        xs: '475px',
         '3xl': '1920px',
       },
-      fontSize: {
-        'fluid-xs': 'clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)',
-        'fluid-sm': 'clamp(0.875rem, 0.8rem + 0.375vw, 1rem)',
-        'fluid-base': 'clamp(1rem, 0.95rem + 0.25vw, 1.125rem)',
-        'fluid-lg': 'clamp(1.125rem, 1rem + 0.625vw, 1.25rem)',
-        'fluid-xl': 'clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)',
-        'fluid-2xl': 'clamp(1.5rem, 1.3rem + 1vw, 2rem)',
-        'fluid-3xl': 'clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem)',
-        'fluid-4xl': 'clamp(2.25rem, 1.8rem + 2.25vw, 3rem)',
-        'fluid-5xl': 'clamp(3rem, 2.4rem + 3vw, 4rem)',
-        'fluid-6xl': 'clamp(3.75rem, 3rem + 3.75vw, 5rem)',
+      colors: {
+        accent: {
+          DEFAULT: '#18181b',
+          hover: '#27272a',
+        },
+        'btn-primary': '#242526',
       },
-      spacing: {
-        'section': 'clamp(3rem, 5vw, 6rem)',
-        'section-sm': 'clamp(2rem, 3vw, 3rem)',
+      boxShadow: {
+        'btn-primary':
+          'inset 0 1.5px 0 rgba(255,255,255,0.15), 0 4px 7px rgba(0,0,0,0.2), 0 0 0 1.5px #000000',
+      },
+      textShadow: {
+        'btn-primary': '0 4px 4px rgba(0,0,0,0.4)',
+      },
+      animation: {
+        marquee: 'marquee 40s linear infinite',
+        'marquee-reverse': 'marquee-reverse 40s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
+        'marquee-reverse': {
+          from: { transform: 'translateX(-50%)' },
+          to: { transform: 'translateX(0)' },
+        },
       },
     },
   },
-  plugins: [],
-}
-
-
-
-
+  plugins: [
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        { ts: (value) => ({ textShadow: value }) },
+        { values: theme('textShadow') }
+      );
+    }),
+  ],
+};
