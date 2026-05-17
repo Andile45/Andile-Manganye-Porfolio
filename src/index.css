@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,7 +47,13 @@
     color: #09090b;
   }
 
-  section[id] {
+  section[id]:not(#home) {
+    scroll-margin-top: 6.5rem;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+
+  section#home {
     scroll-margin-top: 6.5rem;
   }
 
@@ -107,6 +111,11 @@ body.custom-cursor-active label,
 body.custom-cursor-active [data-cursor='grow'],
 body.custom-cursor-active [role='button'] {
   cursor: pointer !important;
+}
+
+body.custom-cursor-active [data-radix-popper-content-wrapper],
+body.custom-cursor-active [data-radix-popper-content-wrapper] * {
+  cursor: auto !important;
 }
 
 body.custom-cursor-active button:disabled,

@@ -1,5 +1,4 @@
-import { Analytics } from '@vercel/analytics/react';
-import CustomCursor from './components/CustomCursor';
+import { lazy, Suspense } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,10 +10,17 @@ import Certificates from './components/Certificates';
 import Contact from './components/Contact';
 import './App.css';
 
+const CustomCursor = lazy(() => import('./components/CustomCursor'));
+const Analytics = lazy(() =>
+  import('@vercel/analytics/react').then((m) => ({ default: m.Analytics }))
+);
+
 function App() {
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-white text-zinc-700 antialiased">
-      <CustomCursor />
+      <Suspense fallback={null}>
+        <CustomCursor />
+      </Suspense>
       <Header />
       <main>
         <Hero />
@@ -33,8 +39,19 @@ function App() {
           <span className="text-zinc-700">TypeScript</span> &{' '}
           <span className="text-zinc-700">Tailwind CSS</span>
         </p>
+        <p className="mt-2 text-xs text-zinc-500">
+          <a href="/llms.txt" className="underline hover:text-zinc-800">
+            llms.txt
+          </a>
+          {' · '}
+          <a href="/llms-full.txt" className="underline hover:text-zinc-800">
+            Full profile for AI tools
+          </a>
+        </p>
       </footer>
-      <Analytics />
+      <Suspense fallback={null}>
+        <Analytics />
+      </Suspense>
     </div>
   );
 }

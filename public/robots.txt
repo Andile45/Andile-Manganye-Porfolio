@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 
+# Machine-readable summary: https://andile-manganye-porfolio.vercel.app/llms.txt
+
 Sitemap: https://andile-manganye-porfolio.vercel.app/sitemap.xml
 

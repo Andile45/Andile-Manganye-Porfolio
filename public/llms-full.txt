@@ -1,0 +1,103 @@
+# Andile Manganye — Full profile (machine-readable)
+
+## Identity
+
+- Name: Andile Manganye
+- Title: Full-Stack Engineer
+- Tagline: Architecting robust backends. Crafting intuitive UIs.
+- Bio: I'm Andile Manganye, a full-stack engineer building scalable web and mobile applications.
+- Email: manganyeandile@gmail.com
+- GitHub: https://github.com/Andile45
+- LinkedIn: https://linkedin.com/in/andile-manganye-a27591319
+- Portfolio: https://andile-manganye-porfolio.vercel.app/
+- CV: https://andile-manganye-porfolio.vercel.app/Andile_Manganye_CV.pdf
+
+## About
+
+Full-Stack Developer · Problem solver · Lifelong learner.
+
+- Computer Science diploma from Tshwane University of Technology (TUT)
+- Graduate of CodeTribe Academy (mLab Southern Africa) — developer training Jul 2025 – Mar 2026
+
+I thrive in agile environments where collaboration turns complex ideas into systems communities can rely on.
+
+## Experience
+
+### Developer Trainee (Graduate) — CodeTribe Academy · mLab Southern Africa
+Jul 2025 – Mar 2026
+
+- Completed full-stack developer training with production-style deliverables
+- Shipped solutions in Agile/Scrum teams with peer review and iteration
+- React, TypeScript, PostgreSQL, Supabase, and modern deployment tooling
+
+### Computer Science Diploma — Tshwane University of Technology (TUT)
+2022 – 2025
+
+- Software development, algorithms, and database systems
+- Full-stack university projects across web and mobile
+- Java, SQL, and software engineering fundamentals
+
+## Projects
+
+### Bite X (Restaurant App)
+
+Full-stack restaurant platform — mobile app for customers and a web CMS for staff, managers, and admins.
+
+Stack: React Native, Expo, React 19, Vite, Tailwind v4, Supabase, Paystack, Redux Toolkit
+
+Features: Auth, menu browsing, cart & orders, profile & Paystack payments, web CMS dashboard
+
+Role: Built the Expo mobile app (Redux Toolkit) and React 19 CMS; Supabase auth, RLS, order flow, Paystack on both clients.
+
+Links: https://restaurant-app-azure-theta.vercel.app/
+
+### Thusa (TUT Student Assistant)
+
+AI-powered student support for Tshwane University of Technology — grounded chat with hybrid FAQ retrieval.
+
+Stack: React, TypeScript, Vite, Node.js, Express, Supabase, OpenAI, Vercel AI SDK
+
+Features: Streaming chat, hybrid FAQ search, conversation memory, scheduled TUT updates agent
+
+Role: Full-stack — chat UI, API & retrieval, Supabase schema/seed, anti-hallucination prompts
+
+Links: https://thusa-tut-ai-chatbot.vercel.app/
+
+### OnSite (Municipality Maintenance)
+
+AI-powered maintenance and employment system with incident reporting, classification, and worker assignment.
+
+Stack: React, Flutter, Firebase Auth, Firestore, Cloud Functions, Vision API, Figma
+
+Features: Image-based reporting, AI classification & fraud detection, worker assignment, mobile + admin dashboard
+
+Role: Full-stack features, Flutter workflows, Firebase integration, classification pipelines
+
+### Weather App (OpenWeatherMap)
+
+Real-time weather for any city — temperature, humidity, conditions, responsive icons.
+
+Stack: HTML5, CSS3, JavaScript, OpenWeatherMap API
+
+Links: https://weather-app-zeta-navy-82.vercel.app/
+
+## Technical skills
+
+React, React Native, HTML, CSS, JavaScript, Tailwind CSS, TypeScript, Node.js, Expo, Supabase, Firebase, PostgreSQL, SQL, Java, Figma, GitHub, Vercel, Railway, Render, Shadcn, VS Code, NetBeans
+
+## Soft skills
+
+Collaboration, communication, problem-solving, adaptability, time management, AI-assisted development (Claude, OpenAI, LLM APIs)
+
+## Certificates
+
+- Database Design — DataCamp
+- Understanding Artificial Intelligence — DataCamp
+- JavaScript Algorithms and Data Structures — freeCodeCamp
+- Responsive Web Design — freeCodeCamp
+
+## Contact
+
+Open to internships, junior roles, collaborations, and freelance work.
+
+Contact form on portfolio / email manganyeandile@gmail.com

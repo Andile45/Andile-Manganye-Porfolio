@@ -2,8 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    />
     <link rel="icon" type="image/png" href="/favicon.png?v=2" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#242526" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
@@ -16,8 +24,8 @@
     <meta name="language" content="English" />
     <meta name="revisit-after" content="7 days" />
     
-    <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="googleb8e90afd830f3f10.html" />
+    <!-- Google Search Console Verification (HTML file also at /googleb8e90afd830f3f10.html) -->
+    <meta name="google-site-verification" content="googleb8e90afd830f3f10" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -39,6 +47,9 @@
     
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- Machine-readable profile for LLMs -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM site summary" />
     
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -88,6 +99,47 @@
     </script>
   </head>
   <body>
+    <noscript>
+      <div style="max-width: 48rem; margin: 0 auto; padding: 2rem 1.25rem; font-family: system-ui, sans-serif; line-height: 1.6; color: #18181b;">
+        <h1>Andile Manganye — Full-Stack Engineer</h1>
+        <p>
+          I'm Andile Manganye, a full-stack engineer building scalable web and mobile applications.
+          Architecting robust backends. Crafting intuitive UIs.
+        </p>
+        <p>
+          <strong>Contact:</strong>
+          <a href="mailto:manganyeandile@gmail.com">manganyeandile@gmail.com</a>
+          ·
+          <a href="https://github.com/Andile45">GitHub</a>
+          ·
+          <a href="https://linkedin.com/in/andile-manganye-a27591319">LinkedIn</a>
+          ·
+          <a href="/Andile_Manganye_CV.pdf">Download CV</a>
+        </p>
+        <h2>Projects</h2>
+        <ul>
+          <li><strong>Bite X</strong> — Restaurant mobile app + React CMS (Supabase, Paystack)</li>
+          <li><strong>Thusa</strong> — TUT AI student assistant with grounded FAQ chat</li>
+          <li><strong>OnSite</strong> — Municipality maintenance (Flutter, Firebase, Vision API)</li>
+          <li><strong>Weather App</strong> — OpenWeatherMap JavaScript app</li>
+        </ul>
+        <h2>Experience</h2>
+        <ul>
+          <li>Developer Trainee, CodeTribe Academy (mLab) — Jul 2025 – Mar 2026</li>
+          <li>Computer Science Diploma, TUT — 2022 – 2025</li>
+        </ul>
+        <h2>Skills</h2>
+        <p>
+          React, React Native, TypeScript, JavaScript, Node.js, Tailwind CSS, Supabase, Firebase,
+          PostgreSQL, SQL, Java, Expo, Vercel.
+        </p>
+        <p>
+          <a href="/llms.txt">llms.txt</a> ·
+          <a href="/llms-full.txt">Full profile for AI tools</a>
+        </p>
+        <p><em>Enable JavaScript for the interactive portfolio.</em></p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

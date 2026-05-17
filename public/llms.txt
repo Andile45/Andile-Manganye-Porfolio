@@ -1,0 +1,38 @@
+# Andile Manganye — Portfolio
+
+> Full-stack engineer building scalable web and mobile applications. React, TypeScript, Node.js, React Native, Supabase, Firebase.
+
+## About
+
+- **Name:** Andile Manganye
+- **Role:** Full-Stack Engineer
+- **Location:** South Africa
+- **Email:** manganyeandile@gmail.com
+- **GitHub:** https://github.com/Andile45
+- **LinkedIn:** https://linkedin.com/in/andile-manganye-a27591319
+- **Portfolio:** https://andile-manganye-porfolio.vercel.app/
+- **CV (PDF):** https://andile-manganye-porfolio.vercel.app/Andile_Manganye_CV.pdf
+
+## Summary
+
+Computer Science diploma graduate (TUT, 2022–2025). Developer Trainee at CodeTribe Academy (mLab Southern Africa), Jul 2025 – Mar 2026. I build production-style full-stack and mobile apps with React, TypeScript, Node.js, Supabase, and Firebase.
+
+## Projects
+
+- **Bite X** — Restaurant platform: Expo mobile app + React CMS, Supabase, Paystack. Live CMS: https://restaurant-app-azure-theta.vercel.app/
+- **Thusa** — TUT AI student assistant with grounded FAQ chat (React, Node, Supabase, OpenAI). Live: https://thusa-tut-ai-chatbot.vercel.app/
+- **OnSite** — Municipality maintenance: Flutter mobile, Firebase, Vision API, incident reporting.
+- **Weather App** — OpenWeatherMap vanilla JS app. Live: https://weather-app-zeta-navy-82.vercel.app/
+
+## Skills
+
+React, React Native, Expo, TypeScript, JavaScript, HTML, CSS, Tailwind CSS, Node.js, Supabase, Firebase, PostgreSQL, SQL, Java, Figma, GitHub, Vercel, Railway, Render.
+
+## Education & experience
+
+- CodeTribe Academy (mLab) — Developer Trainee, Jul 2025 – Mar 2026
+- Tshwane University of Technology — Computer Science Diploma, 2022 – 2025
+
+## Optional
+
+- Extended profile (projects, features, stack details): https://andile-manganye-porfolio.vercel.app/llms-full.txt
