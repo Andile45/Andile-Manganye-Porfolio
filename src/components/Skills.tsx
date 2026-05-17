@@ -1,284 +1,149 @@
 import { motion } from 'framer-motion';
-import { FaBrain } from 'react-icons/fa';
-import { FaPalette, FaCog, FaDatabase, FaCloud, FaTools, FaRocket } from 'react-icons/fa';
+import type { IconType } from 'react-icons';
+import { FaJava } from 'react-icons/fa';
 import {
-  SiReact,
-  SiTypescript,
-  SiVite,
-  SiTailwindcss,
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiFlutter,
-  SiDart,
-  SiNodedotjs,
-  SiExpress,
-  SiSpring,
+  SiCss,
+  SiExpo,
+  SiFigma,
   SiFirebase,
-  SiPostgresql,
-  SiMysql,
-  SiSupabase,
-  SiVercel,
-  SiRailway,
-  SiGooglecloud,
-  SiGit,
   SiGithub,
-  SiIntellijidea,
-  SiPycharm,
-  SiFigma
+  SiHtml5,
+  SiJavascript,
+  SiMysql,
+  SiNodedotjs,
+  SiPostgresql,
+  SiRailway,
+  SiReact,
+  SiRender,
+  SiShadcnui,
+  SiSupabase,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
 } from 'react-icons/si';
-import { FaJava, FaCode } from 'react-icons/fa';
+import { VscVscode } from 'react-icons/vsc';
+import { NetBeansIcon } from './icons/NetBeansIcon';
+import { nudgeInteraction } from '../lib/motion-presets';
+import { cn } from '../lib/utils';
 
-const Skills = () => {
-  const skillCategories = [
-    {
-      title: 'Frontend',
-      Icon: FaPalette,
-      skills: [
-        'React (Hooks, Context API)',
-        'React Native',
-        'TypeScript',
-        'Vite',
-        'TailwindCSS',
-        'HTML5, CSS3, JavaScript (ES6+)',
-        'Flutter + Dart (Clean Architecture)',
-      ],
-      color: 'blue',
-    },
-    {
-      title: 'Backend',
-      Icon: FaCog,
-      skills: [
-        'Node.js + Express.js',
-        'Java Spring Boot (REST APIs, WebSockets)',
-        'Firebase Cloud Functions',
-      ],
-      color: 'purple',
-    },
-    {
-      title: 'Databases',
-      Icon: FaDatabase,
-      skills: [
-        'PostgreSQL',
-        'MySQL',
-        'Supabase (DB + Auth + Storage)',
-        'Firestore',
-        'Firebase Realtime Database',
-      ],
-      color: 'green',
-    },
-    {
-      title: 'Cloud & Hosting',
-      Icon: FaCloud,
-      skills: [
-        'Vercel (frontend)',
-        'Railway (backend)',
-        'Supabase (DB + Auth)',
-        'Google Cloud (Vision API, Cloud Functions)',
-      ],
-      color: 'yellow',
-    },
-    {
-      title: 'Tools & Platforms',
-      Icon: FaTools,
-      skills: [
-        'Git & GitHub',
-        'IntelliJ IDEA',
-        'VS Code',
-        'PyCharm',
-        'NetBeans',
-        'Figma (UI/UX)',
-      ],
-      color: 'blue',
-    },
-    {
-      title: 'Other Skills',
-      Icon: FaRocket,
-      skills: [
-        'Web scraping (BeautifulSoup)',
-        'Agile/Scrum teamwork',
-        'Debugging & problem solving',
-        'System design & architecture thinking',
-        'Software Engineering principles',
-      ],
-      color: 'indigo',
-    },
-  ];
+type Skill = {
+  name: string;
+  role: string;
+  icon: IconType;
+  color: string;
+};
 
-  const colorClasses = {
-    blue: 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-300 dark:border-blue-700',
-    purple:
-      'bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-300 dark:border-purple-700',
-    green:
-      'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-300 dark:border-green-700',
-    yellow:
-      'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-300 dark:border-yellow-700',
-    pink: 'bg-pink-100 dark:bg-pink-900/30 text-pink-800 dark:text-pink-300 border-pink-300 dark:border-pink-700',
-    indigo:
-      'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 border-indigo-300 dark:border-indigo-700',
-  };
+const skills: Skill[] = [
+  { name: 'React', role: 'Library', icon: SiReact, color: '#61DAFB' },
+  { name: 'React Native', role: 'Framework', icon: SiReact, color: '#61DAFB' },
+  { name: 'HTML', role: 'Markup', icon: SiHtml5, color: '#E34F26' },
+  { name: 'CSS', role: 'Styling', icon: SiCss, color: '#1572B6' },
+  { name: 'JavaScript', role: 'Language', icon: SiJavascript, color: '#F7DF1E' },
+  { name: 'Tailwind CSS', role: 'Styling', icon: SiTailwindcss, color: '#06B6D4' },
+  { name: 'TypeScript', role: 'Language', icon: SiTypescript, color: '#3178C6' },
+  { name: 'Node.js', role: 'Runtime', icon: SiNodedotjs, color: '#339933' },
+  { name: 'Expo', role: 'Platform', icon: SiExpo, color: '#000020' },
+  { name: 'Supabase', role: 'BaaS', icon: SiSupabase, color: '#3ECF8E' },
+  { name: 'Firebase', role: 'BaaS', icon: SiFirebase, color: '#FFCA28' },
+  { name: 'PostgreSQL', role: 'Database', icon: SiPostgresql, color: '#4169E1' },
+  { name: 'SQL', role: 'Database', icon: SiMysql, color: '#4479A1' },
+  { name: 'Java', role: 'Language', icon: FaJava, color: '#007396' },
+  { name: 'Figma', role: 'Design', icon: SiFigma, color: '#F24E1E' },
+  { name: 'GitHub', role: 'Version Control', icon: SiGithub, color: '#181717' },
+  { name: 'Vercel', role: 'Deployment', icon: SiVercel, color: '#000000' },
+  { name: 'Railway', role: 'Deployment', icon: SiRailway, color: '#0B0D0E' },
+  { name: 'Render', role: 'Deployment', icon: SiRender, color: '#000000' },
+  { name: 'Shadcn', role: 'UI Library', icon: SiShadcnui, color: '#000000' },
+  { name: 'VS Code', role: 'Editor', icon: VscVscode, color: '#007ACC' },
+  { name: 'NetBeans', role: 'Editor', icon: NetBeansIcon, color: '#1B6AC6' },
+];
 
-  // Icon mapping for tech stack
-  const getSkillIcon = (skill: string) => {
-    const skillLower = skill.toLowerCase();
-
-    // Frontend
-    if (skillLower.includes('react')) return SiReact;
-    if (skillLower.includes('typescript')) return SiTypescript;
-    if (skillLower.includes('vite')) return SiVite;
-    if (skillLower.includes('tailwind')) return SiTailwindcss;
-    if (skillLower.includes('html5') || skillLower.includes('html')) return SiHtml5;
-    if (skillLower.includes('css3') || skillLower.includes('css')) return SiCss3;
-    if (skillLower.includes('javascript') || skillLower.includes('js')) return SiJavascript;
-    if (skillLower.includes('flutter')) return SiFlutter;
-    if (skillLower.includes('dart')) return SiDart;
-
-    // Backend
-    if (skillLower.includes('node.js') || skillLower.includes('nodejs')) return SiNodedotjs;
-    if (skillLower.includes('express')) return SiExpress;
-    if (skillLower.includes('java')) return FaJava;
-    if (skillLower.includes('spring boot') || skillLower.includes('spring')) return SiSpring;
-    if (skillLower.includes('firebase')) return SiFirebase;
-
-    // Databases
-    if (skillLower.includes('postgresql') || skillLower.includes('postgres')) return SiPostgresql;
-    if (skillLower.includes('mysql')) return SiMysql;
-    if (skillLower.includes('supabase')) return SiSupabase;
-    if (skillLower.includes('firestore')) return SiFirebase;
-
-    // Cloud & Hosting
-    if (skillLower.includes('vercel')) return SiVercel;
-    if (skillLower.includes('railway')) return SiRailway;
-    if (skillLower.includes('google cloud') || skillLower.includes('gcp')) return SiGooglecloud;
-
-    // Tools
-    if (skillLower.includes('git') && !skillLower.includes('github')) return SiGit;
-    if (skillLower.includes('github')) return SiGithub;
-    if (skillLower.includes('intellij')) return SiIntellijidea;
-    if (skillLower.includes('vs code') || skillLower.includes('vscode')) return FaCode;
-    if (skillLower.includes('pycharm')) return SiPycharm;
-    if (skillLower.includes('netbeans')) return FaCode;
-    if (skillLower.includes('figma')) return SiFigma;
-
-    return null;
-  };
+function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
+  const items = [...skills, ...skills];
 
   return (
-    <section
-      id="skills"
-      className="py-section-sm sm:py-section px-4 sm:px-6 lg:px-8 xl:px-12 bg-white dark:bg-gray-950"
+    <motion.div
+      className={cn(
+        'flex w-max gap-3 sm:gap-4',
+        reverse ? 'animate-marquee-reverse' : 'animate-marquee'
+      )}
     >
-      <div className="container mx-auto max-w-6xl">
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-        >
+      {items.map((skill, i) => {
+        const Icon = skill.icon;
+        return (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            key={`${skill.name}-${i}`}
+            className={cn(
+              'flex shrink-0 cursor-default items-center gap-2.5 rounded-xl border border-dashed border-zinc-200',
+              'bg-white px-3 py-2.5 shadow-sm transition-colors duration-300 sm:gap-3 sm:px-4 sm:py-3',
+              'hover:border-zinc-400 hover:bg-zinc-50/80 hover:shadow-md hover:shadow-zinc-200/50',
+              'active:border-zinc-400 active:bg-zinc-50/80'
+            )}
+            {...nudgeInteraction}
+            transition={{ type: 'spring', stiffness: 420, damping: 24 }}
           >
-            <FaBrain className="text-4xl sm:text-5xl md:text-6xl text-blue-600 dark:text-blue-400 mx-auto mb-4" />
+            <span
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-zinc-50 sm:h-9 sm:w-9"
+              aria-hidden
+            >
+              <Icon className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: skill.color }} />
+            </span>
+            <div className="whitespace-nowrap">
+              <p className="text-xs font-semibold text-zinc-950 sm:text-sm">{skill.name}</p>
+              <p className="text-[10px] text-zinc-400 sm:text-xs">{skill.role}</p>
+            </div>
           </motion.div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-gray-900 dark:text-white">
+        );
+      })}
+    </motion.div>
+  );
+}
+
+const Skills = () => {
+  return (
+    <section id="skills" className="section-padding overflow-x-hidden">
+      <motion.div
+        className="mx-auto w-full min-w-0 max-w-7xl"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="mb-8 text-center md:text-left">
+          <p className="text-sm font-medium uppercase tracking-widest text-zinc-700">
+            Tech Stack
+          </p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-zinc-950 sm:text-4xl">
             Skills
           </h2>
-          <motion.div
-            className="w-20 h-1 bg-blue-600 mx-auto rounded-full"
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          />
-        </motion.div>
+          <p className="mt-3 max-w-xl text-zinc-600">
+            Tools and frameworks I use to ship production-ready products.
+          </p>
+        </div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.15,
-              },
-            },
-          }}
+          className="marquee-pause relative touch-pan-y space-y-3 sm:space-y-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
         >
-          {skillCategories.map((category) => {
-            const IconComponent = category.Icon;
-            return (
-              <motion.div
-                key={category.title}
-                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4 sm:p-5 md:p-6 border border-gray-200 dark:border-gray-700 relative overflow-hidden"
-                variants={{
-                  hidden: { opacity: 0, y: 50, scale: 0.9 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    transition: {
-                      duration: 0.5,
-                      ease: 'easeOut',
-                    },
-                  },
-                }}
-                whileHover={{ scale: 1.05, y: -5, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <motion.div
-                  className="absolute top-0 right-0 w-32 h-32 bg-blue-500 opacity-10 rounded-full blur-2xl"
-                  whileHover={{ opacity: 0.2, scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                />
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white to-transparent sm:w-16 md:w-24"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white to-transparent sm:w-16 md:w-24"
+            aria-hidden
+          />
 
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <motion.div
-                      className="p-3 rounded-xl bg-blue-500 text-white shadow-lg"
-                      whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <IconComponent className="text-2xl" />
-                    </motion.div>
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
-                      {category.title}
-                    </h3>
-                  </div>
-
-                  <ul className="space-y-2">
-                    {category.skills.map((skill, skillIndex) => {
-                      const SkillIcon = getSkillIcon(skill);
-                      return (
-                        <motion.li
-                          key={skill}
-                          className={`px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border flex items-center gap-2 ${colorClasses[category.color as keyof typeof colorClasses]}`}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: skillIndex * 0.05 }}
-                          whileHover={{ scale: 1.05, x: 5 }}
-                        >
-                          {SkillIcon && (
-                            <SkillIcon className="text-base sm:text-lg flex-shrink-0" />
-                          )}
-                          <span>{skill}</span>
-                        </motion.li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </motion.div>
-            );
-          })}
+          <div className="overflow-hidden py-2">
+            <MarqueeRow />
+          </div>
+          <div className="overflow-hidden py-2">
+            <MarqueeRow reverse />
+          </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };
