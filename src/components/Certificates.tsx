@@ -1,232 +1,106 @@
 import { motion } from 'framer-motion';
-import { FaCertificate, FaDownload, FaExternalLinkAlt, FaAward } from 'react-icons/fa';
-import { SiDatacamp, SiFreecodecamp } from 'react-icons/si';
+import { Award, Download, ExternalLink } from 'lucide-react';
+import { primaryButtonSm } from '../lib/button-styles';
+import { subtleScaleInteraction } from '../lib/motion-presets';
+import { cn } from '../lib/utils';
+
+const certificates = [
+  {
+    title: 'Database Design',
+    issuer: 'DataCamp',
+    file: '/Cetificates/Data_Camp_Database Design.pdf',
+    category: 'Database',
+  },
+  {
+    title: 'Understanding Artificial Intelligence',
+    issuer: 'DataCamp',
+    file: '/Cetificates/datacanmp_Understanding Artificial Intelligence.pdf',
+    category: 'AI/ML',
+  },
+  {
+    title: 'JavaScript Algorithms and Data Structures',
+    issuer: 'freeCodeCamp',
+    file: '/Cetificates/freeCodeCamp_Legacy JavaScript Algorithms and Data Structures.pdf',
+    category: 'Programming',
+  },
+  {
+    title: 'Responsive Web Design',
+    issuer: 'freeCodeCamp',
+    file: '/Cetificates/freeCodeCamp_Legacy Responsive Web Design V8.pdf',
+    category: 'Web Development',
+  },
+];
 
 const Certificates = () => {
-  const certificates = [
-    {
-      title: 'Database Design',
-      issuer: 'DataCamp',
-      icon: SiDatacamp,
-      file: '/Cetificates/Data_Camp_Database Design.pdf',
-      category: 'Database',
-    },
-    {
-      title: 'Understanding Artificial Intelligence',
-      issuer: 'DataCamp',
-      icon: SiDatacamp,
-      file: '/Cetificates/datacanmp_Understanding Artificial Intelligence.pdf',
-      category: 'AI/ML',
-    },
-    {
-      title: 'JavaScript Algorithms and Data Structures',
-      issuer: 'freeCodeCamp',
-      icon: SiFreecodecamp,
-      file: '/Cetificates/freeCodeCamp_Legacy JavaScript Algorithms and Data Structures.pdf',
-      category: 'Programming',
-    },
-    {
-      title: 'Responsive Web Design',
-      issuer: 'freeCodeCamp',
-      icon: SiFreecodecamp,
-      file: '/Cetificates/freeCodeCamp_Legacy Responsive Web Design V8.pdf',
-      category: 'Web Development',
-    },
-  ];
-
-  const colors = {
-    bg: 'bg-blue-50 dark:bg-blue-950/20',
-    text: 'text-blue-600 dark:text-blue-400',
-    badge: 'bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200',
-    glow: 'bg-blue-500',
-  };
-
   return (
-    <section
-      id="certificates"
-      className="py-section-sm sm:py-section px-4 sm:px-6 lg:px-8 xl:px-12 bg-white dark:bg-gray-950 relative overflow-hidden"
-    >
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="container mx-auto max-w-7xl relative z-10">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.div
-            className="inline-block mb-6"
-            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, type: 'spring' }}
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-blue-600/20 blur-xl rounded-full"></div>
-              <FaAward className="text-6xl md:text-7xl text-blue-600 dark:text-blue-400 relative z-10" />
-            </div>
-          </motion.div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 sm:mb-4 text-gray-900 dark:text-white">
-            Certificates & <span className="text-blue-600 dark:text-blue-400">Achievements</span>
-          </h2>
-          <motion.div
-            className="w-24 h-1.5 bg-blue-600 mx-auto rounded-full mb-6"
-            initial={{ width: 0 }}
-            whileInView={{ width: 96 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          />
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Professional certifications and achievements that showcase my commitment to continuous learning
+    <section id="certificates" className="section-padding overflow-x-hidden">
+      <motion.div
+        className="mx-auto w-full min-w-0 max-w-7xl"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="mb-8">
+          <p className="text-sm font-medium uppercase tracking-widest text-zinc-700">
+            Credentials
           </p>
-        </motion.div>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-zinc-950 sm:text-4xl">
+            Certificates
+          </h2>
+        </div>
 
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.2,
-              },
-            },
-          }}
-        >
-          {certificates.map((cert, index) => {
-            const CertIcon = cert.icon;
-
-
-            return (
-              <motion.div
-                key={index}
-                className="group relative h-full"
-                variants={{
-                  hidden: { opacity: 0, y: 50, scale: 0.9 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    transition: {
-                      duration: 0.6,
-                      type: 'spring',
-                      stiffness: 100,
-                    },
-                  },
-                }}
-                whileHover={{ y: -8 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                {/* Glow effect */}
-                <motion.div
-                  className={`absolute -inset-1 ${colors.glow} opacity-0 group-hover:opacity-20 rounded-3xl blur-xl transition-opacity duration-500`}
-                />
-
-                {/* Main card */}
-                <div className={`relative ${colors.bg} rounded-3xl p-5 sm:p-6 md:p-8 border-2 border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm shadow-2xl group-hover:shadow-3xl transition-all duration-300 h-full flex flex-col`}>
-                  {/* Decorative ribbon */}
-                  <div className="absolute top-0 right-0 w-24 h-24 overflow-hidden">
-                    <div className={`absolute top-4 -right-8 w-32 ${colors.badge} transform rotate-45 text-center py-1 text-xs font-bold shadow-lg`}>
-                      VERIFIED
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="relative z-10 flex flex-col flex-1">
-                    {/* Header with icon */}
-                    <div className="flex items-start gap-4 mb-6">
-                      <motion.div
-                        className={`p-4 ${colors.bg} rounded-2xl shadow-lg border-2 border-gray-200/50 dark:border-gray-700/50 flex-shrink-0`}
-                        whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <CertIcon className={`text-4xl ${colors.text}`} />
-                      </motion.div>
-                      <div className="flex-1 min-w-0">
-                        <motion.h3
-                          className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 leading-tight line-clamp-2"
-                          whileHover={{ x: 5 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          {cert.title}
-                        </motion.h3>
-                        <p className={`${colors.text} font-bold text-sm mb-3 flex items-center gap-2`}>
-                          <FaCertificate className="w-3 h-3 flex-shrink-0" />
-                          <span className="truncate">{cert.issuer}</span>
-                        </p>
-                        <span className={`inline-block px-4 py-1.5 ${colors.badge} rounded-full text-xs font-bold uppercase tracking-wide shadow-md`}>
-                          {cert.category}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Divider */}
-                    <div className={`h-px ${colors.glow} opacity-30 mb-6 flex-shrink-0`}></div>
-
-                    {/* Spacer to push buttons down */}
-                    <div className="flex-1"></div>
-
-                    {/* Action buttons */}
-                    <div className="flex gap-3 flex-shrink-0">
-                      <motion.a
-                        href={cert.file}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 ${colors.text} ${colors.bg} rounded-xl font-bold text-xs sm:text-sm shadow-lg border-2 border-gray-200/50 dark:border-gray-700/50 min-w-0`}
-                        whileHover={{ scale: 1.05, y: -2, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ type: 'spring', stiffness: 400 }}
-                      >
-                        <FaExternalLinkAlt className="w-4 h-4 flex-shrink-0" />
-                        <span className="truncate">View PDF</span>
-                      </motion.a>
-                      <motion.a
-                        href={cert.file}
-                        download
-                        className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl font-bold text-xs sm:text-sm shadow-lg border-2 border-gray-300 dark:border-gray-600 min-w-0`}
-                        whileHover={{ scale: 1.05, y: -2, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ type: 'spring', stiffness: 400 }}
-                      >
-                        <FaDownload className="w-4 h-4 flex-shrink-0" />
-                        <span className="truncate">Download</span>
-                      </motion.a>
-                    </div>
-                  </div>
-
-                  {/* Background decoration */}
-                  <motion.div
-                    className={`absolute bottom-0 right-0 w-40 h-40 ${colors.glow} opacity-5 rounded-full blur-3xl`}
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.05, 0.1, 0.05],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                  />
+        <div className="grid gap-4 sm:grid-cols-2">
+          {certificates.map((cert, index) => (
+            <motion.article
+              key={cert.title}
+              className={cn(
+                'group flex w-full min-w-0 flex-col rounded-2xl border border-zinc-200 bg-zinc-50 p-5 backdrop-blur-md sm:p-6',
+                'transition-colors hover:border-zinc-400'
+              )}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.08 }}
+              {...subtleScaleInteraction}
+            >
+              <motion.div className="mb-4 flex items-start gap-4">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-100 text-zinc-700">
+                  <Award className="h-6 w-6" />
+                </span>
+                <div>
+                  <h3 className="font-semibold text-zinc-950">{cert.title}</h3>
+                  <p className="mt-1 text-sm text-zinc-500">{cert.issuer}</p>
+                  <span className="mt-2 inline-block rounded-full border border-zinc-200 px-3 py-0.5 text-xs font-medium text-zinc-600">
+                    {cert.category}
+                  </span>
                 </div>
               </motion.div>
-            );
-          })}
-        </motion.div>
-      </div>
+              <div className="mt-auto flex flex-col gap-2 sm:flex-row sm:gap-3">
+                <a
+                  href={cert.file}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg border border-zinc-300 py-2.5 text-sm font-medium text-zinc-700 transition-colors hover:border-zinc-400 hover:bg-zinc-50 sm:flex-1"
+                >
+                  <ExternalLink className="h-4 w-4 shrink-0" />
+                  View
+                </a>
+                <a
+                  href={cert.file}
+                  download
+                  className={cn('w-full justify-center sm:flex-1', primaryButtonSm)}
+                >
+                  <Download className="h-4 w-4 shrink-0" />
+                  Download
+                </a>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 };
 
 export default Certificates;
-
-
-
