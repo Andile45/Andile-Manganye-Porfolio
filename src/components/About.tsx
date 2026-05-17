@@ -89,7 +89,7 @@ const About = () => {
               className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold leading-relaxed"
               variants={itemVariants}
             >
-              Working as a Developer Trainee at CodeTribe Academy (mLab Southern Africa), contributing to digital product development and participating in Scrum ceremonies.
+              Successfully completed developer training at CodeTribe Academy (mLab Southern Africa) from July 2025 to March 2026, building digital products and participating in Agile/Scrum ceremonies.
             </motion.li>
           </ul>
 

@@ -113,19 +113,19 @@ const Hero = () => {
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 dark:text-gray-200 mb-2 sm:mb-3 md:mb-4 font-semibold px-4 sm:px-6"
             variants={itemVariants}
           >
-            Full-Stack Developer & Computer Science Student
+            Full-Stack Developer & Computer Science Graduate
           </motion.p>
 
           <motion.p
             className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto px-4 sm:px-6 leading-relaxed"
             variants={itemVariants}
           >
-            Developer Trainee at{' '}
+            Graduate of{' '}
             <span className="font-bold text-blue-600 dark:text-blue-400 relative">
               CodeTribe Academy
               <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 dark:bg-blue-400"></span>
             </span>
-            {' '}(mLab Southern Africa)
+            {' '}(mLab Southern Africa) — successfully completed developer training (Jul 2025 – Mar 2026)
           </motion.p>
 
           <motion.p

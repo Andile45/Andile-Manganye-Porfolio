@@ -4,19 +4,20 @@ import { FaBriefcase } from 'react-icons/fa';
 const Experience = () => {
   const experiences = [
     {
-      title: 'Developer Trainee',
+      title: 'Developer Trainee (Graduate)',
       company: 'CodeTribe Academy (mLab Southern Africa)',
-      period: '2025 – Present',
+      period: 'July 2025 – March 2026',
       description: [
-        'Build digital solutions for real-world environments',
-        'Participate in Agile/Scrum ceremonies',
-        'Work in cross-functional teams',
-        'Develop using JavaScript, TypeScript, React, Vanilla JavaScript, Tailwind CSS, PostgreSQL, and cloud tools',
-        'Collaborate in UI/UX with Figma',
+        'Successfully completed the full-stack developer training program',
+        'Built digital solutions for real-world environments',
+        'Participated in Agile/Scrum ceremonies',
+        'Worked in cross-functional teams',
+        'Developed using JavaScript, TypeScript, React, Vanilla JavaScript, Tailwind CSS, PostgreSQL, and cloud tools',
+        'Collaborated on UI/UX with Figma',
       ],
     },
     {
-      title: 'Computer Science Student',
+      title: 'Computer Science Graduate',
       company: 'Tshwane University of Technology',
       period: '2022 – 2025',
       description: [
