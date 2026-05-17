@@ -1,5 +1,5 @@
 ﻿import { useState } from 'react';
-import { motion, type Variants } from 'framer-motion';
+import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import { ArrowUpRight, Check, ChevronDown, KeyRound, ZoomIn } from 'lucide-react';
 import type { DemoCredential } from '../data/projects';
 import { projects, type Project } from '../data/projects';
@@ -412,6 +412,7 @@ function ProjectCard({
   onOpenGallery: (project: Project, imageIndex: number) => void;
 }) {
   const layout = getLayout(project);
+  const reduceMotion = useReducedMotion();
 
   const cardClass = cn(
     'project-card group relative w-full min-w-0 max-w-full overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm',
@@ -422,7 +423,7 @@ function ProjectCard({
 
   const cardMotion = {
     variants: cardReveal,
-    initial: 'hidden' as const,
+    initial: reduceMotion ? false : ('hidden' as const),
     whileInView: 'visible' as const,
     viewport: { once: true, amount: 0.12 },
     custom: index,
