@@ -17,7 +17,7 @@ const experiences: ExperienceEntry[] = [
   {
     type: 'work',
     title: 'Developer Trainee (Graduate)',
-    company: 'CodeTribe Academy Â· mLab Southern Africa',
+    company: 'CodeTribe Academy · mLab Southern Africa',
     period: 'Jul 2025 - Mar 2026',
     badge: 'Latest role',
     description: [
@@ -84,7 +84,8 @@ function ExperienceItem({
       ref={ref}
       className="relative list-none pb-10 last:pb-0 sm:pb-12"
       initial={{ opacity: 0, y: 24 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
       <TimelineConnector active={isInView} isLast={isLast} />
@@ -92,7 +93,8 @@ function ExperienceItem({
       <motion.div
         className="relative flex gap-5 sm:gap-6"
         initial={{ opacity: 0, x: -12 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.5, delay: index * 0.08 + 0.05 }}
       >
         <motion.div
@@ -129,7 +131,8 @@ function ExperienceItem({
             <motion.div
               className="min-w-0 flex-1"
               initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ delay: index * 0.08 + 0.15 }}
             >
               <div className="flex flex-wrap items-center gap-2">
@@ -160,7 +163,8 @@ function ExperienceItem({
               dateTime={exp.period}
               className="shrink-0 text-xs font-semibold tabular-nums text-zinc-500 sm:pt-1 sm:text-right sm:text-sm"
               initial={{ opacity: 0, x: 8 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ delay: index * 0.08 + 0.2 }}
             >
               {exp.period}
@@ -173,7 +177,8 @@ function ExperienceItem({
                 key={item}
                 className="flex gap-2.5 text-sm leading-relaxed text-zinc-600"
                 initial={{ opacity: 0, x: -8 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{ delay: index * 0.08 + 0.22 + i * 0.05 }}
               >
                 <Check

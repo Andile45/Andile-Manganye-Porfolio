@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { Download, Mail, Send } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
+import { ContactLinkCard } from './ContactLinkCard';
 import PrimaryButton from './ui/PrimaryButton';
-import { nudgeInteraction } from '../lib/motion-presets';
 import { cn } from '../lib/utils';
 
 function GitHubIcon({ className }: { className?: string }) {
@@ -27,20 +27,28 @@ const links = [
     value: 'manganyeandile@gmail.com',
     href: 'mailto:manganyeandile@gmail.com',
     icon: Mail,
+    description: 'Best for role inquiries, collaborations, and quick introductions.',
+    hint: 'Opens your default mail app',
   },
   {
     label: 'GitHub',
     value: '@Andile45',
     href: 'https://github.com/Andile45',
     icon: GitHubIcon,
+    description: 'Source code, contributions, and project repositories.',
+    hint: 'Opens in a new tab',
+    external: true,
   },
   {
     label: 'LinkedIn',
     value: 'andile-manganye',
     href: 'https://linkedin.com/in/andile-manganye-a27591319',
     icon: LinkedInIcon,
+    description: 'Professional profile, experience, and networking.',
+    hint: 'Opens in a new tab',
+    external: true,
   },
-];
+] as const;
 
 const Contact = () => {
   const [state, handleSubmit] = useForm('xkgdbyad');
@@ -70,28 +78,18 @@ const Contact = () => {
         </motion.div>
 
         <div className="mb-10 grid gap-4 sm:grid-cols-3">
-          {links.map((link) => {
-            const Icon = link.icon;
-            return (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target={link.label !== 'Email' ? '_blank' : undefined}
-                rel={link.label !== 'Email' ? 'noopener noreferrer' : undefined}
-                className={cn(
-                  'group flex flex-col items-center rounded-2xl border border-zinc-200',
-                  'bg-zinc-50 p-6 backdrop-blur-md transition-colors hover:border-zinc-400'
-                )}
-                {...nudgeInteraction}
-              >
-                <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-100 text-zinc-700 transition-colors group-hover:bg-zinc-200">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <span className="text-sm font-semibold text-zinc-950">{link.label}</span>
-                <span className="mt-1 text-xs text-zinc-500">{link.value}</span>
-              </motion.a>
-            );
-          })}
+          {links.map((link) => (
+            <ContactLinkCard
+              key={link.label}
+              label={link.label}
+              value={link.value}
+              href={link.href}
+              description={link.description}
+              hint={link.hint}
+              icon={link.icon}
+              external={'external' in link ? link.external : false}
+            />
+          ))}
         </div>
 
         <motion.div
