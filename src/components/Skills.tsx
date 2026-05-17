@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion';
-import type { IconType } from 'react-icons';
+﻿import { motion } from 'framer-motion';
 import { FaJava } from 'react-icons/fa';
 import {
   SiCss,
@@ -23,17 +22,10 @@ import {
 } from 'react-icons/si';
 import { VscVscode } from 'react-icons/vsc';
 import { NetBeansIcon } from './icons/NetBeansIcon';
-import { nudgeInteraction } from '../lib/motion-presets';
+import { SkillPill, type SkillPillData } from './SkillPill';
 import { cn } from '../lib/utils';
 
-type Skill = {
-  name: string;
-  role: string;
-  icon: IconType;
-  color: string;
-};
-
-const skills: Skill[] = [
+const skills: SkillPillData[] = [
   { name: 'React', role: 'Library', icon: SiReact, color: '#61DAFB' },
   { name: 'React Native', role: 'Framework', icon: SiReact, color: '#61DAFB' },
   { name: 'HTML', role: 'Markup', icon: SiHtml5, color: '#E34F26' },
@@ -68,33 +60,9 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
         reverse ? 'animate-marquee-reverse' : 'animate-marquee'
       )}
     >
-      {items.map((skill, i) => {
-        const Icon = skill.icon;
-        return (
-          <motion.div
-            key={`${skill.name}-${i}`}
-            className={cn(
-              'flex shrink-0 cursor-default items-center gap-2.5 rounded-xl border border-dashed border-zinc-200',
-              'bg-white px-3 py-2.5 shadow-sm transition-colors duration-300 sm:gap-3 sm:px-4 sm:py-3',
-              'hover:border-zinc-400 hover:bg-zinc-50/80 hover:shadow-md hover:shadow-zinc-200/50',
-              'active:border-zinc-400 active:bg-zinc-50/80'
-            )}
-            {...nudgeInteraction}
-            transition={{ type: 'spring', stiffness: 420, damping: 24 }}
-          >
-            <span
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-zinc-50 sm:h-9 sm:w-9"
-              aria-hidden
-            >
-              <Icon className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: skill.color }} />
-            </span>
-            <div className="whitespace-nowrap">
-              <p className="text-xs font-semibold text-zinc-950 sm:text-sm">{skill.name}</p>
-              <p className="text-[10px] text-zinc-400 sm:text-xs">{skill.role}</p>
-            </div>
-          </motion.div>
-        );
-      })}
+      {items.map((skill, i) => (
+        <SkillPill key={`${skill.name}-${i}`} skill={skill} />
+      ))}
     </motion.div>
   );
 }
@@ -110,6 +78,11 @@ const Skills = () => {
         transition={{ duration: 0.6 }}
       >
         <div className="mb-8 text-center md:text-left">
+          <p className="sr-only">
+            Skills include React, React Native, TypeScript, JavaScript, Node.js, Tailwind CSS,
+            Supabase, Firebase, PostgreSQL, SQL, Java, Expo, and deployment tools such as Vercel
+            and Railway.
+          </p>
           <p className="text-sm font-medium uppercase tracking-widest text-zinc-700">
             Tech Stack
           </p>
@@ -117,7 +90,8 @@ const Skills = () => {
             Skills
           </h2>
           <p className="mt-3 max-w-xl text-zinc-600">
-            Tools and frameworks I use to ship production-ready products.
+            Tools and frameworks I use to ship production-ready products.{' '}
+            <span className="hidden sm:inline">Hover a skill on desktop for details.</span>
           </p>
         </div>
 
