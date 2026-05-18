@@ -1,4 +1,4 @@
-﻿import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaJava } from 'react-icons/fa';
 import {
   SiCss,
@@ -54,7 +54,7 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
   const items = [...skills, ...skills];
 
   return (
-    <motion.div
+    <div
       className={cn(
         'flex w-max gap-3 sm:gap-4',
         reverse ? 'animate-marquee-reverse' : 'animate-marquee'
@@ -63,7 +63,7 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
       {items.map((skill, i) => (
         <SkillPill key={`${skill.name}-${i}`} skill={skill} />
       ))}
-    </motion.div>
+    </div>
   );
 }
 

@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight } from './icons';
 import { primaryButtonSm } from '../lib/button-styles';
 import { scrollToSectionId, updateSectionHash } from '../lib/scroll';
@@ -68,17 +67,15 @@ const Header = () => {
       )}
     >
       <nav className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8">
-        <motion.a
+        <a
           href="#home"
           onClick={(e) => navigateToSection(e, 'home')}
           className="text-lg font-bold tracking-tight text-zinc-950"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
         >
           <span className="text-zinc-700">A</span>. Manganye
-        </motion.a>
+        </a>
 
-        <motion.div className="hidden items-center gap-1 md:flex lg:gap-1.5">
+        <div className="hidden items-center gap-1 md:flex lg:gap-1.5">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -93,10 +90,8 @@ const Header = () => {
                 )}
               >
                 {isActive && (
-                  <motion.span
-                    layoutId="nav-active-pill"
+                  <span
                     className="pointer-events-none absolute inset-0 rounded-lg bg-zinc-100 ring-1 ring-zinc-200/80"
-                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                     aria-hidden
                   />
                 )}
@@ -104,16 +99,14 @@ const Header = () => {
               </a>
             );
           })}
-          <motion.a
+          <a
             href="#contact"
             onClick={(e) => navigateToSection(e, 'contact')}
             className={cn('ml-1 lg:ml-2', primaryButtonSm)}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
           >
             Schedule a call
-          </motion.a>
-        </motion.div>
+          </a>
+        </div>
 
         <a
           href="#contact"

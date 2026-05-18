@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import {
   Brain,
   Code2,
@@ -7,7 +6,6 @@ import {
   ScanEye,
   type PortfolioIcon,
 } from './icons';
-import { liftInteraction } from '../lib/motion-presets';
 import { cn } from '../lib/utils';
 
 type SoftSkill = {
@@ -47,25 +45,11 @@ const softSkills: SoftSkill[] = [
   },
 ];
 
-const spring = { type: 'spring' as const, stiffness: 380, damping: 26 };
-
 const SoftSkills = () => {
   return (
     <section id="soft-skills" className="section-padding overflow-x-hidden">
-      <motion.div
-        className="mx-auto w-full min-w-0 max-w-7xl"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <motion.div
-          className="mb-8 text-center md:text-left"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+      <div className="mx-auto w-full min-w-0 max-w-7xl">
+        <div className="mb-8 text-center md:text-left">
           <p className="text-sm font-medium uppercase tracking-widest text-zinc-700">
             How I Work
           </p>
@@ -75,35 +59,29 @@ const SoftSkills = () => {
           <p className="mt-3 max-w-xl text-zinc-600">
             The mindset and habits behind reliable delivery — beyond the tech stack.
           </p>
-        </motion.div>
+        </div>
 
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:gap-5">
           {softSkills.map((skill, index) => {
             const Icon = skill.icon;
 
             return (
-              <motion.li
+              <li
                 key={skill.name}
                 className={cn(
                   'lg:col-span-2',
                   index === 3 && 'lg:col-start-2',
                   index === 4 && 'lg:col-start-4'
                 )}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: index * 0.06 }}
               >
-                <motion.article
+                <article
                   className={cn(
                     'group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-6',
                     'shadow-sm shadow-zinc-200/50 transition-[border-color,box-shadow,background-color] duration-500',
                     'hover:border-zinc-300 hover:bg-white hover:shadow-lg hover:shadow-zinc-300/35'
                   )}
-                  {...liftInteraction}
-                  transition={spring}
                 >
-                  <motion.div
+                  <div
                     aria-hidden
                     className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-zinc-300/0 blur-3xl transition-all duration-700 group-hover:bg-zinc-300/20"
                   />
@@ -121,12 +99,12 @@ const SoftSkills = () => {
                   <p className="relative mt-2 text-sm leading-relaxed text-zinc-600">
                     {skill.description}
                   </p>
-                </motion.article>
-              </motion.li>
+                </article>
+              </li>
             );
           })}
         </ul>
-      </motion.div>
+      </div>
     </section>
   );
 };

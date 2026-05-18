@@ -1,7 +1,5 @@
-import { motion } from 'framer-motion';
 import { Award, Download, ExternalLink } from './icons';
 import { primaryButtonSm } from '../lib/button-styles';
-import { subtleScaleInteraction } from '../lib/motion-presets';
 import { cn } from '../lib/utils';
 
 const certificates = [
@@ -34,13 +32,7 @@ const certificates = [
 const Certificates = () => {
   return (
     <section id="certificates" className="section-padding overflow-x-hidden">
-      <motion.div
-        className="mx-auto w-full min-w-0 max-w-7xl"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
+      <div className="mx-auto w-full min-w-0 max-w-7xl">
         <div className="mb-8">
           <p className="text-sm font-medium uppercase tracking-widest text-zinc-700">
             Credentials
@@ -51,20 +43,15 @@ const Certificates = () => {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {certificates.map((cert, index) => (
-            <motion.article
+          {certificates.map((cert) => (
+            <article
               key={cert.title}
               className={cn(
                 'group flex w-full min-w-0 flex-col rounded-2xl border border-zinc-200 bg-zinc-50 p-5 backdrop-blur-md sm:p-6',
                 'transition-colors hover:border-zinc-400'
               )}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              {...subtleScaleInteraction}
             >
-              <motion.div className="mb-4 flex items-start gap-4">
+              <div className="mb-4 flex items-start gap-4">
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-100 text-zinc-700">
                   <Award className="h-6 w-6" />
                 </span>
@@ -75,7 +62,7 @@ const Certificates = () => {
                     {cert.category}
                   </span>
                 </div>
-              </motion.div>
+              </div>
               <div className="mt-auto flex flex-col gap-2 sm:flex-row sm:gap-3">
                 <a
                   href={cert.file}
@@ -95,10 +82,10 @@ const Certificates = () => {
                   Download
                 </a>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

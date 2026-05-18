@@ -1,9 +1,5 @@
-import { motion } from 'framer-motion';
 import { GraduationCap, Rocket } from './icons';
-import { liftInteraction } from '../lib/motion-presets';
 import { cn } from '../lib/utils';
-
-const spring = { type: 'spring' as const, stiffness: 380, damping: 26 };
 
 const highlights = [
   {
@@ -19,24 +15,16 @@ const highlights = [
 const About = () => {
   return (
     <section id="about" className="section-padding overflow-x-hidden">
-      <motion.div
-        className="mx-auto w-full min-w-0 max-w-3xl"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6 }}
-      >
-        <motion.div
+      <div className="mx-auto w-full min-w-0 max-w-3xl">
+        <div
           className={cn(
             'group relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-8 sm:p-10',
             'shadow-md shadow-zinc-300/30',
             'transition-[border-color,box-shadow,background-color] duration-500',
             'hover:border-zinc-300 hover:bg-white hover:shadow-xl hover:shadow-zinc-300/40'
           )}
-          {...liftInteraction}
-          transition={spring}
         >
-          <motion.div
+          <div
             aria-hidden
             className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-zinc-300/0 blur-3xl transition-all duration-700 group-hover:bg-zinc-300/25"
           />
@@ -49,13 +37,7 @@ const About = () => {
           </p>
           <ul className="mt-8 space-y-4">
             {highlights.map(({ icon: Icon, text }) => (
-              <motion.li
-                key={text}
-                className="flex gap-4 text-zinc-600"
-                whileHover={{ x: 4 }}
-                whileTap={{ x: 2, scale: 0.99 }}
-                transition={spring}
-              >
+              <li key={text} className="flex gap-4 text-zinc-600">
                 <span
                   className={cn(
                     'flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-700',
@@ -66,7 +48,7 @@ const About = () => {
                   <Icon className="h-5 w-5" />
                 </span>
                 <span className="pt-2 text-sm leading-relaxed sm:text-base">{text}</span>
-              </motion.li>
+              </li>
             ))}
           </ul>
           <p className="mt-8 text-sm leading-relaxed text-zinc-600 sm:text-base">
@@ -74,8 +56,8 @@ const About = () => {
             communities can rely on. Every new framework or challenge is a chance to grow and
             deliver more impact.
           </p>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 };

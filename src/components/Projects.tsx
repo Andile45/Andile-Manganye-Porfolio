@@ -1,27 +1,8 @@
-﻿import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import { ArrowUpRight, Check, ChevronDown, KeyRound } from './icons';
 import type { DemoCredential } from '../data/projects';
 import { projects, type Project } from '../data/projects';
 import { primaryButtonSm } from '../lib/button-styles';
 import { cn } from '../lib/utils';
-
-const revealEase = [0.22, 1, 0.36, 1] as const;
-
-const cardReveal: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: revealEase, delay: i * 0.07 },
-  }),
-};
-
-const gridReveal: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
-  },
-};
 
 type CardLayout = 'featured' | 'standard' | 'wide';
 
@@ -246,36 +227,20 @@ function CardHeader({ project }: { project: Project }) {
   );
 }
 
-function ProjectCard({
-  project,
-  index,
-  reduceMotion,
-}: {
-  project: Project;
-  index: number;
-  reduceMotion: boolean | null;
-}) {
+function ProjectCard({ project }: { project: Project }) {
   const layout = getLayout(project);
   const isWide = layout === 'wide' || layout === 'featured';
 
   const cardClass = cn(
     'project-card group relative w-full min-w-0 max-w-full overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm',
-    'transition-[border-color,box-shadow,transform,opacity] duration-300',
+    'transition-[border-color,box-shadow] duration-300',
     'hover:border-zinc-300 hover:shadow-xl hover:shadow-zinc-300/25',
     'active:border-zinc-300 active:shadow-lg',
-    !reduceMotion && 'hover:-translate-y-1',
     isWide && 'md:col-span-2'
   );
 
-  const cardMotion = reduceMotion
-    ? {}
-    : {
-        variants: cardReveal,
-        custom: index,
-      };
-
   return (
-    <motion.article className={cardClass} {...cardMotion}>
+    <article className={cardClass}>
       <div
         className={cn(
           'pointer-events-none absolute -right-10 -top-10 rounded-full bg-zinc-300/0 blur-3xl transition-all duration-700 group-hover:bg-zinc-300/30',
@@ -348,22 +313,14 @@ function ProjectCard({
           )}
         </div>
       )}
-    </motion.article>
+    </article>
   );
 }
 
 const Projects = () => {
-  const reduceMotion = useReducedMotion();
-
   return (
     <section id="projects" className="section-padding overflow-x-hidden">
-      <motion.div
-        className="mx-auto w-full min-w-0 max-w-7xl"
-        initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-        whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, ease: revealEase }}
-      >
+      <div className="mx-auto w-full min-w-0 max-w-7xl">
         <div className="mb-8">
           <p className="text-sm font-medium uppercase tracking-widest text-zinc-700">
             Selected Work
@@ -377,23 +334,12 @@ const Projects = () => {
           </p>
         </div>
 
-        <motion.div
-          className={projectsGridClass}
-          variants={gridReveal}
-          initial={reduceMotion ? false : 'hidden'}
-          whileInView={reduceMotion ? undefined : 'visible'}
-          viewport={{ once: true, amount: 0.05 }}
-        >
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              index={index}
-              reduceMotion={reduceMotion}
-            />
+        <div className={projectsGridClass}>
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 };
