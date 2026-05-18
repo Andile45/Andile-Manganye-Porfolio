@@ -1,10 +1,12 @@
-import Cal, { getCalApi } from '@calcom/embed-react';
+import Cal from '@calcom/embed-react';
 import { useEffect, useRef, useState } from 'react';
 
 const CAL_LINK = 'andile-manganye-dev/30min';
+const CAL_NAMESPACE = 'portfolio-booking';
 
 /** Cal embed: month calendar first, then time slots after a date is chosen. */
 const EMBED_CONFIG = {
+  theme: 'light',
   layout: 'month_view',
   useSlotsViewOnSmallScreen: 'true',
 } as const;
@@ -31,19 +33,6 @@ export function CalBookingEmbed() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    if (!shouldLoad) return;
-
-    void (async () => {
-      const cal = await getCalApi();
-      cal('ui', {
-        theme: 'light',
-        layout: 'month_view',
-        styles: { branding: { brandColor: '#18181b' } },
-      });
-    })();
-  }, [shouldLoad]);
-
   return (
     <div
       ref={containerRef}
@@ -51,6 +40,7 @@ export function CalBookingEmbed() {
     >
       {shouldLoad ? (
         <Cal
+          namespace={CAL_NAMESPACE}
           calLink={CAL_LINK}
           config={{ ...EMBED_CONFIG }}
           style={{ width: '100%', minHeight: '520px', height: 'auto', overflow: 'auto' }}
