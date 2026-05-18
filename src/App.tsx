@@ -11,7 +11,6 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import './App.css';
 
-const CustomCursor = lazy(() => import('./components/CustomCursor'));
 const Analytics = lazy(() =>
   import('@vercel/analytics/react').then((m) => ({ default: m.Analytics }))
 );
@@ -19,9 +18,6 @@ const Analytics = lazy(() =>
 function App() {
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-white text-zinc-700 antialiased">
-      <Suspense fallback={null}>
-        <CustomCursor />
-      </Suspense>
       <Header />
       <main>
         <Hero />
