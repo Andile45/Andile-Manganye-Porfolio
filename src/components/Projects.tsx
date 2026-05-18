@@ -196,18 +196,19 @@ function ProjectThumbnail({ project }: { project: Project }) {
       loading="lazy"
       decoding="async"
       className={cn(
-        'h-full w-full',
-        isMobile ? 'object-cover object-top' : 'object-cover object-center'
+        'w-full',
+        isMobile ? 'h-full object-cover object-top' : 'h-auto object-contain'
       )}
     />
   );
   const frameClass = cn(
     'overflow-hidden rounded-xl bg-zinc-100 ring-1 ring-zinc-200/90',
-    isMobile && 'mx-auto w-full max-w-[200px]'
+    isMobile && 'mx-auto w-full max-w-[200px]',
+    !isMobile && 'p-3 sm:p-4'
   );
   const mediaClass = cn(
     'block w-full transition-opacity duration-300',
-    isMobile ? 'aspect-[9/19]' : 'aspect-video',
+    isMobile ? 'aspect-[9/19]' : 'h-auto',
     liveHref && 'hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-500'
   );
 
@@ -284,11 +285,11 @@ function ProjectCard({
       />
       {project.thumbnail && (layout === 'wide' || layout === 'featured') ? (
         <>
-          <div className="flex flex-col gap-5 md:flex-row md:items-start md:gap-8">
+          <div className="flex flex-col gap-5 md:flex-row md:items-center md:gap-8 lg:gap-10">
             <div
               className={cn(
-                'w-full px-4 pt-4 md:shrink-0 md:px-5 md:pt-5',
-                layout === 'featured' ? 'md:w-[38%]' : 'md:w-[42%]'
+                'flex w-full items-center justify-center px-4 py-4 md:shrink-0 md:p-6',
+                layout === 'featured' ? 'md:w-[40%] lg:w-[42%]' : 'md:w-[44%] lg:w-[46%]'
               )}
             >
               <ProjectThumbnail project={project} />
