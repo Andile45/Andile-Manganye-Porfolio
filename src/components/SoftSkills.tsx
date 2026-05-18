@@ -5,15 +5,15 @@ import {
   GraduationCap,
   Lightbulb,
   ScanEye,
-  type LucideIcon,
-} from 'lucide-react';
+  type PortfolioIcon,
+} from './icons';
 import { liftInteraction } from '../lib/motion-presets';
 import { cn } from '../lib/utils';
 
 type SoftSkill = {
   name: string;
   description: string;
-  icon: LucideIcon;
+  icon: PortfolioIcon;
 };
 
 const softSkills: SoftSkill[] = [

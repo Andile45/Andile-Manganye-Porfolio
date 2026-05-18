@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Award, Download, ExternalLink } from 'lucide-react';
+import { Award, Download, ExternalLink } from './icons';
 import { primaryButtonSm } from '../lib/button-styles';
 import { subtleScaleInteraction } from '../lib/motion-presets';
 import { cn } from '../lib/utils';

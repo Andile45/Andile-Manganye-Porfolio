@@ -1,5 +1,5 @@
-﻿import { motion, useInView } from 'framer-motion';
-import { Briefcase, Check, GraduationCap, type LucideIcon } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { Briefcase, Check, GraduationCap, type PortfolioIcon } from './icons';
 import { useRef } from 'react';
 import { liftInteraction } from '../lib/motion-presets';
 import { cn } from '../lib/utils';
@@ -39,7 +39,7 @@ const experiences: ExperienceEntry[] = [
   },
 ];
 
-const iconByType: Record<ExperienceEntry['type'], LucideIcon> = {
+const iconByType: Record<ExperienceEntry['type'], PortfolioIcon> = {
   work: Briefcase,
   education: GraduationCap,
 };

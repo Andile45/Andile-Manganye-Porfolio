@@ -10,7 +10,13 @@ export default defineConfig({
         manualChunks(id) {
           if (id.includes('node_modules')) {
             if (id.includes('framer-motion')) return 'vendor-motion';
-            if (id.includes('react-icons') || id.includes('lucide-react')) return 'vendor-icons';
+            if (
+              id.includes('react-icons') ||
+              id.includes('@hugeicons/react') ||
+              id.includes('@hugeicons/core-free-icons')
+            ) {
+              return 'vendor-icons';
+            }
             if (id.includes('react-dom') || id.includes('/react/')) return 'vendor-react';
           }
         },

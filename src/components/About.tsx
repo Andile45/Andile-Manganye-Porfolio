@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Rocket } from 'lucide-react';
+import { GraduationCap, Rocket } from './icons';
 import { liftInteraction } from '../lib/motion-presets';
 import { cn } from '../lib/utils';
 

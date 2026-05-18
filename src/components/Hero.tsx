@@ -1,66 +1,25 @@
-import { useRef } from 'react';
-import { motion, useInView, useReducedMotion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-const PROFILE_IMAGE = '/Andile-Manganye-Image.png';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowRight } from './icons';
 import PrimaryButton from './ui/PrimaryButton';
 import { secondaryButton } from '../lib/button-styles';
-import { StreamingCursor } from './ui/StreamingText';
-import { useStreamingText } from '../hooks/useStreamingText';
 import { subtleScaleInteraction } from '../lib/motion-presets';
 import { handleSectionNavClick } from '../lib/scroll';
 import { cn } from '../lib/utils';
 
+const PROFILE_IMAGE = '/Andile-Manganye-Image.jpg';
+
 const ROLE = 'Full-Stack Engineer';
 const HEADLINE_1 = 'Architecting robust backends. ';
 const HEADLINE_2 = 'Crafting intuitive UIs.';
-const HEADLINE_FULL = HEADLINE_1 + HEADLINE_2;
 const BIO =
   "I'm Andile Manganye, a full-stack engineer building scalable web and mobile applications.";
 
-const CHAR_MS = 30;
-const HEADLINE_1_DELAY = ROLE.length * CHAR_MS;
-const HEADLINE_2_DELAY = HEADLINE_1_DELAY + HEADLINE_1.length * CHAR_MS;
-const BIO_DELAY = HEADLINE_2_DELAY + HEADLINE_2.length * CHAR_MS + 120;
-
 const Hero = () => {
-  const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
-  const isInView = useInView(sectionRef, { amount: 0.12, once: true });
-  const streamActive = isInView && !reduceMotion;
-  const showStream = streamActive;
-
-  const role = useStreamingText(ROLE, { active: streamActive, speed: CHAR_MS });
-  const headline1 = useStreamingText(HEADLINE_1, {
-    active: streamActive,
-    speed: CHAR_MS,
-    delay: HEADLINE_1_DELAY,
-  });
-  const headline2 = useStreamingText(HEADLINE_2, {
-    active: streamActive,
-    speed: CHAR_MS,
-    delay: HEADLINE_2_DELAY,
-  });
-  const bio = useStreamingText(BIO, {
-    active: streamActive,
-    speed: 22,
-    delay: BIO_DELAY,
-  });
-
-  const roleStreaming = showStream && !role.isComplete && role.displayed.length > 0;
-  const headlineStreaming =
-    showStream && role.isComplete && (!headline1.isComplete || !headline2.isComplete);
-  const bioStreaming =
-    showStream &&
-    headline1.isComplete &&
-    headline2.isComplete &&
-    !bio.isComplete &&
-    bio.displayed.length > 0;
-
   const motionInitial = reduceMotion ? false : { opacity: 0, y: 24 };
 
   return (
     <section
-      ref={sectionRef}
       id="home"
       className="section-padding relative flex min-h-0 items-center overflow-x-hidden pt-32 sm:pt-36 lg:min-h-[85vh] lg:pt-40"
     >
@@ -89,26 +48,14 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <p className="mb-4 min-h-[1.25rem] text-sm font-medium uppercase tracking-[0.2em] text-zinc-700">
-            {showStream && <span className="sr-only">{ROLE}</span>}
-            <span aria-hidden={showStream}>{showStream ? role.displayed : ROLE}</span>
-            <StreamingCursor visible={roleStreaming} className="text-zinc-500" />
-          </p>
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-zinc-700">{ROLE}</p>
           <h1 className="text-3xl font-bold leading-[1.15] tracking-tight text-zinc-950 sm:text-4xl md:text-5xl lg:text-7xl">
-            {showStream && <span className="sr-only">{HEADLINE_FULL}</span>}
-            <span aria-hidden={showStream}>
-              {showStream ? headline1.displayed : HEADLINE_1}
-              <span className="bg-gradient-to-r from-zinc-700 to-zinc-900 bg-clip-text text-transparent">
-                {showStream ? headline2.displayed : HEADLINE_2}
-              </span>
+            {HEADLINE_1}
+            <span className="bg-gradient-to-r from-zinc-700 to-zinc-900 bg-clip-text text-transparent">
+              {HEADLINE_2}
             </span>
-            <StreamingCursor visible={headlineStreaming} className="text-zinc-400" />
           </h1>
-          <p className="mt-6 min-h-[4.5rem] max-w-xl text-lg leading-relaxed text-zinc-600 sm:min-h-[3.5rem] sm:text-xl">
-            {showStream && <span className="sr-only">{BIO}</span>}
-            <span aria-hidden={showStream}>{showStream ? bio.displayed : BIO}</span>
-            <StreamingCursor visible={bioStreaming} />
-          </p>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 sm:text-xl">{BIO}</p>
           <motion.div
             className="mt-8 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:items-center sm:justify-center lg:justify-start"
             initial={reduceMotion ? false : { opacity: 0, y: 12 }}

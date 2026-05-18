@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight } from './icons';
 import { primaryButtonSm } from '../lib/button-styles';
 import { scrollToSectionId, updateSectionHash } from '../lib/scroll';
 import { cn } from '../lib/utils';
@@ -16,12 +16,8 @@ const navItems = [
   { id: 'contact', label: 'Contact' },
 ] as const;
 
-/** Match mobile menu exit animation before scrolling (layout must settle). */
-const MOBILE_MENU_CLOSE_MS = 320;
-
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   const updateActiveSection = useCallback(() => {
@@ -58,19 +54,8 @@ const Header = () => {
   const navigateToSection = (e: React.MouseEvent<HTMLElement>, id: string) => {
     e.preventDefault();
     setActiveSection(id);
-    const menuWasOpen = isMobileMenuOpen;
-    setIsMobileMenuOpen(false);
-
-    const runScroll = () => {
-      scrollToSectionId(id);
-      updateSectionHash(id);
-    };
-
-    if (menuWasOpen) {
-      window.setTimeout(runScroll, MOBILE_MENU_CLOSE_MS);
-    } else {
-      requestAnimationFrame(runScroll);
-    }
+    scrollToSectionId(id);
+    updateSectionHash(id);
   };
 
   return (
@@ -130,52 +115,15 @@ const Header = () => {
           </motion.a>
         </motion.div>
 
-        <button
-          type="button"
-          className="rounded-lg border border-zinc-200 p-2 text-zinc-600 md:hidden"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
+        <a
+          href="#projects"
+          onClick={(e) => navigateToSection(e, 'projects')}
+          className={cn('inline-flex items-center gap-1.5 md:hidden', primaryButtonSm)}
         >
-          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+          View work
+          <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+        </a>
       </nav>
-
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            className="space-y-1 border-b border-zinc-200 bg-white/95 px-4 py-5 backdrop-blur-xl md:hidden"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-          >
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onClick={(e) => navigateToSection(e, item.id)}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={cn(
-                    'relative block w-full rounded-lg py-3.5 pl-4 pr-4 text-sm font-medium transition-colors',
-                    isActive
-                      ? 'bg-zinc-100 font-semibold text-zinc-950 ring-1 ring-zinc-200/80'
-                      : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-950'
-                  )}
-                >
-                  {isActive && (
-                    <span
-                      className="absolute bottom-2 left-0 top-2 w-0.5 rounded-full bg-zinc-900"
-                      aria-hidden
-                    />
-                  )}
-                  {item.label}
-                </a>
-              );
-            })}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   );
 };
