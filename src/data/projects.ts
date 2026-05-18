@@ -21,16 +21,10 @@ export type Project = {
   role: string;
   span: string;
   icon: ProjectIconKey;
-  thumbnail: string;
-  thumbnailAlt: string;
+  thumbnail?: string;
+  thumbnailAlt?: string;
   /** Portrait phone screenshots vs landscape web UI */
   thumbnailVariant?: 'mobile' | 'desktop';
-  /** Optional second preview (e.g. mobile + CMS for Bite X) */
-  secondaryThumbnail?: {
-    src: string;
-    alt: string;
-    variant?: 'mobile' | 'desktop';
-  };
   links?: ProjectLink[];
   credentials?: DemoCredential[];
 };
@@ -62,13 +56,8 @@ export const projects: Project[] = [
     span: 'md:col-span-2 md:row-span-2',
     icon: 'utensils',
     thumbnail: '/images/projects/bite-x-mobile.png',
-    thumbnailAlt: 'Bite X mobile app home screen with menu and food items',
-    thumbnailVariant: 'mobile',
-    secondaryThumbnail: {
-      src: '/images/projects/bite-x-cms.png',
-      alt: 'Bite X restaurant CMS dashboard with orders and revenue',
-      variant: 'desktop',
-    },
+    thumbnailAlt:
+      'Bite X mobile app home screen with menu categories and recommended food items',
     links: [
       {
         label: 'Live CMS',
@@ -111,8 +100,8 @@ export const projects: Project[] = [
     span: 'md:col-span-1',
     icon: 'bot',
     thumbnail: '/images/projects/thusa.png',
-    thumbnailAlt: 'Thusa TUT AI chatbot with FAQ sidebar and quick-start prompts',
-    thumbnailVariant: 'desktop',
+    thumbnailAlt:
+      'Thusa TUT AI chatbot with FAQ sidebar, quick-start prompts, and chat input',
     links: [
       {
         label: 'Live demo',
@@ -145,8 +134,8 @@ export const projects: Project[] = [
     span: 'md:col-span-1',
     icon: 'building',
     thumbnail: '/images/projects/onsite.png',
-    thumbnailAlt: 'OnSite mobile app report an issue screen',
-    thumbnailVariant: 'mobile',
+    thumbnailAlt:
+      'OnSite mobile app home screen for reporting and tracking maintenance issues',
     links: [
       {
         label: 'Download APK',
@@ -171,8 +160,8 @@ export const projects: Project[] = [
     span: 'md:col-span-2',
     icon: 'cloud',
     thumbnail: '/images/projects/weather.png',
-    thumbnailAlt: 'Weather app showing Polokwane temperature and conditions',
-    thumbnailVariant: 'desktop',
+    thumbnailAlt:
+      'Weather app UI showing Polokwane forecast with temperature, humidity, and wind speed',
     links: [
       {
         label: 'Live demo',
