@@ -63,15 +63,6 @@ export default function Footer() {
           <span className="text-zinc-700">TypeScript</span> &{' '}
           <span className="text-zinc-700">Tailwind CSS</span>
         </p>
-        <p className="text-center text-xs text-zinc-500">
-          <a href="/llms.txt" className="underline hover:text-zinc-800">
-            llms.txt
-          </a>
-          {' · '}
-          <a href="/llms-full.txt" className="underline hover:text-zinc-800">
-            Full profile for AI tools
-          </a>
-        </p>
       </div>
     </footer>
   );
