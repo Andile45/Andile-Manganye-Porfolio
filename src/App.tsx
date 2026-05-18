@@ -8,6 +8,7 @@ import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Certificates from './components/Certificates';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
 import './App.css';
 
 const CustomCursor = lazy(() => import('./components/CustomCursor'));
@@ -32,23 +33,7 @@ function App() {
         <Certificates />
         <Contact />
       </main>
-      <footer className="border-t border-zinc-200 px-4 py-10 text-center">
-        <p className="text-sm text-zinc-600">
-          © {new Date().getFullYear()} Andile Manganye · Built with{' '}
-          <span className="text-zinc-700">React</span>,{' '}
-          <span className="text-zinc-700">TypeScript</span> &{' '}
-          <span className="text-zinc-700">Tailwind CSS</span>
-        </p>
-        <p className="mt-2 text-xs text-zinc-500">
-          <a href="/llms.txt" className="underline hover:text-zinc-800">
-            llms.txt
-          </a>
-          {' · '}
-          <a href="/llms-full.txt" className="underline hover:text-zinc-800">
-            Full profile for AI tools
-          </a>
-        </p>
-      </footer>
+      <Footer />
       <Suspense fallback={null}>
         <Analytics />
       </Suspense>
