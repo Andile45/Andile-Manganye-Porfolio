@@ -21,7 +21,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="section-padding relative flex min-h-0 items-center overflow-x-hidden pt-32 sm:pt-36 lg:min-h-[85vh] lg:pt-40"
+      className="section-padding relative flex min-h-0 items-center overflow-x-hidden pt-36 sm:pt-40 lg:min-h-[85vh] lg:pt-40"
     >
       <motion.div
         aria-hidden
@@ -74,13 +74,13 @@ const Hero = () => {
               className={cn(secondaryButton, 'px-8 py-[14px] text-base')}
               onClick={(e) => handleSectionNavClick(e, 'contact')}
             >
-              Let&apos;s Connect
+              Schedule a call
             </a>
           </motion.div>
         </motion.div>
 
         <motion.div
-          className="relative flex w-full shrink-0 justify-center lg:justify-end"
+          className="relative mt-6 flex w-full shrink-0 justify-center sm:mt-8 lg:mt-0 lg:justify-end"
           initial={reduceMotion ? false : { opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}

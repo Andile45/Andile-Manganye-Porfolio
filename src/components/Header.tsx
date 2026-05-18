@@ -111,16 +111,16 @@ const Header = () => {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            Hire me
+            Schedule a call
           </motion.a>
         </motion.div>
 
         <a
-          href="#projects"
-          onClick={(e) => navigateToSection(e, 'projects')}
+          href="#contact"
+          onClick={(e) => navigateToSection(e, 'contact')}
           className={cn('inline-flex items-center gap-1.5 md:hidden', primaryButtonSm)}
         >
-          View work
+          Schedule a call
           <ArrowRight className="h-3.5 w-3.5" aria-hidden />
         </a>
       </nav>
