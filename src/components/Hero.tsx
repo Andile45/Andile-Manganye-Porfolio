@@ -1,8 +1,11 @@
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from './icons';
 import PrimaryButton from './ui/PrimaryButton';
 import { secondaryButton } from '../lib/button-styles';
 import { handleSectionNavClick } from '../lib/scroll';
 import { cn } from '../lib/utils';
+
+const headlineEase = [0.22, 1, 0.36, 1] as const;
 
 const PROFILE_IMAGE = '/Andile-Manganye-Image.jpg';
 
@@ -13,6 +16,8 @@ const BIO =
   "I'm Andile Manganye, a full-stack engineer building scalable web and mobile applications.";
 
 const Hero = () => {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section
       id="home"
@@ -31,10 +36,33 @@ const Hero = () => {
         <div className="w-full min-w-0 text-center lg:text-left">
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-zinc-700">{ROLE}</p>
           <h1 className="text-3xl font-bold leading-[1.15] tracking-tight text-zinc-950 sm:text-4xl md:text-5xl lg:text-7xl">
-            {HEADLINE_1}
-            <span className="bg-gradient-to-r from-zinc-700 to-zinc-900 bg-clip-text text-transparent">
-              {HEADLINE_2}
-            </span>
+            {reduceMotion ? (
+              <>
+                {HEADLINE_1}
+                <span className="bg-gradient-to-r from-zinc-700 to-zinc-900 bg-clip-text text-transparent">
+                  {HEADLINE_2}
+                </span>
+              </>
+            ) : (
+              <>
+                <motion.span
+                  className="inline-block"
+                  initial={{ opacity: 0, y: 28 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: headlineEase, delay: 0.06 }}
+                >
+                  {HEADLINE_1}
+                </motion.span>
+                <motion.span
+                  className="inline-block bg-gradient-to-r from-zinc-700 to-zinc-900 bg-clip-text text-transparent"
+                  initial={{ opacity: 0, y: 28 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.75, ease: headlineEase, delay: 0.2 }}
+                >
+                  {HEADLINE_2}
+                </motion.span>
+              </>
+            )}
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 sm:text-xl">{BIO}</p>
           <div className="mt-8 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
