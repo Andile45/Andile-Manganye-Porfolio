@@ -1,25 +1,47 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { useRef } from 'react';
+import { useInView, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from './icons';
 import PrimaryButton from './ui/PrimaryButton';
+import { StreamingCursor } from './ui/StreamingText';
 import { secondaryButton } from '../lib/button-styles';
+import { useStreamingText } from '../hooks/useStreamingText';
 import { handleSectionNavClick } from '../lib/scroll';
 import { cn } from '../lib/utils';
-
-const headlineEase = [0.22, 1, 0.36, 1] as const;
 
 const PROFILE_IMAGE = '/Andile-Manganye-Image.jpg';
 
 const ROLE = 'Full-Stack Engineer';
 const HEADLINE_1 = 'Architecting robust backends. ';
 const HEADLINE_2 = 'Crafting intuitive UIs.';
+const HEADLINE_FULL = HEADLINE_1 + HEADLINE_2;
 const BIO =
   "I'm Andile Manganye, a full-stack engineer building scalable web and mobile applications.";
 
+const CHAR_MS = 30;
+const HEADLINE_2_DELAY = HEADLINE_1.length * CHAR_MS;
+
 const Hero = () => {
+  const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
+  const isInView = useInView(sectionRef, { amount: 0.12, once: true });
+  const streamActive = isInView && !reduceMotion;
+
+  const headline1 = useStreamingText(HEADLINE_1, {
+    active: streamActive,
+    speed: CHAR_MS,
+  });
+  const headline2 = useStreamingText(HEADLINE_2, {
+    active: streamActive,
+    speed: CHAR_MS,
+    delay: HEADLINE_2_DELAY,
+  });
+
+  const headlineStreaming =
+    streamActive && (!headline1.isComplete || !headline2.isComplete);
 
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="section-padding relative flex min-h-0 items-center overflow-x-hidden pt-36 sm:pt-40 lg:min-h-[85vh] lg:pt-40"
     >
@@ -36,33 +58,14 @@ const Hero = () => {
         <div className="w-full min-w-0 text-center lg:text-left">
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-zinc-700">{ROLE}</p>
           <h1 className="text-3xl font-bold leading-[1.15] tracking-tight text-zinc-950 sm:text-4xl md:text-5xl lg:text-7xl">
-            {reduceMotion ? (
-              <>
-                {HEADLINE_1}
-                <span className="bg-gradient-to-r from-zinc-700 to-zinc-900 bg-clip-text text-transparent">
-                  {HEADLINE_2}
-                </span>
-              </>
-            ) : (
-              <>
-                <motion.span
-                  className="inline-block"
-                  initial={{ opacity: 0, y: 28 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, ease: headlineEase, delay: 0.06 }}
-                >
-                  {HEADLINE_1}
-                </motion.span>
-                <motion.span
-                  className="inline-block bg-gradient-to-r from-zinc-700 to-zinc-900 bg-clip-text text-transparent"
-                  initial={{ opacity: 0, y: 28 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.75, ease: headlineEase, delay: 0.2 }}
-                >
-                  {HEADLINE_2}
-                </motion.span>
-              </>
-            )}
+            {streamActive && <span className="sr-only">{HEADLINE_FULL}</span>}
+            <span aria-hidden={streamActive}>
+              {streamActive ? headline1.displayed : HEADLINE_1}
+              <span className="bg-gradient-to-r from-zinc-700 to-zinc-900 bg-clip-text text-transparent">
+                {streamActive ? headline2.displayed : HEADLINE_2}
+              </span>
+            </span>
+            <StreamingCursor visible={headlineStreaming} />
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 sm:text-xl">{BIO}</p>
           <div className="mt-8 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
