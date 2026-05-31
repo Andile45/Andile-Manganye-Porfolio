@@ -23,8 +23,8 @@ export type Project = {
   icon: ProjectIconKey;
   thumbnail?: string;
   thumbnailAlt?: string;
-  /** Portrait phone screenshots vs landscape web UI */
-  thumbnailVariant?: 'mobile' | 'desktop';
+  /** mobile = portrait screenshot; desktop = web UI; mockup = device/promo image with background */
+  thumbnailVariant?: 'mobile' | 'desktop' | 'mockup';
   links?: ProjectLink[];
   credentials?: DemoCredential[];
 };
@@ -101,7 +101,8 @@ export const projects: Project[] = [
     icon: 'scale',
     thumbnail: '/images/projects/mabotja.png',
     thumbnailAlt:
-      'Mabotja Thabo Attorneys Inc. website mockup showing the homepage hero with attorneys in Polokwane messaging',
+      'Mabotja Thabo Attorneys Inc. mobile homepage showing Polokwane attorneys headline and consultation CTA',
+    thumbnailVariant: 'mockup',
     links: [
       {
         label: 'Live site',

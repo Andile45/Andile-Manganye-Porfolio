@@ -76,10 +76,16 @@ function ProjectLinks({ links }: { links: NonNullable<Project['links']> }) {
   );
 }
 
-function FeatureList({ features }: { features: string[] }) {
+function FeatureList({
+  features,
+  className,
+}: {
+  features: string[];
+  className?: string;
+}) {
   return (
     <ul
-      className="grid gap-1 sm:grid-cols-2"
+      className={cn('grid gap-1 sm:grid-cols-2', className)}
       onClick={(e) => e.stopPropagation()}
       onKeyDown={(e) => e.stopPropagation()}
     >
@@ -166,31 +172,39 @@ function DemoCredentials({ credentials }: { credentials: NonNullable<Project['cr
 function ProjectThumbnail({ project }: { project: Project }) {
   if (!project.thumbnail) return null;
 
-  const isMobile = project.thumbnailVariant === 'mobile';
+  const variant = project.thumbnailVariant ?? 'desktop';
+  const isMobile = variant === 'mobile';
+  const isMockup = variant === 'mockup';
   const liveHref = project.links?.find((l) => !l.download)?.href;
 
   const image = (
     <img
       src={project.thumbnail}
       alt={project.thumbnailAlt ?? `${project.title} preview`}
-      width={isMobile ? 390 : 640}
-      height={isMobile ? 844 : 360}
+      width={isMobile ? 390 : isMockup ? 480 : 640}
+      height={isMobile ? 844 : isMockup ? 480 : 360}
       loading="lazy"
       decoding="async"
       className={cn(
         'w-full',
-        isMobile ? 'h-full object-cover object-top' : 'h-auto object-contain'
+        isMobile && 'h-full object-cover object-top',
+        !isMobile && 'h-auto object-contain'
       )}
     />
   );
+  const thumbnailFrame =
+    'overflow-hidden rounded-xl bg-zinc-100 ring-1 ring-zinc-200/90';
   const frameClass = cn(
-    'overflow-hidden rounded-xl bg-zinc-100 ring-1 ring-zinc-200/90',
+    thumbnailFrame,
     isMobile && 'mx-auto w-full max-w-[200px]',
-    !isMobile && 'p-3 sm:p-4'
+    isMockup &&
+      'mx-auto w-full max-w-[220px] p-2.5 sm:max-w-[260px] sm:p-3 md:max-w-[280px] md:p-3.5',
+    !isMobile && !isMockup && 'p-3 sm:p-4'
   );
   const mediaClass = cn(
     'block w-full transition-opacity duration-300',
-    isMobile ? 'aspect-[9/19]' : 'h-auto',
+    isMobile && 'aspect-[9/19]',
+    !isMobile && 'h-auto',
     liveHref && 'hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-500'
   );
 
@@ -220,7 +234,7 @@ function CardHeader({ project }: { project: Project }) {
         <p className="text-[10px] font-semibold uppercase tracking-widest text-zinc-500">
           {project.tagline}
         </p>
-        <h3 className="mt-0.5 text-lg font-bold tracking-tight text-zinc-950 transition-colors duration-300 group-hover:text-zinc-800 sm:text-xl">
+        <h3 className="mt-1 text-balance text-lg font-bold leading-snug tracking-tight text-zinc-950 transition-colors duration-300 group-hover:text-zinc-800 sm:text-xl">
           {project.title}
         </h3>
       </div>
@@ -231,6 +245,8 @@ function CardHeader({ project }: { project: Project }) {
 function ProjectCard({ project }: { project: Project }) {
   const layout = getLayout(project);
   const isWide = layout === 'wide' || layout === 'featured';
+  const isMockupWide =
+    isWide && project.thumbnail && project.thumbnailVariant === 'mockup';
 
   const cardClass = cn(
     'project-card group relative w-full min-w-0 max-w-full overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm',
@@ -251,20 +267,55 @@ function ProjectCard({ project }: { project: Project }) {
       />
       {project.thumbnail && (layout === 'wide' || layout === 'featured') ? (
         <>
-          <div className="flex flex-col gap-5 md:flex-row md:items-center md:gap-8 lg:gap-10">
+          <div
+            className={cn(
+              'flex flex-col md:flex-row md:items-center',
+              isMockupWide
+                ? 'gap-6 p-5 sm:gap-7 sm:p-6 md:gap-10 md:p-6 lg:gap-12 lg:p-7'
+                : 'gap-5 md:gap-8 lg:gap-10'
+            )}
+          >
             <div
               className={cn(
-                'flex w-full items-center justify-center px-4 py-4 md:shrink-0 md:p-6',
-                layout === 'featured' ? 'md:w-[40%] lg:w-[42%]' : 'md:w-[44%] lg:w-[46%]'
+                'flex w-full items-center justify-center md:shrink-0',
+                isMockupWide
+                  ? 'md:w-[34%] lg:w-[32%] xl:w-[30%]'
+                  : 'px-4 py-4 md:p-6',
+                !isMockupWide &&
+                  (layout === 'featured'
+                    ? 'md:w-[40%] lg:w-[42%]'
+                    : 'md:w-[44%] lg:w-[46%]')
               )}
             >
               <ProjectThumbnail project={project} />
             </div>
-            <div className="relative flex flex-1 flex-col gap-3 px-4 pb-4 pt-1 md:px-6 md:py-5 md:pt-5">
+            <div
+              className={cn(
+                'relative flex min-w-0 flex-1 flex-col',
+                isMockupWide
+                  ? 'gap-4 md:gap-5'
+                  : 'gap-3 px-4 pb-4 pt-1 md:px-6 md:py-5 md:pt-5'
+              )}
+            >
               <CardHeader project={project} />
-              <p className="text-sm leading-snug text-zinc-600">{project.description}</p>
-              <FeatureList features={project.features} />
-              <p className="text-[11px] leading-snug text-zinc-500">
+              <p
+                className={cn(
+                  'text-sm text-zinc-600',
+                  isMockupWide ? 'leading-relaxed' : 'leading-snug'
+                )}
+              >
+                {project.description}
+              </p>
+              <FeatureList
+                features={project.features}
+                className={isMockupWide ? 'gap-2 sm:gap-x-6 sm:gap-y-2.5' : undefined}
+              />
+              <p
+                className={cn(
+                  'text-[11px] text-zinc-500',
+                  isMockupWide ? 'leading-relaxed' : 'leading-snug'
+                )}
+              >
                 <span className="font-semibold text-zinc-700">Role — </span>
                 {project.role}
               </p>
@@ -272,7 +323,11 @@ function ProjectCard({ project }: { project: Project }) {
                 stack={project.stack}
                 max={layout === 'featured' ? 8 : 6}
               />
-              {project.links && <ProjectLinks links={project.links} />}
+              {project.links && (
+                <div className={isMockupWide ? 'pt-1' : undefined}>
+                  <ProjectLinks links={project.links} />
+                </div>
+              )}
             </div>
           </div>
           {layout === 'featured' && project.credentials && (
