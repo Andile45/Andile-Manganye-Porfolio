@@ -1,4 +1,4 @@
-export type ProjectIconKey = 'utensils' | 'bot' | 'building' | 'cloud';
+export type ProjectIconKey = 'utensils' | 'bot' | 'building' | 'cloud' | 'scale';
 
 export type ProjectLink = {
   label: string;
@@ -73,6 +73,42 @@ export const projects: Project[] = [
       { role: 'Admin', email: 'admin@bitex.com', password: 'BiteX@45' },
       { role: 'Manager', email: 'manager@bitex.com', password: 'BiteX@45' },
       { role: 'Staff', email: 'staff@bitex.com', password: 'BiteX@45' },
+    ],
+  },
+  {
+    title: 'Mabotja Thabo Attorneys Inc.',
+    tagline: 'Law Firm Website',
+    description:
+      'Marketing website for Mabotja Thabo Attorneys Inc., a Polokwane-based law firm — built to generate consultation enquiries, support local and international SEO, and provide a clear summary for AI crawlers.',
+    stack: [
+      'Next.js 16',
+      'TypeScript',
+      'Tailwind v4',
+      'React Hook Form',
+      'Zod',
+      'Formspree',
+      'Hugeicons',
+      'Vercel',
+    ],
+    features: [
+      'Responsive multi-page site (home, about, services, contact)',
+      'Nine practice-area pages from a single data source',
+      'Contact form with service selection and international phone validation',
+      'Office map, hours, WhatsApp links, and consultation CTAs',
+      'Per-page SEO, JSON-LD (LegalService, FAQs), sitemap & robots',
+      'AI discoverability via public llms.txt firm summary',
+    ],
+    role: 'Full-stack: Next.js App Router site, content architecture (services, contact, SEO data), Formspree contact API route, schema markup, and Vercel deployment.',
+    span: 'md:col-span-2',
+    icon: 'scale',
+    thumbnail: '/images/projects/mabotja.png',
+    thumbnailAlt:
+      'Mabotja Thabo Attorneys Inc. website mockup showing the homepage hero with attorneys in Polokwane messaging',
+    links: [
+      {
+        label: 'Live site',
+        href: 'https://www.mabotjatinc.com',
+      },
     ],
   },
   {

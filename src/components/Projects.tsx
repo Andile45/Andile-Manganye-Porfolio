@@ -8,6 +8,7 @@ type CardLayout = 'featured' | 'standard' | 'wide';
 
 const layoutByTitle: Record<string, CardLayout> = {
   'Bite X': 'featured',
+  'Mabotja Thabo Attorneys Inc.': 'wide',
   'Weather App': 'wide',
 };
 

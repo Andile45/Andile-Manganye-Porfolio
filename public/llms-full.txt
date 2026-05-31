@@ -51,6 +51,18 @@ Role: Built the Expo mobile app (Redux Toolkit) and React 19 CMS; Supabase auth,
 
 Links: https://restaurant-app-azure-theta.vercel.app/
 
+### Mabotja Thabo Attorneys Inc. (Law Firm Website)
+
+Marketing website for a Polokwane-based law firm — consultation enquiries, local and international SEO, and AI crawler summary.
+
+Stack: Next.js 16 (App Router), TypeScript, Tailwind v4, React Hook Form, Zod, Formspree, Hugeicons, Vercel
+
+Features: Multi-page site, nine practice-area routes from one data source, contact form with phone validation, map/hours/WhatsApp, JSON-LD and sitemap, public llms.txt
+
+Role: Full-stack — App Router site, content architecture, Formspree API route, schema markup, Vercel deployment
+
+Links: https://www.mabotjatinc.com
+
 ### Thusa (TUT Student Assistant)
 
 AI-powered student support for Tshwane University of Technology — grounded chat with hybrid FAQ retrieval.
