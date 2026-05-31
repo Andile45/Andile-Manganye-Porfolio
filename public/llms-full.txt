@@ -53,13 +53,13 @@ Links: https://restaurant-app-azure-theta.vercel.app/
 
 ### Mabotja Thabo Attorneys Inc. (Law Firm Website)
 
-Marketing website for a Polokwane-based law firm — consultation enquiries, local and international SEO, and AI crawler summary.
+Marketing website for a Polokwane-based law firm (team project).
 
-Stack: Next.js 16 (App Router), TypeScript, Tailwind v4, React Hook Form, Zod, Formspree, Hugeicons, Vercel
+Stack (Andile's scope): Next.js 16 App Router, TypeScript, Zod, Formspree, JSON-LD, Vercel
 
-Features: Multi-page site, nine practice-area routes from one data source, contact form with phone validation, map/hours/WhatsApp, JSON-LD and sitemap, public llms.txt
+Contributions: App Router and src/data folder structure; per-page SEO metadata; sitemap.ts and robots.ts; JSON-LD schema; AEO via public llms.txt; /api/contact with Zod → Formspree. UI by others.
 
-Role: Full-stack — App Router site, content architecture, Formspree API route, schema markup, Vercel deployment
+Role: Backend and discoverability — not visual UI design or front-end styling
 
 Links: https://www.mabotjatinc.com
 

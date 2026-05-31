@@ -20,7 +20,7 @@ Computer Science diploma graduate (TUT, 2022–2025). Developer Trainee at CodeT
 ## Projects
 
 - **Bite X** — Restaurant platform: Expo mobile app + React CMS, Supabase, Paystack. Live CMS: https://restaurant-app-azure-theta.vercel.app/
-- **Mabotja Thabo Attorneys Inc.** — Law firm marketing site (Next.js 16, Tailwind v4, Formspree, SEO/JSON-LD, llms.txt). Live: https://www.mabotjatinc.com
+- **Mabotja Thabo Attorneys Inc.** — Law firm site; Andile contributed SEO, AEO (llms.txt), App Router structure, and contact API (not UI). Live: https://www.mabotjatinc.com
 - **Thusa** — TUT AI student assistant with grounded FAQ chat (React, Node, Supabase, OpenAI). Live: https://thusa-tut-ai-chatbot.vercel.app/
 - **OnSite** — Municipality maintenance: Flutter mobile, Firebase, Vision API, incident reporting.
 - **Weather App** — OpenWeatherMap vanilla JS app. Live: https://weather-app-zeta-navy-82.vercel.app/
