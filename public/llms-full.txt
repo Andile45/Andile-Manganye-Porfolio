@@ -63,6 +63,18 @@ Role: Backend and discoverability — not visual UI design or front-end styling
 
 Links: https://www.mabotjatinc.com
 
+### A&TY Trade & Services (Cleaning & Trade Website)
+
+Marketing website for a South African cleaning, mobile car wash, hygiene supplies, and trade services company serving Polokwane, Giyani, and Pretoria.
+
+Stack: Next.js 16 App Router, React 19, TypeScript, Tailwind v4, React Hook Form, Lucide, JSON-LD, Vercel
+
+Features: Multi-page site; 11 service detail routes; products; quote & contact forms; gallery & testimonials; local SEO; WhatsApp CTA
+
+Role: Full-stack marketing site — App Router, content architecture, forms, JSON-LD, Vercel deployment
+
+Links: https://www.atytradeservices.co.za/
+
 ### Thusa (TUT Student Assistant)
 
 AI-powered student support for Tshwane University of Technology — grounded chat with hybrid FAQ retrieval.
