@@ -111,6 +111,43 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: 'A&TY Trade & Services',
+    tagline: 'Cleaning & Trade Website',
+    description:
+      'Marketing website for A&TY Trade & Services (Pty) Ltd — professional cleaning, mobile car wash, hygiene supplies, and trade solutions across Polokwane, Giyani, and Pretoria.',
+    stack: [
+      'Next.js 16',
+      'React 19',
+      'TypeScript',
+      'Tailwind v4',
+      'React Hook Form',
+      'Lucide',
+      'JSON-LD',
+      'Vercel',
+    ],
+    features: [
+      'Multi-page site — home, about, services, products, quote, and contact',
+      '11 service detail routes from a shared services data module',
+      'Quote and contact forms with React Hook Form',
+      'Gallery, testimonials, and WhatsApp CTA',
+      'JSON-LD structured data and local SEO for Limpopo & Gauteng',
+      'Centralised brand config, image registry, and product categories',
+    ],
+    role: 'Full-stack marketing site: Next.js App Router pages, services/products content architecture, forms, JSON-LD schema, and Vercel deployment to atytradeservices.co.za.',
+    span: 'md:col-span-2',
+    icon: 'building',
+    thumbnail: '/images/projects/aty-trade-services.png',
+    thumbnailAlt:
+      'A&TY Trade & Services website homepage with hero, services, and cleaning team photo',
+    thumbnailVariant: 'mockup',
+    links: [
+      {
+        label: 'Live site',
+        href: 'https://www.atytradeservices.co.za/',
+      },
+    ],
+  },
+  {
     title: 'Thusa',
     tagline: 'TUT Student Assistant',
     description:
