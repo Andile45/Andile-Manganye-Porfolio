@@ -76,6 +76,44 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: 'Kop & Chill Barbers',
+    tagline: 'B2C Booking Platform',
+    description:
+      "A modern, high-performance B2C web platform for Kop & Chill Barbers, Polokwane's premier grooming lounge. Features a custom multi-step booking engine, third-party WhatsApp checkout integration, Google Fonts (Poppins), and a premium flat shadow design language.",
+    stack: [
+      'Next.js 15',
+      'React 19',
+      'TypeScript',
+      'Tailwind v4',
+      '@hugeicons/react',
+      'Vercel',
+    ],
+    features: [
+      'Availability Management — Dynamic Booking Calendar showing available days and operating hours',
+      'Customer Checkout Form — Validates customer details and South African cell numbers',
+      'WhatsApp Checkout Engine — Auto-generates pre-filled, compliant WhatsApp message links',
+      'Aesthetics & Readability — Premium flat shadow design, floating card layers, and Poppins typography',
+      'Optimized Performance — Designed to hit high Lighthouse developer assessment criteria',
+    ],
+    role: 'Designed and built the Next.js 15 App Router structure, step-by-step booking logic, WhatsApp checkout engine, custom South African cell validation, and local SEO optimizations.',
+    span: 'md:col-span-2',
+    icon: 'building',
+    thumbnail: '/images/projects/kop-and-chill.png',
+    thumbnailAlt:
+      'Kop & Chill Barbers website homepage showing confidence starts here headline and book appointment CTA',
+    thumbnailVariant: 'mockup',
+    links: [
+      {
+        label: 'Live site',
+        href: 'https://kop-and-chill-barbers.vercel.app/',
+      },
+      {
+        label: 'GitHub',
+        href: 'https://github.com/Andile45/Kop-and-Chill-Barbers',
+      },
+    ],
+  },
+  {
     title: 'Mabotja Thabo Attorneys Inc.',
     tagline: 'SEO · AEO · Backend',
     description:

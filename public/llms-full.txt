@@ -51,6 +51,18 @@ Role: Built the Expo mobile app (Redux Toolkit) and React 19 CMS; Supabase auth,
 
 Links: https://restaurant-app-azure-theta.vercel.app/
 
+### Kop & Chill Barbers (Barbershop Booking Hub)
+
+A modern, high-performance B2C web platform for Polokwane's premier grooming lounge. Serves as a fast, accessible, and responsive booking hub with custom scheduling.
+
+Stack: Next.js 15, React 19, TypeScript, Tailwind v4, @hugeicons/react, Vercel
+
+Features: Dynamic Booking Calendar with availability management, validated customer checkout form with strict South African cell validation, WhatsApp Checkout Engine for auto-generating pre-filled booking details, premium flat shadow design language with Poppins typography.
+
+Role: Designed and built the Next.js 15 App Router structure, step-by-step booking logic, WhatsApp checkout engine, custom South African cell validation, and local SEO optimizations.
+
+Links: https://kop-and-chill-barbers.vercel.app/
+
 ### Mabotja Thabo Attorneys Inc. (Law Firm Website)
 
 Marketing website for a Polokwane-based law firm (team project).

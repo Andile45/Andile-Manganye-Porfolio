@@ -20,6 +20,7 @@ Computer Science diploma graduate (TUT, 2022–2025). Developer Trainee at CodeT
 ## Projects
 
 - **Bite X** — Restaurant platform: Expo mobile app + React CMS, Supabase, Paystack. Live CMS: https://restaurant-app-azure-theta.vercel.app/
+- **Kop & Chill Barbers** — Modern B2C barbershop booking hub: Next.js 15, TypeScript, Tailwind v4, WhatsApp integration. Live: https://kop-and-chill-barbers.vercel.app/
 - **Mabotja Thabo Attorneys Inc.** — Law firm site; Andile contributed SEO, AEO (llms.txt), App Router structure, and contact API (not UI). Live: https://www.mabotjatinc.com
 - **A&TY Trade & Services** — Cleaning, car wash & supply company site (Next.js 16, React 19, Tailwind v4, JSON-LD). Live: https://www.atytradeservices.co.za/
 - **Thusa** — TUT AI student assistant with grounded FAQ chat (React, Node, Supabase, OpenAI). Live: https://thusa-tut-ai-chatbot.vercel.app/
