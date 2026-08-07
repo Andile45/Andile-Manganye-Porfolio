@@ -1,7 +1,15 @@
-import { GraduationCap, Rocket } from './icons';
+import { Briefcase, GraduationCap, Rocket } from './icons';
 import { cn } from '../lib/utils';
 
 const highlights = [
+  {
+    icon: Briefcase,
+    text: 'Academic Tutor (Operating Systems - ORS216D) at Tshwane University of Technology (TUT) — since August 2026',
+  },
+  {
+    icon: GraduationCap,
+    text: 'Enrolled in Advanced Diploma in Computer Science at Tshwane University of Technology (TUT) — 2026-2027',
+  },
   {
     icon: GraduationCap,
     text: 'Computer Science diploma from Tshwane University of Technology (TUT)',

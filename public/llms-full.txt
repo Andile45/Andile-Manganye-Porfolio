@@ -16,12 +16,28 @@
 
 Full-Stack Developer · Problem solver · Lifelong learner.
 
+- Enrolled in Advanced Diploma in Computer Science at Tshwane University of Technology (TUT) — 2026-2027
+- Academic Tutor (Operating Systems - ORS216D) at Tshwane University of Technology (TUT) — since August 2026
 - Computer Science diploma from Tshwane University of Technology (TUT)
 - Graduate of CodeTribe Academy (mLab Southern Africa) — developer training Jul 2025 – Mar 2026
 
 I thrive in agile environments where collaboration turns complex ideas into systems communities can rely on.
 
 ## Experience
+
+### Academic Tutor (Operating Systems) — Tshwane University of Technology (TUT)
+August 2026 – Present
+
+- Academic tutor for ORS216D (Operating Systems) undergraduate course
+- Facilitated student learning in processes, threads, memory management, and file systems
+- Guided practical lab exercises, shell scripting, and assignment troubleshooting
+
+### Advanced Diploma in Computer Science — Tshwane University of Technology (TUT)
+2026 – 2027
+
+- Advanced undergraduate curriculum focusing on complex systems development
+- Advanced software engineering and distributed architectures
+- Data management and systems design
 
 ### Developer Trainee (Graduate) — CodeTribe Academy · mLab Southern Africa
 Jul 2025 – Mar 2026

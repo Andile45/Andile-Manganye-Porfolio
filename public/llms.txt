@@ -15,7 +15,7 @@
 
 ## Summary
 
-Computer Science diploma graduate (TUT, 2022–2025). Developer Trainee at CodeTribe Academy (mLab Southern Africa), Jul 2025 – Mar 2026. I build production-style full-stack and mobile apps with React, TypeScript, Node.js, Supabase, and Firebase.
+Computer Science graduate (TUT CS Diploma, 2022–2025; currently enrolled in TUT Advanced Diploma, 2026–2027 while working as an Academic Tutor for Operating Systems since Aug 2026). Developer Trainee at CodeTribe Academy (mLab Southern Africa), Jul 2025 – Mar 2026. I build production-style full-stack and mobile apps with React, TypeScript, Node.js, Supabase, and Firebase.
 
 ## Projects
 
@@ -33,6 +33,8 @@ React, React Native, Expo, TypeScript, JavaScript, HTML, CSS, Tailwind CSS, Node
 
 ## Education & experience
 
+- Tshwane University of Technology — Academic Tutor (Operating Systems - ORS216D), Aug 2026 – Present
+- Tshwane University of Technology — Advanced Diploma in Computer Science, 2026 – 2027 (Enrolled)
 - CodeTribe Academy (mLab) — Developer Trainee, Jul 2025 – Mar 2026
 - Tshwane University of Technology — Computer Science Diploma, 2022 – 2025
 

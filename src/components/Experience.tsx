@@ -13,10 +13,33 @@ type ExperienceEntry = {
 const experiences: ExperienceEntry[] = [
   {
     type: 'work',
+    title: 'Academic Tutor (Operating Systems)',
+    company: 'Tshwane University of Technology (TUT)',
+    period: 'Aug 2026 - Present',
+    badge: 'Latest role',
+    description: [
+      'Academic tutor for ORS216D (Operating Systems) undergraduate course',
+      'Facilitated student learning in processes, threads, memory management, and file systems',
+      'Guided practical lab exercises, shell scripting, and assignment troubleshooting',
+    ],
+  },
+  {
+    type: 'education',
+    title: 'Advanced Diploma in Computer Science',
+    company: 'Tshwane University of Technology (TUT)',
+    period: '2026 - 2027',
+    badge: 'Enrolled',
+    description: [
+      'Advanced undergraduate curriculum focusing on complex systems development',
+      'Advanced software engineering and distributed architectures',
+      'Data management and systems design',
+    ],
+  },
+  {
+    type: 'work',
     title: 'Developer Trainee (Graduate)',
     company: 'CodeTribe Academy · mLab Southern Africa',
     period: 'Jul 2025 - Mar 2026',
-    badge: 'Latest role',
     description: [
       'Completed full-stack developer training with production-style deliverables',
       'Shipped solutions in Agile/Scrum teams with peer review and iteration',
