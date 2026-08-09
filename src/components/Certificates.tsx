@@ -4,6 +4,12 @@ import { cn } from '../lib/utils';
 
 const certificates = [
   {
+    title: 'React Course',
+    issuer: 'CodeTribe',
+    file: '/Cetificates/CodeTribe_React_Course.pdf',
+    category: 'Web Development',
+  },
+  {
     title: 'Database Design',
     issuer: 'DataCamp',
     file: '/Cetificates/Data_Camp_Database Design.pdf',
@@ -28,6 +34,7 @@ const certificates = [
     category: 'Web Development',
   },
 ];
+
 
 const Certificates = () => {
   return (
